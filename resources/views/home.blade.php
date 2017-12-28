@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('assets')
-<script src= "{{ URL::asset('/js/slider_filter.js') }}" type="text/javascript"></script>
+<!-- External resources -->
 <script src= "//code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+<!-- Internal resources -->
+<link href="{{ URL::asset('/css/slider_filter.css')}}" rel="stylesheet"/>
+<script src= "{{ URL::asset('/js/slider_filter.js') }}" type="text/javascript"></script>
 @endsection
 
 @section('content')
@@ -68,72 +72,79 @@
 
 <div class="wrapper" style="background:white;">
   <div class="container">
-    <div class="row">
+    <div class="row search_filter">
       <div class="col-md-6 col-md-offset-3">
-        <h3 class="title text-center">Find your home today</h1>
+
+
+        <form  action="{{url('search')}}" method="get" class="text-center">
+          <!-- Checkboxes-->
+
+          <h3 class="title">Find your home today</h1>
+
+
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn active">
+                <input type="radio" name="options" value="all_rooms" autocomplete="off" checked>
+                <span>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                  All Rooms
+                </span>
+              </label>
+
+              <label class="btn">
+                <input type="radio" name="options" value="single_room" autocomplete="off">
+                <span>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                  Single Room
+                </span>
+              </label>
+
+              <label class="btn">
+                <input type="radio" name="options" value="double_room" autocomplete="off">
+                <span>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                  Double Room
+                </span>
+              </label>
+            </div>
+
+
+
+            <!-- Price Range -->
+            <div class="input-group">
+
+
+              <div class="col-md-6 pull-left">
+                <span>Min: <input type="text" id="min" name="min" size="4" value="{{ $min }}" readonly="true" /></span>
+              </div>
+
+              <div class="col-md-6 -pull-right">
+                <span> Max: <input type="text" id="max" name="max" size="4" value="{{ $max }}" readonly="true" /></span>
+              </div>
+
+              <div class="col-md-12">
+                <div id="slider-range"></div>
+              </div>
+
+
+              <div class="col-md-12">
+
+                <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
+              </div>
+            </div>
+
+
+          </form>
         </div>
       </div>
 
-      <div class="col-md-6 col-md-offset-3 search-wrapper">
-        <form  action="{{url('search')}}" method="post">
-          <div class="input-group">
-
-
-            <p>
-              <label for="amount">Price range:</label>
-              <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
-            </p>
-            <div id="slider-range"></div>
-
-
-            <span class="input-group-addon">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
-            </span>
-
-          </div>
-        </form>
-      </div>
     </div>
   </div>
 </div>
 
 <div class="main" id="properties">
-  <div class="container products-container">
-    <ul class="categories-list">
-      <li class="{{ Request::is('home') ? 'active' : null}}">
-        <a href="{{route('home')}}">
-          <span>All Rooms</span>
-        </a>
-      </li>
 
-      <li class="{{ Request::is('single_bed') ? 'active' : null}}">
-        <a href="{{route('single_bed')}}">
-          <span>Single Room</span>
-        </a>
-      </li>
-      <li class="{{ Request::is('double_bed') ? 'active' : null}}">
-        <a href="{{route('double_bed')}}">
-          <span>Double Room</span>
-        </a>
-      </li>
-      <li class="{{ Request::is('comfort') ? 'active' : null}}">
-        <a href="{{route('comfort')}}">
-          <span>Comfort</span>
-        </a>
-      </li>
-      <li class="{{ Request::is('bargain') ? 'active' : null}}">
-        <a href="{{route('bargain')}}">
-          <span>Bargain</span>
-        </a>
-      </li>
-      <li class="{{ Request::is('expenses_included') ? 'active' : null}}">
-        <a href="{{route('expenses_included')}}">
-          <span>Expenses included</span>
-        </a>
-      </li>
-      <div class="clearfix"></div>
-    </ul>
-  </div>
   <div class="section">
     <div class="container">
       @foreach($properties as $key => $value)
@@ -166,7 +177,8 @@
       </div>
       @endforeach
       <div class="text-center">
-        {{ $properties->links() }}
+        <!-- To append other get variables -->
+        {{ $properties->appends(request()->except('page'))->links() }}
       </div>
 
     </div>
