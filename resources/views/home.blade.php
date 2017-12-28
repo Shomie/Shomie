@@ -83,106 +83,125 @@
 
 
             <div class="btn-group" data-toggle="buttons">
+
+              @if ($filteroptions === "all_rooms")
               <label class="btn active">
                 <input type="radio" name="options" value="all_rooms" autocomplete="off" checked>
-                <span>
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                  All Rooms
-                </span>
-              </label>
+                @else
+                <label class="btn">
+                  <input type="radio" name="options" value="all_rooms" autocomplete="off">
+                  @endif
+                  <span>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    All Rooms
+                  </span>
+                </label>
 
-              <label class="btn">
-                <input type="radio" name="options" value="single_room" autocomplete="off">
-                <span>
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                  Single Room
-                </span>
-              </label>
 
-              <label class="btn">
-                <input type="radio" name="options" value="double_room" autocomplete="off">
-                <span>
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                  Double Room
-                </span>
-              </label>
+                @if ($filteroptions === "single_room")
+                <label class="btn active">
+                  <input type="radio" name="options" value="single_room" autocomplete="off" checked>
+                  @else
+                  <label class="btn">
+                    <input type="radio" name="options" value="single_room" autocomplete="off">
+                    @endif
+                    <span>
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      Single Room
+                    </span>
+                  </label>
+
+
+
+                  @if ($filteroptions === "double_room")
+                  <label class="btn active">
+                    <input type="radio" name="options" value="double_room" autocomplete="off" checked>
+                    @else
+                    <label class="btn">
+                      <input type="radio" name="options" value="double_room" autocomplete="off">
+                      @endif
+                    <span>
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      Double Room
+                    </span>
+                  </label>
+                </div>
+
+
+
+                <!-- Price Range -->
+                <div class="input-group">
+
+
+                  <div class="col-md-6 pull-left">
+                    <span>Min: <input type="text" id="min" name="min" size="4" value="{{ $min }}" readonly="true" /></span>
+                  </div>
+
+                  <div class="col-md-6 -pull-right">
+                    <span> Max: <input type="text" id="max" name="max" size="4" value="{{ $max }}" readonly="true" /></span>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div id="slider-range"></div>
+                  </div>
+
+
+                  <div class="col-md-12">
+
+                    <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
+                  </div>
+                </div>
+
+
+              </form>
             </div>
+          </div>
 
-
-
-            <!-- Price Range -->
-            <div class="input-group">
-
-
-              <div class="col-md-6 pull-left">
-                <span>Min: <input type="text" id="min" name="min" size="4" value="{{ $min }}" readonly="true" /></span>
-              </div>
-
-              <div class="col-md-6 -pull-right">
-                <span> Max: <input type="text" id="max" name="max" size="4" value="{{ $max }}" readonly="true" /></span>
-              </div>
-
-              <div class="col-md-12">
-                <div id="slider-range"></div>
-              </div>
-
-
-              <div class="col-md-12">
-
-                <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
-              </div>
-            </div>
-
-
-          </form>
         </div>
       </div>
-
     </div>
-  </div>
-</div>
 
-<div class="main" id="properties">
+    <div class="main" id="properties">
 
-  <div class="section">
-    <div class="container">
-      @foreach($properties as $key => $value)
-      <div class="col-md-6 col-sm-10">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <span class="fa fa-map-marker"></span>
-            {{$value->presentation}} {{$value->zone}}
-          </div>
-          <div class="panel-body">
-            <a href="{{ route('property', ['id'=> $value->id]) }}" target="_blank">
-              <img src="{{$value->route}}" alt="Room Image" class="img-responsive" style="max-height:428px; min-height:428px;">
-              <!-- <?php echo "/".$value->route; ?> -->
-              <!-- <img src="<?php echo "http://shomie.io/".$value->route?>" alt="Fallo" class="img-responsive"> -->
-            </a>
-          </div>
-          <div class="panel-footer">
+      <div class="section">
+        <div class="container">
+          @foreach($properties as $key => $value)
+          <div class="col-md-6 col-sm-10">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span class="fa fa-map-marker"></span>
+                {{$value->presentation}} {{$value->zone}}
+              </div>
+              <div class="panel-body">
+                <a href="{{ route('property', ['id'=> $value->id]) }}" target="_blank">
+                  <img src="{{$value->route}}" alt="Room Image" class="img-responsive" style="max-height:428px; min-height:428px;">
+                  <!-- <?php echo "/".$value->route; ?> -->
+                  <!-- <img src="<?php echo "http://shomie.io/".$value->route?>" alt="Fallo" class="img-responsive"> -->
+                </a>
+              </div>
+              <div class="panel-footer">
 
-            <div class="row">
-              <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-bed"></i> {{$value->type}}</button>
-              <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-exclamation-circle"></i> House with {{$value->capacity}} Rooms</button>
+                <div class="row">
+                  <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-bed"></i> {{$value->type}}</button>
+                  <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-exclamation-circle"></i> House with {{$value->capacity}} Rooms</button>
 
-              <div class="pull-right">
-                <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-euro"></i> {{$value->price}}</button>
+                  <div class="pull-right">
+                    <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-euro"></i> {{$value->price}}</button>
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
+          @endforeach
+          <div class="text-center">
+            <!-- To append other get variables -->
+            {{ $properties->appends(request()->except('page'))->links() }}
+          </div>
+
         </div>
-
       </div>
-      @endforeach
-      <div class="text-center">
-        <!-- To append other get variables -->
-        {{ $properties->appends(request()->except('page'))->links() }}
-      </div>
-
     </div>
   </div>
-</div>
-</div>
-@endsection
+  @endsection

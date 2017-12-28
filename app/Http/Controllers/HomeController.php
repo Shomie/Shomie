@@ -27,9 +27,11 @@ class HomeController extends Controller
   {
     $min = 75;
     $max = 300;
+    $options = "all_rooms";
+
     $properties = Property::paginate(10);
 
-    return view('home', ['properties' => $properties, 'min' => 75 , 'max' => 300]);
+    return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => 75 , 'max' => 300]);
 
   }
 
@@ -49,14 +51,7 @@ class HomeController extends Controller
       $properties = Property::where("type", $options)->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(10);
     }
 
-
-
-
-    //$properties = Property::where('type', 'like', '%' . $keyword . '%')->paginate(10);
-
-    return view('home', ['properties' => $properties , 'min' => $min , 'max' => $max]);
-    //return "{{  $keyword }}";
-
+    return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => $min , 'max' => $max]);
   }
 
   public function show($id){
