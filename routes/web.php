@@ -36,11 +36,6 @@ Route::get('/search', 'HomeController@search')->name('search');
 
 Route::get('/property/{id}', 'PropertyController@index')->name('property');
 
-
-Route::get('/userprofile', 'UserProfile@index')->name('userprofile');
-
-
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

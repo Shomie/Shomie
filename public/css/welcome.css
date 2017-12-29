@@ -1,0 +1,45 @@
+.welcome_wrapper
+{
+  background: rgba(41, 43, 43, 0.6);
+
+}
+
+h1
+{
+  color:white;
+}
+
+
+
+h2
+{
+  color:white;
+}
+
+
+.fa_color {
+  color: #292B2B;
+}
+
+
+.card_bottom{
+  margin-bottom: 20px;
+}
+
+.card{
+  padding-top: 10px;
+  min-height: 250px;
+}
+
+
+.card{
+transition: 0.1s ease;
+border: 1px solid white;
+border-radius: 10px;
+
+}
+
+.card:hover{
+border: 1px solid gray;
+border-radius: 10px;
+}

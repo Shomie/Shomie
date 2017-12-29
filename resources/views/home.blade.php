@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
 <!-- Internal resources -->
+<link href="{{ URL::asset('/css/custom.css')}}" rel="stylesheet"/>
+
 <link href="{{ URL::asset('/css/slider_filter.css')}}" rel="stylesheet"/>
 <script src= "{{ URL::asset('/js/slider_filter.js') }}" type="text/javascript"></script>
 @endsection
@@ -54,10 +56,6 @@
                 document.getElementById('logout-form').submit();">
                 Logout
               </a>
-
-              <a href="{{route('userprofile')}}">Profile</a>
-
-
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
               </form>
@@ -73,11 +71,11 @@
 <div class="wrapper" style="background:white;">
   <div class="container">
 
-      <form  action="{{url('search')}}" method="get" class="text-center">
-        <!-- Checkboxes-->
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <h3 class="title text-center" style="margin-top:0px;">Find your home today</h1>
+    <form  action="{{url('search')}}" method="get" class="text-center">
+      <!-- Checkboxes-->
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h3 class="title text-center" style="margin-top:0px;">Find your home today</h1>
 
             <div class="btn-group" data-toggle="buttons">
 
@@ -173,30 +171,26 @@
                 @foreach($properties as $key => $value)
                 <div class="col-md-6 col-sm-10">
                   <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <span class="fa fa-map-marker"></span>
-                      {{$value->presentation}} {{$value->zone}}
-                    </div>
+                    <div class="panel-heading"></div>
                     <div class="panel-body">
                       <a href="{{ route('property', ['id'=> $value->id]) }}" target="_blank">
-                        <img src="{{$value->route}}" alt="Room Image" class="img-responsive" style="max-height:428px; min-height:428px;">
-                        <!-- <?php echo "/".$value->route; ?> -->
-                        <!-- <img src="<?php echo "http://shomie.io/".$value->route?>" alt="Fallo" class="img-responsive"> -->
+                        <img src="{{$value->route}}" alt="Room Image" class="img-responsive">
                       </a>
                     </div>
                     <div class="panel-footer">
+                      <span class="fa fa-map-marker"></span> {{$value->presentation}} {{$value->zone}}
 
                       <div class="row">
-                        <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-bed"></i> {{$value->type}}</button>
-                        <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-exclamation-circle"></i> House with {{$value->capacity}} Rooms</button>
 
+                        <button class="btn btn-simple btn-default btn-sm"><p class="fa fa-bed"></p>
+                          @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
+                        </button>
                         <div class="pull-right">
-                          <button class="btn  btn-simple btn-default btn-sm"><i class="fa fa-euro"></i> {{$value->price}}</button>
+                          <button class="btn  btn-simple btn-default btn-sm"><p class="fa fa-euro"></p> {{$value->price}} </button>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
                 @endforeach
                 <div class="text-center">
@@ -207,5 +201,4 @@
               </div>
             </div>
           </div>
-        </div>
-        @endsection
+          @endsection

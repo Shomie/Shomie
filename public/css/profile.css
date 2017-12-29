@@ -1,0 +1,52 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #ffffff;
+}
+
+#bla {
+    display:none !important
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+    
+}
+
+.img-portfolio {
+    border-radius: 5%;
+    margin-bottom: 30px;
+    border: 1px solid lightgrey !important;
+    height: 250px;
+    width: auto;
+}
+
+.home-page .text-center {
+    color: #999999;
+    margin-top:10px;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+p{
+ margin-top:10px;
+
+}
+
+@media (max-width: 700px){
+
+.page-header, .h1 {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;  
+}
+
+h1 {
+	font-size: 40px;
+}
+
+}
