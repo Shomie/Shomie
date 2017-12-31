@@ -3,6 +3,8 @@
 @section('assets')
 <!-- Internal resources -->
 <link href="{{ URL::asset('/css/welcome.css')}}" rel="stylesheet"/>
+
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <script src= "{{ URL::asset('/js/welcome.js') }}" type="text/javascript"></script>
 
 @endsection
@@ -61,93 +63,94 @@
       </ul>
     </div>
   </div>
-
-
 </nav>
 
-
-
-
-<div class="welcome_wrapper container-fluid">
+<section class="welcome_main">
   <div class="container">
-
-    <!-- Checkboxes-->
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-
         <div class="text-center">
-          <h1>ENTER YOUR EXPERIENCE</h1>
-          <h2>IN THE <strong>BEST WAY</strong></h2>
+          <h1>The <strong> fastest </strong> way to <strong> visit</strong> your new
+            <strong>Coimbra</strong> home!</h1>
+          </div>
         </div>
-        <br>
-        <br>
+      </br>
+    </div>
 
-
-
-
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="text-center">
+          <a href="{{ url('/home') }}">
+            <input class="btn btn-default btn-success" value="Start searching!" type="button"/>
+          </a>
+        </div>
       </div>
+    </div>
+  </section>
 
 
+  <section class="welcome_second">
+    <div class="container">
+      <!-- Background Image + Text + Button -->
       <section class="text-center">
-          <div class="col-sm-3 card_bottom">
+        <div class="col-sm-4 card_bottom">
+          <a href="{{ url('/home') }}">
             <div class="card" style="width: 18rem;">
-              <i class="fa_color card-img-top fa fa-map-marker fa-5x" ></i>
+              <i class="fa_color card-img-top fa fa-search fa-5x" ></i>
               <div class="card-body">
                 <h5 class="card-title">EXPLORE</h5>
                 <p class="card-text">Find the accomodation that fits you.</p>
               </div>
             </div>
-          </div>
-          <div class="col-sm-3 card_bottom">
-            <a href="{{ url('/home') }}">
-
-            <div class="card" style="width: 18rem;">
-              <i class="fa_color card-img-top fa fa-clock-o fa-5x" ></i>
-              <div class="card-body">
-                <h5 class="card-title">BOOK</h5>
-                <p class="card-text">Visit the house you want on-time with a simple sms.</p>
-              </div>
-            </div>
           </a>
-          </div>
-          <div class="col-sm-3 card_bottom">
-            <div class="card" style="width: 18rem;">
-              <i class="fa_color card-img-top fa fa-credit-card fa-5x" ></i>
-              <div class="card-body">
-                <h5 class="card-title">PAY</h5>
-                <p class="card-text">Make the payment directly to the landlord.</p>
-              </div>
+        </div>
+        <div class="col-sm-4 card_bottom">
+          <div class="card" style="width: 18rem;">
+            <i class="fa_color card-img-top fa fa-calendar fa-5x" ></i>
+            <div class="card-body">
+              <h5 class="card-title">BOOK</h5>
+              <p class="card-text">Book a visit to see the house.</p>
             </div>
           </div>
-          <div class="col-sm-3 card_bottom">
-            <div class="card" style="width: 18rem;">
-              <i class="fa_color card-img-top fa fa-check-square-o fa-5x" ></i>
-              <div class="card-body">
-                <h5 class="card-title">Welcome</h5>
-                <p class="card-text">We welcome you to your new home with a free dinner.</p>
-              </div>
-            </div>
-          </div>
-
-        </section>
-
       </div>
+      <div class="col-sm-4 card_bottom">
+        <div class="card" style="width: 18rem;">
+          <i class="fa_color card-img-top fa fa-map-marker fa-5x" ></i>
+          <div class="card-body">
+            <h5 class="card-title">VISIT</h5>
+            <p class="card-text">Be there on time and enjoy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
-
-
-    </div>
 
   </div>
+</section>
 
-  <footer class="text-center">
-    <ul>
-      <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-      <li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
-      <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
-      <li><a href="#"><i class="fa fa-github-square"></i></a></li>
-    </ul>
-    <p>Shomie &copy;</p>
-  </footer>
-  @endsection
+
+
+
+
+
+
+
+
+<!--
+<div class="container">
+<div class="row">
+<footer class="text-center">
+<ul>
+<li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+<li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
+<li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+<li><a href="#"><i class="fa fa-github-square"></i></a></li>
+</ul>
+<p>Shomie &copy;</p>
+</footer>
+</div>
+</div>
+
+-->
+@endsection

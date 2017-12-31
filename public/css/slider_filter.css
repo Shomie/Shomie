@@ -29,3 +29,23 @@
   color: #999;
 
 }
+
+
+/* Align the slider and the min max value */
+
+#slider-range  {
+    position: relative;
+    border-radius: 10px;
+    background: white;
+    margin-top: 10px
+}
+
+#slider-range  .ui-slider-handle {
+    cursor: move;
+    background: #3aaa50;
+    height: 15px;
+    width: 15px;
+    margin-top: 2px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.5);
+}
