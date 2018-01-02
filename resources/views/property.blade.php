@@ -157,7 +157,7 @@
     <div class="center-block">
 
       <div class="thumbnail">
-        <img src="/{{ $images[1] }}" class="img-rounded portrait" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
+        <img src="/{{ $images[0] }}" class="img-rounded portrait" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
 
       </div>
 
