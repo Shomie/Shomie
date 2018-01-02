@@ -33,19 +33,63 @@
 
 /* Align the slider and the min max value */
 
-#slider-range  {
-    position: relative;
-    border-radius: 10px;
-    background: white;
-    margin-top: 10px
+.slider-range  {
+  margin-top: 10px;
 }
 
-#slider-range  .ui-slider-handle {
-    cursor: move;
-    background: #3aaa50;
-    height: 15px;
-    width: 15px;
-    margin-top: 2px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.5);
+.slider-range.ui-corner-all,
+.slider-range .ui-corner-all {
+  border-radius: 0;
+}
+
+.slider-range.ui-slider {
+  border: 0;
+  background: #fafaf2;
+  border-radius: 23px;
+  border: 1px solid #94948c;
+}
+
+.slider-range.ui-slider-horizontal {
+  height: 10px;
+}
+
+.slider-range.ui-slider-vertical {
+  height: 15em;
+  width: 10px;
+}
+
+.slider-range .ui-slider-handle {
+  width: 20px;
+  height: 20px;
+  background: #dfded2;
+  border-radius: 48%;
+  border: none;
+  cursor: pointer;
+}
+
+.slider-range.ui-slider-horizontal .ui-slider-handle {
+  top: 50%;
+  margin-top: -10px;
+}
+
+.slider-range.ui-slider-vertical .ui-slider-handle {
+  left: 50%;
+  margin-left: -10px;
+}
+
+
+.slider-range .ui-slider-range {
+  border: 0;
+  border-radius: 23;
+  background: #534c4b;
+}
+
+.slider-range.ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 10px;
+}
+
+.slider-range.ui-slider-vertical .ui-slider-range {
+  left: 0;
+  width: 10px;
 }

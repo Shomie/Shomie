@@ -138,14 +138,6 @@
                   </div>
 
 
-
-
-
-
-
-
-
-
                 </div>
               </div>
 
@@ -170,7 +162,7 @@
                       </div>
 
                       <div class="col-sm-8" >
-                        <div id="slider-range"></div>
+                        <div id="slider-range" class="slider-range"></div>
                       </div>
 
                       <div class="col-sm-2">
