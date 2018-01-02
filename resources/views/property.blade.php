@@ -76,61 +76,76 @@
 <div class="container text-center">
 
 
+    <div id="image_slider" class="modal fade in bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
-  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
 
-    <div class="modal-dialog modal-lg">
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="background:none !important">
-        <ol class="carousel-indicators">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="material-icons">clear</i>
+            </button>
 
-          @foreach($images as $key => $image)
-          <?php static $i = 0; ?>
+            <h5 class="modal-title">Gorgeous room!</h5>
 
-          @if($i == 0)
-          <li data-target="#carousel-example" data-slide-to="{{ $i }}" class="active"></li>
-          @else
-          <li data-target="#carousel-example" data-slide-to="{{ $i }}"></li>
-          @endif
-
-          <?php $i++; ?>
-
-          @endforeach
-
-        </ol>
-
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-
-          @foreach($images as $key => $image)
-          <?php static $j = 0; ?>
-
-          @if($j == 0)
-          <div class="item active">
-            <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
           </div>
-          @else
-          <div class="item">
-            <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
+
+          <div class="modal-body">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
+              <ol class="carousel-indicators">
+
+                @foreach($images as $key => $image)
+                <?php static $i = 0; ?>
+
+                @if($i == 0)
+                <li data-target="#carousel-example" data-slide-to="{{ $i }}" class="active"></li>
+                @else
+                <li data-target="#carousel-example" data-slide-to="{{ $i }}"></li>
+                @endif
+
+                <?php $i++; ?>
+
+                @endforeach
+
+              </ol>
+
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+
+                @foreach($images as $key => $image)
+                <?php static $j = 0; ?>
+
+                @if($j == 0)
+                <div class="item active">
+                  <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
+                </div>
+                @else
+                <div class="item">
+                  <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
+                </div>
+                @endif
+
+                <?php $j++; ?>
+
+                @endforeach
+
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+            </div>
           </div>
-          @endif
-
-          <?php $j++; ?>
-
-          @endforeach
 
         </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
       </div>
-    </div>
   </div>
+
 </div>
 
 

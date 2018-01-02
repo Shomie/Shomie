@@ -17,8 +17,8 @@
   height: 100%;
   width: auto;
   -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
 }
 .thumbnail img.portrait {
   width: 100%;
@@ -28,31 +28,20 @@
 /* Modal + Carousel*/
 
 
+
 .modal {
-  text-align: center;
-  background-color:  rgba(0,0,0,0.93);
+  text-align:center;
+  background-color:  rgba(0,0,0,0.94);
+
 }
 
-@media screen and (min-width: 768px) {
-  .modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-  }
-}
-
-.modal-dialog
-{
+#image_slider .modal-dialog {
   display: inline-block;
-  text-align: left;
-  vertical-align: middle;
+  width: auto;
+  height: auto;
 
 }
 
 .carousel-inner > .item > img {
-  width:auto;
-  height:600px;
-  border-radius: 10px;
-
+  display: block;
 }
