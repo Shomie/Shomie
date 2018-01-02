@@ -46,7 +46,7 @@
           <li><a href="{{ route('register') }}">Register</a></li>
           @else
           <link href="{{ URL::asset('/css/property.css')}}" rel="stylesheet"/>
-          
+
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               {{ Auth::user()->name }} <span class="caret"></span>
@@ -82,23 +82,43 @@
     <div class="modal-dialog modal-lg">
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="background:none !important">
         <ol class="carousel-indicators">
-          <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel-example" data-slide-to="1"></li>
-          <li data-target="#carousel-example" data-slide-to="2"></li>
+
+          @foreach($images as $key => $image)
+          <?php static $i = 0; ?>
+
+          @if($i == 0)
+          <li data-target="#carousel-example" data-slide-to="{{ $i }}" class="active"></li>
+          @else
+          <li data-target="#carousel-example" data-slide-to="{{ $i }}"></li>
+          @endif
+
+          <?php $i++; ?>
+
+          @endforeach
+
         </ol>
 
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
+
+          @foreach($images as $key => $image)
+          <?php static $j = 0; ?>
+
+          @if($j == 0)
           <div class="item active">
-            <img class="img-responsive center-block" src="/img/RoomPics/01/0101/010106/1.JPG" alt="...">
+            <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
           </div>
+          @else
           <div class="item">
-            <img class="img-responsive center-block" src="/img/RoomPics/01/0101/010106/2.JPG" alt="...">
+            <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
           </div>
-          <div class="item">
-            <img class="img-responsive center-block" src="/img/RoomPics/01/0101/010106/3.JPG" alt="...">
-          </div>
+          @endif
+
+          <?php $j++; ?>
+
+          @endforeach
+
         </div>
 
         <!-- Controls -->
@@ -122,7 +142,7 @@
     <div class="center-block">
 
       <div class="thumbnail">
-        <img src="/img/RoomPics/01/0101/010106/3.JPG" class="img-rounded portrait" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
+        <img src="/{{ $images[1] }}" class="img-rounded portrait" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
 
       </div>
 
