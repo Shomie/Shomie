@@ -167,6 +167,9 @@
                     <div class="col-md-6 col-sm-10">
                       <div class="panel panel-default">
                         <div class="panel-body">
+                          @foreach($properties as $key => $property)
+                          <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a>
+                          @endforeach
                           <img src="img/house.jpg" alt="Room Image" class="img-responsive">
                         </div>
                         <div class="panel-footer">
@@ -205,7 +208,7 @@
 
           <div class="control-group form-group">
             <div class="controls">
-              <br >
+            </br>
               <label>Informacao basica</label>
               <span id="alertName" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
                 <input type="text" class="form-control" id="txtName" placeholder="Introduzca su nombre" required data-validation-required-message="Porfavor introduza o seu nomnbre.">

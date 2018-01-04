@@ -37,8 +37,9 @@ class LordController extends Controller
   public function index()
   {
     $properties = $this->getLandlordProperties();
-    return view('profile_landlord', ['property' => $properties]);
+    return view('profile_landlord', ['properties' => $properties->get()]);
   }
-  
+
+
 
 }
