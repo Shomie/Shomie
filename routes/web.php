@@ -32,7 +32,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search')->name('search');
-
+Route::get('/landlord', 'LordController@index')->name('landlord');
 
 Route::get('/property/{id}', 'PropertyController@index')->name('property');
 

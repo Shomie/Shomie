@@ -80,14 +80,14 @@
                     <span class="input-group-addon">
                       <i class="material-icons">email</i>
                     </span>
-                    <input type="text" name="email" class="form-control" placeholder="Email...">
+                    <input type="text" name="email" class="form-control" placeholder="Email">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">lock_outline</i>
                     </span>
-                    <input type="password" name="password" placeholder="Password..." class="form-control" />
+                    <input type="password" name="password" placeholder="Password" class="form-control" />
                   </div>
                 </div>
                 <div class="footer text-center">

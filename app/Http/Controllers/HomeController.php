@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Request;
 use App\Property;
 use View;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,13 +27,20 @@ class HomeController extends Controller
   */
   public function index()
   {
-    $min = 75;
-    $max = 300;
-    $options = "all_rooms";
 
-    $properties = Property::paginate(10);
+    $user = Auth::user();
 
-    return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => 75 , 'max' => 300]);
+    if($user->type==1 ){
+      return redirect()->route('landlord');
+    }
+    else{
+      $min = 75;
+      $max = 300;
+      $options = "all_rooms";
+
+      $properties = Property::paginate(10);
+      return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => 75 , 'max' => 300]);
+    }
 
   }
 
