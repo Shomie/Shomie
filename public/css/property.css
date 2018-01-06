@@ -20,14 +20,22 @@
   -ms-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }
+
 .thumbnail img.portrait {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
+@media (min-width:641px)  {
+
+  .thumbnail img.portrait {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
 /* Modal + Carousel*/
-
-
 
 .modal {
   text-align:center;
@@ -44,4 +52,15 @@
 
 .carousel-inner > .item > img {
   display: block;
+}
+
+/* Layout date and time classes/ids */
+.datepicker {
+  background-color: #fff ;
+  color: #333 ;
+}
+
+#timepicker5{
+  background-color: #fff ;
+  color: #333 ;
 }

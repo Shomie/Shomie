@@ -35,7 +35,9 @@ Route::get('/search', 'HomeController@search')->name('search');
 
 
 Route::get('/property/{id}', 'PropertyController@index')->name('property');
+Route::post('/property/{id}', 'PropertyController@RequestVisitToProperty')->name('request_visit');
+
 
 Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
+	Voyager::routes();
 });

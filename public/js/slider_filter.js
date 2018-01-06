@@ -1,13 +1,11 @@
 $(function() {
-  console.log( "ready!" );
-
-    $( "#slider-range" ).slider({
-     range: true,
-     min: 0,
-     max: 500,
-     step: 10,
-     values: [ $("#min").val(), $("#max").val() ],
-     slide: function( event, ui ) {
+  $( "#slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: 500,
+    step: 10,
+    values: [ $("#min").val(), $("#max").val() ],
+    slide: function( event, ui ) {
       if(ui.values[ 0 ] + 50 > ui.values[ 1 ])
       {
         /* If minimum value is greater than maximum by a treshold don't allow */
@@ -19,6 +17,6 @@ $(function() {
         $("#max").val(ui.values[ 1 ]);
         return true;
       }
-     }
-   });
- });
+    }
+  });
+});

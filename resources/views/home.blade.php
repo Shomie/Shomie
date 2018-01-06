@@ -73,7 +73,7 @@
 <div class="wrapper" style="background:white;">
   <div class="container">
 
-    <form  action="{{url('search')}}" method="get" class="text-center">
+    <form  action="{{route('search')}}" method="get" class="text-center">
 
       <h2 class="title text-center">Find your home today</h2>
       <!-- Checkboxes-->
