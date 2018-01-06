@@ -16,11 +16,12 @@ class CreateCommunicationTable extends Migration
 
     Schema::create('communication', function(Blueprint $table){
       $table->increments('id');
-      $table->integer('state');
+      $table->integer('state')->default(0);
       $table->integer('property_id')->unsigned();
       $table->integer('user_id')->unsigned();
-      $table->date('day');
-      $table->string('hour');
+      $table->date('visit_date');
+      $table->string('visit_time');
+      $table->boolean('sms_status')->default(false);
     });
 
     Schema::table('communication', function($table) {
