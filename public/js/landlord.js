@@ -1,15 +1,43 @@
-$(function(){
-  $('#profiletabs a').on('click', function(e){
-    e.preventDefault();
-    var newcontent = $(this).attr('href');
-    
-    $('#profiletabs a').removeClass('sel list-group-item');
-    $(this).addClass('sel list-group-item');
-    
-    $('#content section').each(function(){
-      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
-    });
-    
-    $(newcontent).removeClass('hidden');
-  });
-});
+function showhide()
+      {
+          var div = document.getElementById("detail");
+          if (div.style.display !== "none") {
+              div.style.display = "none";
+          }
+          else {
+              div.style.display = "block";
+          }
+          $(detail).removeClass('hidden');
+          $(change_detail).addClass('hidden');
+          $(available).addClass('hidden');
+      }
+function showdetails()
+{
+
+    var div = document.getElementById("change_detail");
+
+    if (div.style.display !== "none") {
+        div.style.display = "none";
+    }
+    else {
+        div.style.display = "block";
+    }
+      $(change_detail).removeClass('hidden');
+      $(detail).addClass('hidden');
+      $(available).addClass('hidden');
+}
+
+function showchange()
+{
+    var div = document.getElementById("available");
+    if (div.style.display !== "none") {
+        div.style.display = "none";
+    }
+    else {
+        div.style.display = "block";
+    }
+
+    $(available).removeClass('hidden');
+    $(change_detail).addClass('hidden');
+    $(detail).addClass('hidden');
+}

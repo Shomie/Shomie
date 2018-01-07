@@ -5,7 +5,6 @@
 <link href="{{ URL::asset('/css/personalizado.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ URL::asset('/css/profile.css') }}" rel="stylesheet"/>
 <script src="{{ URL::asset('/js/landlord.js') }}" type="text/javascript"></script>
-
 @endsection
 
 @section('content')
@@ -100,23 +99,25 @@
         <!-- Fin redes sociales -->
       </div>
 
-      <div class="col-md-12">
-        <!-- Barra vertical de opciones del perfil de usuairo -->
-        <br >
-        <ul class="list-group list-primary">
-          <a href="#detail" class="list-group-item">Detalhes Senhorio</a>
-          <a href="#change_detail" class="list-group-item">Mudar Detalhes Senhorio</a>
-          <a href="#available" class="list-group-item">Mudar Disponibilidade</a>
-          <a href="#notification" class="list-group-item">Notificaçoes</a>
-        </ul>
+      <div id="content" class="col-md-12">
+        <div id="profiletabs">
+          <!-- Barra vertical de opciones del perfil de usuairo -->
+          <br >
+          <ul class="list-group list-primary">
+            <a href="#detail"  onclick="showhide()" class="list-group-item">Detalhes Senhorio</a>
+            <a href="#change_detail" onclick="showdetails()" class="list-group-item">Mudar Detalhes Senhorio</a>
+            <a href="#available" onclick="showchange()"  class="list-group-item">Mudar Disponibilidade</a>
+            <a href="#notification" class="list-group-item">Notificaçoes</a>
+          </ul>
+        </div>
       </div>
       <!-- Fin Barra vertical de opciones del perfil de usuario -->
     </div>
     <!-- Fin de Columna de la izquierda -->
 
     <!-- Parte central -->
-    <div class="detail">
-      <div class="col-md-9">
+    <section id="detail">
+      <div id="detalhes" class="col-md-9">
         <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
           <h3 style="text-align: center">O meu perfil <p><small>Detalhes da sua Conta</small></p></h3>
         </div>
@@ -139,7 +140,7 @@
                   <br >
                   <span id="alertSurname" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
                     <label>Numero de Telefone:</label>
-                    <p>{{ Auth::user()->phone }}</p>
+                    <p>{{ Auth::user()->phone_number }}</p>
 
                   </span>
                   <br >
@@ -164,16 +165,16 @@
                   <br >
                   <label>Propriedades: </label>
                   <div class="container">
-                    <div class="col-md-6 col-sm-10">
+                    <div class="col-md-3 col-sm-1">
                       <div class="panel panel-default">
                         <div class="panel-body">
                           @foreach($properties as $key => $property)
                           <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a>
                           @endforeach
-                          <img src="img/house.jpg" alt="Room Image" class="img-responsive">
+                          <img src="img/noob1.jpg" alt="Room Image" class="img-responsive">
                         </div>
                         <div class="panel-footer">
-                          <p>Adress: Rua das Flore</p>
+                          <p>{{ $property->adress }}, {{ $property->number }}</p>
                         </div>
                       </div>
                     </div>
@@ -185,13 +186,11 @@
             </div>
             <!-- Fin Parte de redes sociales en el alta de perfil -->
           </div>
-
-
           <!-- Fin Parte central - enlaces -->
         </form>
         <!-- Fin del form -->
       </div>
-    </div>
+    </section>
     <!-- Fin del div de parte central -->
 
     <!-- Editar Detalhes
@@ -200,26 +199,28 @@
     <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
   </div>
   <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-  <div class="change_detail">
-    <form name="modifyProfile" id="profileForm" novalidate>
-      <!-- Inicio del div central parte de formulario informaci�n b�sica -->
-      <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
-        <div class="col-md-8 col-md-offset-2">
-
-          <div class="control-group form-group">
-            <div class="controls">
-            </br>
-              <label>Informacao basica</label>
+  <section id="change_detail" class="hidden">
+    <div class="col-md-9">
+      <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
+        <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
+      </div>
+      <form method="PUT" name="modifyProfile" action="{{ route('landlord') }}" id="profileForm" novalidate>
+        <!-- Inicio del div central parte de formulario informaci�n b�sica -->
+        <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="control-group form-group">
+              <div class="controls">
+              </br>
               <span id="alertName" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" id="txtName" placeholder="Introduzca su nombre" required data-validation-required-message="Porfavor introduza o seu nomnbre.">
+                <input type="text" class="form-control" id="name" placeholder="Nome e apelido" required data-validation-required-message="Porfavor introduza o seu Nome.">
               </span>
               <br >
               <span id="alertQualification" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" id="txtQualification" placeholder="Introduzca su t�tulo" required data-validation-required-message="Porfavor introduzca o seu numero de Telefone.">
+                <input type="text" class="form-control" id="txtQualification" placeholder="Introduza um email" required data-validation-required-message="Porfavor introduza o seu Email.">
               </span>
               <br >
               <span id="alertEmail" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="email" class="form-control" id="txtEmail" placeholder="Introduzca su email" required data-validation-required-message="Porfavor introduza o seu email.">
+                <input type="email" class="form-control" id="txtEmail" placeholder="Numero de telefone" required data-validation-required-message="Porfavor introduzca o seu numero de Telefone.">
               </span>
               <p class="help-block"></p>
             </div>
@@ -246,63 +247,64 @@
     </form>
     <!-- Fin del form -->
   </div>
+</section>
 
 
-  <!-- prOoblem bellow -->
-  <div class="available">
-    <div class="col-md-9">
-      <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
-        <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
-      </div>
-      <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-      <form name="modifyProfile" id="profileForm" novalidate>
-        <!-- Inicio del div central parte de formulario informaci�n b�sica -->
-        <!-- Parte central - enlaces -->
-        <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
-          <!-- Parte de redes sociales en el alta de perfil -->
-          <div class="col-md-8 col-md-offset-2">
-            <div class="control-group form-group">
-              <div class="controls">
-                <br>
-                <label>Propriedades: </label>
-                <div class="container">
-                  <div class="col-md-6 col-sm-10">
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <img src="img/house.jpg" alt="Room Image" class="img-responsive">
-                      </div>
-                      <div class="panel-footer">
-                        <p>Ola</p>
-                      </br>
-                      <input type="checkbox" checked data-toggle="toggle" data-on="Disponivel" data-off="Indisponivel" data-onstyle="success" data-offstyle="danger"/>
+<!-- prOoblem bellow -->
+<section id="available" class="hidden">
+  <div class="col-md-9">
+    <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
+      <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
+    </div>
+    <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
+    <form name="modifyProfile" id="profileForm" novalidate>
+      <!-- Inicio del div central parte de formulario informaci�n b�sica -->
+      <!-- Parte central - enlaces -->
+      <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
+        <!-- Parte de redes sociales en el alta de perfil -->
+        <div class="col-md-8 col-md-offset-2">
+          <div class="control-group form-group">
+            <div class="controls">
+              <br>
+              <label>Propriedades: </label>
+              <div class="container">
+                <div class="col-md-6 col-sm-10">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <img src="img/house.jpg" alt="Room Image" class="img-responsive">
                     </div>
+                    <div class="panel-footer">
+                      <p>Ola</p>
+                    </br>
+                    <input type="checkbox" checked data-toggle="toggle" data-on="Disponivel" data-off="Indisponivel" data-onstyle="success" data-offstyle="danger"/>
                   </div>
                 </div>
               </div>
-            </br>
+            </div>
           </br>
-        </div>
+        </br>
       </div>
     </div>
-    <div class="col-md-12 container allFormButtons">
-      <br >
-      <div class="col-md-2 col-md-offset-2">
-        <div class="form-group">
-          <button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button>
-        </div>
+  </div>
+  <div class="col-md-12 container allFormButtons">
+    <br >
+    <div class="col-md-2 col-md-offset-2">
+      <div class="form-group">
+        <button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button>
       </div>
-      <div class="col-md-5 col-md-offset-3">
-        <div class="form-group">
-          <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
-          <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-        </div>
-      </div>
-      &nbsp;
     </div>
-    <!-- Fin Parte de redes sociales en el alta de perfil -->
-  </form>
+    <div class="col-md-5 col-md-offset-3">
+      <div class="form-group">
+        <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
+        <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+    &nbsp;
+  </div>
+  <!-- Fin Parte de redes sociales en el alta de perfil -->
+</form>
 </div>
-</div>
+</section>
 <!-- Botones formulario -->
 </div>
 </div>
