@@ -14,7 +14,7 @@ body {
     padding-bottom: 9px;
     margin: 40px 0 20px;
     border-bottom: 1px solid #eee;
-    
+
 }
 
 .img-portfolio {
@@ -34,19 +34,35 @@ body {
 
 p{
  margin-top:10px;
-
 }
+.img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    height: 200px;
+}
+
 
 @media (max-width: 700px){
 
 .page-header, .h1 {
     padding-bottom: 9px;
     margin: 40px 0 20px;
-    border-bottom: 1px solid #eee;  
+    border-bottom: 1px solid #eee;
 }
 
 h1 {
 	font-size: 40px;
+}
+.form-group {
+    padding-bottom: 7px;
+    margin: 1px 0 0 0;
+}
+.col-md-12
+{
+  padding-bottom: 1px;
+}
+
+.img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img, .carousel-inner>.item>a>img
+{
+    height: 200px;
 }
 
 }
