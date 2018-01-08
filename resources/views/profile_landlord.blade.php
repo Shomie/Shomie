@@ -5,6 +5,9 @@
 <link href="{{ URL::asset('/css/personalizado.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ URL::asset('/css/profile.css') }}" rel="stylesheet"/>
 <script src="{{ URL::asset('/js/landlord.js') }}" type="text/javascript"></script>
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 @endsection
 
 @section('content')
@@ -164,20 +167,20 @@
                 <div class="controls">
                   <br >
                   <label>Propriedades: </label>
-                  <div class="container">
-                    <div class="col-md-3 col-sm-1">
+                  <div class="container1">
+                    @foreach($properties as $key => $property)
+                    <div class="col-md-6 col-sm-3">
                       <div class="panel panel-default">
                         <div class="panel-body">
-                          @foreach($properties as $key => $property)
                           <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a>
-                          @endforeach
-                          <img src="img/noob1.jpg" alt="Room Image" class="img-responsive">
+                          <img src="img/RoomPics/01/0101/DSC01375.jpg" alt="Room Image" class="img-responsive">
                         </div>
                         <div class="panel-footer">
                           <p>{{ $property->adress }}, {{ $property->number }}</p>
                         </div>
                       </div>
                     </div>
+                    @endforeach
                   </div>
                   <br>
                   <br >
@@ -267,19 +270,23 @@
             <div class="controls">
               <br>
               <label>Propriedades: </label>
-              <div class="container">
+              <div class="container1">
+                @foreach($properties as $key => $property)
                 <div class="col-md-6 col-sm-10">
                   <div class="panel panel-default">
                     <div class="panel-body">
                       <img src="img/house.jpg" alt="Room Image" class="img-responsive">
                     </div>
                     <div class="panel-footer">
-                      <p>Ola</p>
+                      <div class="panel-footer">
+                        <p>{{ $property->adress }}, {{ $property->number }}</p>
+                      </div>
                     </br>
                     <input type="checkbox" checked data-toggle="toggle" data-on="Disponivel" data-off="Indisponivel" data-onstyle="success" data-offstyle="danger"/>
                   </div>
                 </div>
               </div>
+              @endforeach
             </div>
           </br>
         </br>
