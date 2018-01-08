@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Illuminate\Routing\Redirector;
+use Request;
 use App\Property;
 use View;
 use App\User;
 use Auth;
+
+
 
 
 class LordController extends Controller
@@ -34,12 +36,21 @@ class LordController extends Controller
     return $properties;
   }
 
+
+  public function update()
+  {
+    $user = Auth::user();
+    $user->name = Request::input('landlord_name');
+
+    $user->save();
+    return redirect()->route('landlord', ['notice' => 'O usuario foi modificado correctamente.']);
+  }
+
   public function index()
   {
     $properties = $this->getLandlordProperties();
     return view('profile_landlord', ['properties' => $properties->get()]);
   }
-
 
 
 }
