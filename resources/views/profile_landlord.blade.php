@@ -93,7 +93,7 @@
         <!-- Redes sociales-->
         <ul class="list-unstyled list-inline list-social-icons">
           <li>
-            <a href="#"><i class="editIcons icon-facebook-square editSizeIcons"></i></a>
+            <a href="https://www.facebook.com/SH0mie/"><i class="editIcons icon-facebook-square editSizeIcons"></i></a>
           </li>
           <li>
             <a href="#"><i class="editIcons icon-google-plus-square editSizeIcons"></i></a>
@@ -207,23 +207,24 @@
       <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
         <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
       </div>
-      <form method="PUT" name="modifyProfile" action="{{ route('landlord') }}" id="profileForm" novalidate>
+      <form method="post" action="{{ route('landlord_update') }}">
         <!-- Inicio del div central parte de formulario informaci�n b�sica -->
+          {{ csrf_field() }}
         <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
           <div class="col-md-8 col-md-offset-2">
             <div class="control-group form-group">
               <div class="controls">
               </br>
               <span id="alertName" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" id="name" placeholder="Nome e apelido" required data-validation-required-message="Porfavor introduza o seu Nome.">
+                <input type="text" class="form-control" name="landlord_name" placeholder="Nome e apelido" required data-validation-required-message="Porfavor introduza o seu Nome.">
               </span>
               <br >
               <span id="alertQualification" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" id="txtQualification" placeholder="Introduza um email" required data-validation-required-message="Porfavor introduza o seu Email.">
+                <input type="text" class="form-control" name="txtQualification" placeholder="Introduza um email"><!-- required data-validation-required-message="Porfavor introduza o seu Email.">-->
               </span>
               <br >
               <span id="alertEmail" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="email" class="form-control" id="txtEmail" placeholder="Numero de telefone" required data-validation-required-message="Porfavor introduzca o seu numero de Telefone.">
+                <input type="email" class="form-control" name="txtEmail" placeholder="Numero de telefone"> <!--required data-validation-required-message="Porfavor introduzca o seu numero de Telefone.">-->
               </span>
               <p class="help-block"></p>
             </div>
