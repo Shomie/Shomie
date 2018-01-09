@@ -22,6 +22,14 @@
 	border-radius: 8px;
 }
 
+.pagination {
+    	display: block;
+}
+
+.row{
+	margin-left: -20px;
+}
+
 
 
 
