@@ -209,7 +209,7 @@
       </div>
       <form method="post" action="{{ route('landlord_update') }}">
         <!-- Inicio del div central parte de formulario informaci�n b�sica -->
-          {{ csrf_field() }}
+        {{ csrf_field() }}
         <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
           <div class="col-md-8 col-md-offset-2">
             <div class="control-group form-group">
@@ -276,12 +276,21 @@
                 <div class="col-md-6 col-sm-10">
                   <div class="panel panel-default">
                     <div class="panel-body">
-                      <img src="img/house.jpg" alt="Room Image" class="img-responsive">
+                      <?php
+                      $image_search = $property->route. "/*.{jpg,jpeg,gif,png,JPG}";
+                      $images = glob($image_search, GLOB_BRACE);
+                      if(!empty($images))
+                      {
+                        echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
+                      }
+                      else
+                      {
+                        echo "<img src='' alt='Room Image' class='img-responsive'>";
+                      }
+                      ?>
                     </div>
                     <div class="panel-footer">
-                      <div class="panel-footer">
-                        <p>{{ $property->adress }}, {{ $property->number }}</p>
-                      </div>
+                      <p>{{ $property->adress }}, {{ $property->number }}</p>
                     </br>
                     <input type="checkbox" checked data-toggle="toggle" data-on="Disponivel" data-off="Indisponivel" data-onstyle="success" data-offstyle="danger"/>
                   </div>
