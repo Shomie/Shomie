@@ -35,6 +35,7 @@ body {
 p{
  margin-top:10px;
 }
+
 .img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img, .carousel-inner>.item>a>img {
     height: 200px;
 }
@@ -66,3 +67,6 @@ h1 {
 }
 
 }
+
+.btn-default.btn-on.active{background-color: #5BB75B;color: white;}
+.btn-default.btn-off.active{background-color: #DA4F49;color: white;}
