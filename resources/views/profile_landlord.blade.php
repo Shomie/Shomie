@@ -234,7 +234,7 @@
           <br >
           <div class="col-md-2 col-md-offset-2">
             <div class="form-group">
-              <button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button>
+              <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
             </div>
           </div>
           <div class="col-md-5 col-md-offset-3">
@@ -260,7 +260,8 @@
       <h3 style="text-align: center">O meu perfil <p><small>Editar disponibilidade dos seus quartos</small></p></h3>
     </div>
     <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-    <form method="post" action="{{ route('landlord_update') }}">
+    <form method="post" action="{{ route('landlord_available') }}">
+      {{ csrf_field() }}
       <!-- Inicio del div central parte de formulario informaci�n b�sica -->
       <!-- Parte central - enlaces -->
       <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
@@ -268,63 +269,66 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="control-group form-group">
             <div class="controls">
-              <br>
-              <label>Propriedades: </label>
-              <div class="container1">
-                @foreach($properties as $key => $property)
-                <div class="col-md-6 col-sm-10">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <?php
-                      $image_search = $property->route. "/*.{jpg,jpeg,gif,png,JPG}";
-                      $images = glob($image_search, GLOB_BRACE);
-                      if(!empty($images))
-                      {
-                        echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
-                      }
-                      else
-                      {
-                        echo "<img src='' alt='Room Image' class='img-responsive'>";
-                      }
-                      ?>
-                    </div>
-                    <div class="panel-footer">
-                      <p>{{ $property->adress }}, {{ $property->number }}</p>
-                    </br>
-                    <div class="btn-group" id="status" data-toggle="buttons">
-                      <label class="btn btn-default btn-on btn-xs active">
-                        <input type="radio" value="1" name="multifeatured_module[module_id][status]" checked="checked">Disponivel</label>
-                        <label class="btn btn-default btn-off btn-xs ">
-                          <input type="radio" value="0" name="multifeatured_module[module_id][status]">Indisponivel</label>
-                        </div>
+            </br>
+            <label>Propriedades: </label>
+          </br>
+          <div class="container1">
+            <?php $var = 0; ?>
+            @foreach($properties as $key => $property)
+
+            <div class="col-md-6 col-sm-10">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <?php
+                  $image_search = $property->route. "/*.{jpg,jpeg,gif,png,JPG}";
+                  $images = glob($image_search, GLOB_BRACE);
+                  if(!empty($images))
+                  {
+                    echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
+                  }
+                  else
+                  {
+                    echo "<img src='' alt='Room Image' class='img-responsive'>";
+                  }
+                  ?>
+                </div>
+                <div class="panel-footer">
+                  <p>{{ $property->adress }}, {{ $property->number }}</p>
+                  <div class="btn-group" id="status" data-toggle="buttons">
+                    <label class="btn btn-default btn-on btn-sm active">
+                      <input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
+                      <label class="btn btn-default btn-off btn-sm ">
+                        <input type="radio" value="{{ $property->id }}_0" name="landlord_houses[<?php echo $var; ?>]">Indisponivel</label>
                       </div>
                     </div>
                   </div>
-                  @endforeach
                 </div>
-              </br>
+                <?php $var +=  1; ?>
+                @endforeach
+              </div>
             </br>
-          </div>
+          </br>
         </div>
       </div>
-      <div class="col-md-12 container allFormButtons">
-        <br >
-        <div class="col-md-2 col-md-offset-2">
-          <div class="form-group">
-            <button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button>
-          </div>
-        </div>
-        <div class="col-md-5 col-md-offset-3">
-          <div class="form-group">
-            <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
-            <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-          </div>
-        </div>
-        &nbsp;
-      </div>
-      <!-- Fin Parte de redes sociales en el alta de perfil -->
     </div>
-  </form>
+    <div class="col-md-12 container allFormButtons">
+      <br >
+      <div class="col-md-2 col-md-offset-2">
+        <div class="form-group">
+          <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-offset-3">
+        <div class="form-group">
+          <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
+          <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+      &nbsp;
+    </div>
+    <!-- Fin Parte de redes sociales en el alta de perfil -->
+  </div>
+</form>
 </div>
 </section>
 <!-- Botones formulario -->

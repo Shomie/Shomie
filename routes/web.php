@@ -35,6 +35,10 @@ Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/landlord', 'LordController@index')->name('landlord');
 Route::post('/landlord', 'LordController@update')->name('landlord_update');
 
+Route::post('/landlord_available', 'LordController@available')->name('landlord_available');
+
+
+
 Route::get('/property/{id}', 'PropertyController@index')->name('property');
 Route::post('/property/{id}', 'PropertyController@RequestVisitToProperty')->name('request_visit');
 
