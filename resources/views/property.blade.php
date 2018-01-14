@@ -6,6 +6,7 @@
 @section('assets')
 <link href="{{ URL::asset('/css/property.css') }}" rel="stylesheet"/>
 <script src= "{{ URL::asset('/js/property.js') }}" type="text/javascript"></script>
+
 @endsection
 
 
@@ -42,7 +43,18 @@
           <li><a href="{{ route('login') }}">Login</a></li>
           <li><a href="{{ route('register') }}">Register</a></li>
           @else
-          <link href="{{ URL::asset('/css/property.css')}}" rel="stylesheet"/>
+
+          <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Notifications <span class="badge pending-requests">5</span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 12/04/2018 at 12:20. </a></li>
+          <li><a href="#"><i class="fa fa-fw fa-times rejected"></i> Visit at 12/05/2018 at 15:20. </a></li>
+          <li><a href="#"><i class="fa fa-fw fa-clock-o pending"></i> Visit at 12/05/2018 at 15:20. </a></li>
+          <li><a href="#"><i class="fa fa-fw fa-times rejected "></i> Visit at 13/05/2018 at 16:20. </a></li>
+          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 11/05/2018 at 15:20. </a></li>
+        </ul>
+        </li>
+
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
