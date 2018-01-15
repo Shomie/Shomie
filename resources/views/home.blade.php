@@ -205,7 +205,7 @@
 
           <div class="section">
             <div class="container">
-              @foreach($properties as $key => $value)
+              @foreach($properties as $key => $value)              
               <div class="col-md-6 col-sm-10">
                 <div class="panel panel-default">
                   <div class="panel-heading"></div>

@@ -6,8 +6,7 @@
 <link href="{{ URL::asset('/css/profile.css') }}" rel="stylesheet"/>
 <script src="{{ URL::asset('/js/landlord.js') }}" type="text/javascript"></script>
 
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 @endsection
 
 @section('content')
@@ -209,22 +208,22 @@
       </div>
       <form method="post" action="{{ route('landlord_update') }}">
         <!-- Inicio del div central parte de formulario informaci�n b�sica -->
-          {{ csrf_field() }}
+        {{ csrf_field() }}
         <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
           <div class="col-md-8 col-md-offset-2">
             <div class="control-group form-group">
               <div class="controls">
               </br>
               <span id="alertName" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" name="landlord_name" placeholder="Nome e apelido" required data-validation-required-message="Porfavor introduza o seu Nome.">
+                <input type="text" class="form-control" name="landlord_name" placeholder="Nome e apelido" value="{{ Auth::user()->name }}" required data-validation-required-message="Porfavor introduza o seu Nome.">
               </span>
               <br >
               <span id="alertQualification" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" name="txtQualification" placeholder="Introduza um email"><!-- required data-validation-required-message="Porfavor introduza o seu Email.">-->
+                <input type="text" class="form-control" name="landlord_email" placeholder="Introduza um email" value="{{ Auth::user()->email }}" required data-validation-required-message="Porfavor introduza o seu Email.">
               </span>
               <br >
               <span id="alertEmail" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="email" class="form-control" name="txtEmail" placeholder="Numero de telefone"> <!--required data-validation-required-message="Porfavor introduzca o seu numero de Telefone.">-->
+                <input type="text" class="form-control" name="landlord_phone" placeholder="Numero de telefone"  value="{{ Auth::user()->phone_number }}" required data-validation-required-message="Porfavor introduzca o seu numero de Telefone.">
               </span>
               <p class="help-block"></p>
             </div>
@@ -235,7 +234,7 @@
           <br >
           <div class="col-md-2 col-md-offset-2">
             <div class="form-group">
-              <button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button>
+              <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
             </div>
           </div>
           <div class="col-md-5 col-md-offset-3">
@@ -258,10 +257,11 @@
 <section id="available" class="hidden">
   <div class="col-md-9">
     <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
-      <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
+      <h3 style="text-align: center">O meu perfil <p><small>Editar disponibilidade dos seus quartos</small></p></h3>
     </div>
     <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-    <form name="modifyProfile" id="profileForm" novalidate>
+    <form method="post" action="{{ route('landlord_available') }}">
+      {{ csrf_field() }}
       <!-- Inicio del div central parte de formulario informaci�n b�sica -->
       <!-- Parte central - enlaces -->
       <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
@@ -269,47 +269,65 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="control-group form-group">
             <div class="controls">
-              <br>
-              <label>Propriedades: </label>
-              <div class="container1">
-                @foreach($properties as $key => $property)
-                <div class="col-md-6 col-sm-10">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <img src="img/house.jpg" alt="Room Image" class="img-responsive">
-                    </div>
-                    <div class="panel-footer">
-                      <div class="panel-footer">
-                        <p>{{ $property->adress }}, {{ $property->number }}</p>
+            </br>
+            <label>Propriedades: </label>
+          </br>
+          <div class="container1">
+            <?php $var = 0; ?>
+            @foreach($properties as $key => $property)
+
+            <div class="col-md-6 col-sm-10">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <?php
+                  $image_search = $property->route. "/*.{jpg,jpeg,gif,png,JPG}";
+                  $images = glob($image_search, GLOB_BRACE);
+                  if(!empty($images))
+                  {
+                    echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
+                  }
+                  else
+                  {
+                    echo "<img src='' alt='Room Image' class='img-responsive'>";
+                  }
+                  ?>
+                </div>
+                <div class="panel-footer">
+                  <p>{{ $property->adress }}, {{ $property->number }}</p>
+                  <div class="btn-group" id="status" data-toggle="buttons">
+                    <label class="btn btn-default btn-on btn-sm active">
+                      <input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
+                      <label class="btn btn-default btn-off btn-sm ">
+                        <input type="radio" value="{{ $property->id }}_0" name="landlord_houses[<?php echo $var; ?>]">Indisponivel</label>
                       </div>
-                    </br>
-                    <input type="checkbox" checked data-toggle="toggle" data-on="Disponivel" data-off="Indisponivel" data-onstyle="success" data-offstyle="danger"/>
+                    </div>
                   </div>
                 </div>
+                <?php $var +=  1; ?>
+                @endforeach
               </div>
-              @endforeach
-            </div>
+            </br>
           </br>
-        </br>
+        </div>
       </div>
     </div>
+    <div class="col-md-12 container allFormButtons">
+      <br >
+      <div class="col-md-2 col-md-offset-2">
+        <div class="form-group">
+          <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-offset-3">
+        <div class="form-group">
+          <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
+          <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+      &nbsp;
+    </div>
+    <!-- Fin Parte de redes sociales en el alta de perfil -->
   </div>
-  <div class="col-md-12 container allFormButtons">
-    <br >
-    <div class="col-md-2 col-md-offset-2">
-      <div class="form-group">
-        <button type="button" id="btnCancel" class="btn btn-danger">Cancelar</button>
-      </div>
-    </div>
-    <div class="col-md-5 col-md-offset-3">
-      <div class="form-group">
-        <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
-        <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-    &nbsp;
-  </div>
-  <!-- Fin Parte de redes sociales en el alta de perfil -->
 </form>
 </div>
 </section>
