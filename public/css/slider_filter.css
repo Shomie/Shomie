@@ -147,3 +147,7 @@ input[type="text"]{
   left: 0;
   width: 8px;
 }
+
+.ui-slider .ui-slider-handle:focus {
+  outline: none;
+}
