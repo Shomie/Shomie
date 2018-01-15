@@ -47,15 +47,15 @@
           @else
 
           <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Notifications <span class="badge pending-requests">5</span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 12/04/2018 at 12:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-times rejected"></i> Visit at 12/05/2018 at 15:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-clock-o pending"></i> Visit at 12/05/2018 at 15:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-times rejected "></i> Visit at 13/05/2018 at 16:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 11/05/2018 at 15:20. </a></li>
-        </ul>
-      </li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Notifications <span class="badge pending-requests">5</span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 12/04/2018 at 12:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-times rejected"></i> Visit at 12/05/2018 at 15:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-clock-o pending"></i> Visit at 12/05/2018 at 15:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-times rejected "></i> Visit at 13/05/2018 at 16:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 11/05/2018 at 15:20. </a></li>
+            </ul>
+          </li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -87,122 +87,111 @@
 
     <form  action="{{route('search')}}" method="get" class="text-center">
 
-      <h2 class="title text-center">Find your home today</h2>
-      <!-- Checkboxes-->
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+      <div class="title text-center">
+        <!-- Checkboxes-->
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
 
-          <div class="btn-group" data-toggle="buttons">
+            <div class="btn-group" data-toggle="buttons">
 
-            @if ($filteroptions === "all_rooms")
-            <label class="btn active">
-              <input type="radio" name="options" value="all_rooms" autocomplete="off" checked>
-              @else
-              <label class="btn">
-                <input type="radio" name="options" value="all_rooms" autocomplete="off">
-                @endif
-                <span>
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                  All Rooms
-                </span>
-              </label>
-
-
-              @if ($filteroptions === "single_room")
+              @if ($filteroptions === "all_rooms")
               <label class="btn active">
-                <input type="radio" name="options" value="single_room" autocomplete="off" checked>
+                <input type="radio" name="options" value="all_rooms" autocomplete="off" checked>
                 @else
                 <label class="btn">
-                  <input type="radio" name="options" value="single_room" autocomplete="off">
+                  <input type="radio" name="options" value="all_rooms" autocomplete="off">
                   @endif
                   <span>
                     <i class="fa fa-check" aria-hidden="true"></i>
-                    Single Room
+                    All Rooms
                   </span>
                 </label>
 
-                @if ($filteroptions === "double_room")
+
+                @if ($filteroptions === "single_room")
                 <label class="btn active">
-                  <input type="radio" name="options" value="double_room" autocomplete="off" checked>
+                  <input type="radio" name="options" value="single_room" autocomplete="off" checked>
                   @else
                   <label class="btn">
-                    <input type="radio" name="options" value="double_room" autocomplete="off">
+                    <input type="radio" name="options" value="single_room" autocomplete="off">
                     @endif
                     <span>
                       <i class="fa fa-check" aria-hidden="true"></i>
-                      Double Room
+                      Single Room
                     </span>
                   </label>
 
-                  @if ($filteroptions === "appartment")
+                  @if ($filteroptions === "double_room")
                   <label class="btn active">
-                    <input type="radio" name="options" value="appartment" autocomplete="off" checked>
+                    <input type="radio" name="options" value="double_room" autocomplete="off" checked>
                     @else
                     <label class="btn">
-                      <input type="radio" name="options" value="appartment" autocomplete="off">
+                      <input type="radio" name="options" value="double_room" autocomplete="off">
                       @endif
                       <span>
                         <i class="fa fa-check" aria-hidden="true"></i>
-                        Appartment
+                        Double Room
                       </span>
                     </label>
+
+                    @if ($filteroptions === "appartment")
+                    <label class="btn active">
+                      <input type="radio" name="options" value="appartment" autocomplete="off" checked>
+                      @else
+                      <label class="btn">
+                        <input type="radio" name="options" value="appartment" autocomplete="off">
+                        @endif
+                        <span>
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                          Appartment
+                        </span>
+                      </label>
+
+
+                    </div>
+
 
                   </div>
 
 
+
+
+
+
                 </div>
               </div>
-
               <!-- Price Range -->
 
 
 
-              <div class="container">
                 <div class="container-fluid">
-                  <div class="row">
+                  <div class="row center-block">
 
+                    <div class="col-sm-4 col-sm-offset-4 filter">
+                      <input type="text" id="min" name="min" size="3" value="{{ $min }}" readonly="true"  />
 
-                    <div class="col-sm-3" >
-                    </div>
+                      <div id="slider-range" class="slider-range "></div>
 
-                    <div class="col-sm-6" >
+                      <input type="text" id="max" name="max" size="3" value="{{ $max }}" readonly="true"  />
 
-
-
-                      <div class="col-sm-2">
-                        <input type="text" id="min" name="min" size="3" value="{{ $min }}" readonly="true"  />
-                      </div>
-
-                      <div class="col-sm-8" >
-                        <div id="slider-range" class="slider-range"></div>
-                      </div>
-
-                      <div class="col-sm-2">
-                        <input type="text" id="max" name="max" size="3" value="{{ $max }}" readonly="true" />
-                      </div>
 
                     </div>
 
-                    <div class="col-sm-3" >
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
+                      </div>
                     </div>
+
 
                   </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-md-8 col-md-offset-2">
-                    <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
-                  </div>
                 </div>
 
 
-              </div>
             </form>
-
           </div>
-
-
         </div>
 
 
@@ -244,9 +233,12 @@
 
                     <div class="row">
 
+                      <div class="pull-left">
+
                       <button class="btn btn-simple btn-default btn-sm"><p class="fa fa-bed"></p>
                         @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
                       </button>
+                    </div>
                       <div class="pull-right">
                         <button class="btn  btn-simple btn-default btn-sm"><p class="fa fa-euro"></p> {{$value->price}} </button>
                       </div>

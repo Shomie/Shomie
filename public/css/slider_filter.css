@@ -1,3 +1,4 @@
+
 .btn i.fa {
   opacity: 0;
 
@@ -7,89 +8,142 @@
 
 }
 
+
 .btn.active{
   background-color: #3aaa50;
   color: white;
+  width:100%;
+
 
 }
 .btn.active:hover{
   background-color: #3aaa50;
   color: white;
+  width:100%;
+
 
 }
 
 .btn{
   background-color: #E5E5E5;
   color: #999;
+  width:100%;
 
 }
 
 .btn:hover{
   background-color: #E5E5E5;
   color: #999;
+  width:100%;
+
 
 }
+
+@media (min-width:641px)  {
+  .btn.active{
+    background-color: #3aaa50;
+    color: white;
+    width:25%;
+
+
+  }
+  .btn.active:hover{
+    background-color: #3aaa50;
+    color: white;
+    width:25%;
+
+
+  }
+
+  .btn{
+    background-color: #E5E5E5;
+    color: #999;
+    width:25%;
+
+  }
+
+  .btn:hover{
+    background-color: #E5E5E5;
+    color: #999;
+    width:25%;
+
+
+  }
+}
+
+
 
 
 /* Align the slider and the min max value */
 
-.slider-range  {
-  margin-top: 10px;
+.filter
+{
+  display: flex;
+  align-items: center;
 }
 
-.slider-range.ui-corner-all,
-.slider-range .ui-corner-all {
+input[type="text"]{
+  background: transparent;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
   border-radius: 0;
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 8px;
 }
+
+
+
+.slider-range  {
+  margin-top: 0px;
+  background: red;
+  width: 100%;
+
+}
+
+
 
 .slider-range.ui-slider {
-  border: 0;
-  background: #fafaf2;
-  border-radius: 23px;
-  border: 1px solid #94948c;
+  border-radius: 10px;
+  background: red;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
 }
 
 .slider-range.ui-slider-horizontal {
-  height: 10px;
+  height: 6px;
+  background: #E8E7E6;
+  border: 0px;
+
 }
 
 .slider-range.ui-slider-vertical {
-  height: 15em;
+  height: 5em;
   width: 10px;
 }
 
 .slider-range .ui-slider-handle {
-  width: 20px;
-  height: 20px;
-  background: #dfded2;
-  border-radius: 48%;
-  border: none;
+  border: 1px solid #3aaa50 !important;
+  height: 25px !important;
+  width: 25px !important;
+  border-radius: 25px;
+  background: #ffffff !important;
   cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
 }
 
-.slider-range.ui-slider-horizontal .ui-slider-handle {
-  top: 50%;
-  margin-top: -10px;
-}
-
-.slider-range.ui-slider-vertical .ui-slider-handle {
-  left: 50%;
-  margin-left: -10px;
-}
 
 
 .slider-range .ui-slider-range {
   border: 0;
-  border-radius: 23;
-  background: #534c4b;
+  background: #3aaa50;
 }
 
-.slider-range.ui-slider-horizontal .ui-slider-range {
-  top: 0;
-  height: 10px;
-}
 
 .slider-range.ui-slider-vertical .ui-slider-range {
   left: 0;
-  width: 10px;
+  width: 8px;
 }

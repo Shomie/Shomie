@@ -6,7 +6,7 @@ $(function() {
     step: 10,
     values: [ $("#min").val(), $("#max").val() ],
     slide: function( event, ui ) {
-      if(ui.values[ 0 ] + 50 > ui.values[ 1 ])
+      if(ui.values[ 0 ] + 80 > ui.values[ 1 ])
       {
         /* If minimum value is greater than maximum by a treshold don't allow */
         return false;
