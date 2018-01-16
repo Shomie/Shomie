@@ -1,3 +1,77 @@
+/* BEGIN Options Radio Buttons */
+.btn i.fa {
+  opacity: 0;
+}
+.btn.active i.fa {
+  opacity: 1;
+}
+
+
+.btn.active{
+  background-color: #3aaa50;
+  color: white;
+  width:100%;
+  font-size: 12px;
+}
+
+.btn.active:hover{
+  background-color: #3aaa50;
+  color: white;
+  width:100%;
+}
+
+.btn{
+  background-color: #E5E5E5;
+  color: #999;
+  width:100%;
+  font-size: 12px;
+}
+
+.btn:hover{
+  background-color: #E5E5E5;
+  color: #999;
+  width:100%;
+}
+
+@media (min-width:641px)  {
+  .btn.active{
+    background-color: #3aaa50;
+    color: white;
+    width:25%;
+    font-size: 12px;
+  }/* BEGIN Options Radio Buttons */
+
+  .btn.active:hover{
+    background-color: #3aaa50;
+    color: white;
+    width:25%;
+    font-size: 12px;
+  }
+
+  .btn{
+    background-color: #E5E5E5;
+    color: #999;
+    width:25%;
+    font-size: 12px;
+  }
+
+  .btn:hover{
+    background-color: #E5E5E5;
+    color: #999;
+    width:25%;
+
+  }
+}
+
+/* END Options Radio Buttons */
+
+.wrapper
+{
+  background-color: white;
+}
+
+/* BEGIN Notifications */
+
 .accepted {
   color: #468847;
 }
@@ -16,13 +90,13 @@
   color: #b94a48;
 }
 
+/* END Notifications */
+
+
 .img-responsive{
   width: 100%;
   height:428px;
   margin: auto;
-
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
 }
 
 .panel-heading{
@@ -34,12 +108,9 @@
 }
 
 .panel-footer{
-  border-bottom-left-radius: 1px;
-  border-bottom-right-radius: 1px;
 }
 
 .panel{
-  border-radius: 1px;
 }
 
 
@@ -62,20 +133,15 @@
   .img-responsive{
     width: 100%;
     height:250px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
   }
 
   .panel{
     border-radius: 0px;
     margin-bottom: 0px;
-    -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 1);
   }
 
   .panel-footer{
     padding:4px 15px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 
   }
   .pagination {
@@ -92,9 +158,13 @@
     font-size: 9px;
   }
 
-  .container {
-    padding-left: 0px;
-    padding-right: 0px;
+
+  .container-full {
+    margin: 0 auto;
+    width:auto ;
+    padding: 0;
+    margin: 0;
+    margin-right: 1px;
   }
 
   .slide, p{

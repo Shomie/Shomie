@@ -82,7 +82,7 @@
   </div>
 </nav>
 
-<div class="wrapper" style="background:white;">
+<div class="wrapper">
   <div class="container">
 
     <form  action="{{route('search')}}" method="get" class="text-center">
@@ -164,48 +164,41 @@
 
 
 
-                <div class="container-fluid">
-                  <div class="row center-block">
+              <div class="container">
+                <div class="row center-block">
 
-                    <div class="col-sm-4 col-sm-offset-4 filter">
-                      <input type="text" id="min" name="min" size="3" value="{{ $min }}" readonly="true"  />
+                  <div class="col-sm-4 col-sm-offset-4 filter">
+                    <input type="text" id="min" name="min" size="3" value="{{ $min }}" readonly="true"  />
 
-                      <div id="slider-range" class="slider-range "></div>
+                    <div id="slider-range" class="slider-range "></div>
 
-                      <input type="text" id="max" name="max" size="3" value="{{ $max }}" readonly="true"  />
-
-
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-12">
-                        <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
-                      </div>
-                    </div>
+                    <input type="text" id="max" name="max" size="3" value="{{ $max }}" readonly="true"  />
 
 
                   </div>
 
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
+                    </div>
+                  </div>
+
+
                 </div>
+
+              </div>
 
 
             </form>
           </div>
         </div>
 
-
-
-
-
-
-
-
         <div class="main" id="properties">
 
           <div class="section">
-            <div class="container">
-              @foreach($properties as $key => $value)              
+            <div class="container container-full">
+              @foreach($properties as $key => $value)
               <div class="col-md-6 col-sm-10">
                 <div class="panel panel-default">
                   <div class="panel-heading"></div>
@@ -229,16 +222,19 @@
                     </a>
                   </div>
                   <div class="panel-footer">
-                    <span class="fa fa-map-marker"></span> {{$value->presentation}} {{$value->zone}}
+
+                    <button class="btn btn-simple btn-default btn-sm"><p class="fa fa-map-marker"></p>
+                      {{$value->presentation}} {{$value->zone}}
+                    </button>
 
                     <div class="row">
 
                       <div class="pull-left">
 
-                      <button class="btn btn-simple btn-default btn-sm"><p class="fa fa-bed"></p>
-                        @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
-                      </button>
-                    </div>
+                        <button class="btn btn-simple btn-default btn-sm"><p class="fa fa-bed"></p>
+                          @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
+                        </button>
+                      </div>
                       <div class="pull-right">
                         <button class="btn  btn-simple btn-default btn-sm"><p class="fa fa-euro"></p> {{$value->price}} </button>
                       </div>
