@@ -223,17 +223,14 @@
                   </div>
                   <div class="panel-footer">
 
-                    <button class="btn btn-simple btn-default btn-sm"><p class="fa fa-map-marker"></p>
-                      {{$value->presentation}} {{$value->zone}}
-                    </button>
-
-                    <div class="row">
-
-                      <div class="pull-left">
-
-                        <button class="btn btn-simple btn-default btn-sm"><p class="fa fa-bed"></p>
+                    <div class="row">                      
+                      <div class="pull-left pack">
+                        <span><i class="fa fa-map-marker"></i>
+                          {{$value->presentation}} {{$value->zone}}
+                        </span>
+                        <span><i class="fa fa-bed"></i>
                           @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
-                        </button>
+                        </span>
                       </div>
                       <div class="pull-right">
                         <button class="btn  btn-simple btn-default btn-sm"><p class="fa fa-euro"></p> {{$value->price}} </button>
