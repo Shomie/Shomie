@@ -81,7 +81,7 @@
 </nav>
 
 
-<div class="container text-center">
+<div class="container text-center" style="padding-top:70px;">
 
 
   <div id="image_slider" class="modal fade in bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -347,19 +347,19 @@
     </div>
 
 
-  <div class="row" style="margin-left:0px;margin-right:0px;">
-    <div style="width: 100%; height: 500px;">
-      {!! Mapper::render() !!}
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <!-- TODO; Insert footer here or delete this div -->
+    <div class="row" style="margin-left:0px;margin-right:0px;">
+      <div style="width: 100%; height: 500px;">
+        {!! Mapper::render() !!}
       </div>
-    </div>
 
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <!-- TODO; Insert footer here or delete this div -->
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
 
 </div>
 @endsection
