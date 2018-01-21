@@ -233,14 +233,14 @@
           </div>
         </div>
       </div>
-      
+
       <div class="panel-footer">
         <div class="row">
           <div class="col-md-3 col-sm-6">
             <button class="btn  btn-simple btn-default btn-lg btn-block">
               <div class="pull-left">
                 <i class="fa fa-bed"></i>
-                {{ $property->type }}
+                @if ($property->type === "appartment") {{"Appartment"}} @elseif ($property->type === "single_room") {{"Single Room"}}  @elseif ($property->type === "double_room") {{"Double Room"}} @endif
               </div>
 
             </button>
@@ -345,7 +345,6 @@
         </div>
       </div>
     </div>
-  </div>
 
 
   <div class="row" style="margin-left:0px;margin-right:0px;">
