@@ -1,11 +1,27 @@
+/* BEGIN Property stuff */
+.presentation, .type_room
+{
+  margin-left:10px;
+  font-size:14px;
+}
+
+.price
+{
+  margin-right:10px;
+  color:#3aaa50;
+  font-size:20px;
+}
+
+/* END Property stuff */
+
 /* BEGIN Options Radio Buttons */
 .btn i.fa {
   opacity: 0;
 }
+
 .btn.active i.fa {
   opacity: 1;
 }
-
 
 .btn.active{
   background-color: #3aaa50;
@@ -121,7 +137,7 @@
     padding: 0;
   }
 
-  .pack
+  .pack /* Not being used anymore. For legacy leave it here. It's useful. */
   {
     display: flex;
     flex-direction: column;
