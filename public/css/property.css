@@ -1,3 +1,25 @@
+.price_map
+{
+  font-size: 18px;
+}
+
+.view_on_map
+{
+  color:#3aaa50 ;
+  font-weight:bold;
+  font-size: 12px;
+  text-decoration:none;
+}
+
+.view_on_map:hover
+{
+  color:#33BB36;
+  font-weight:bold;
+  font-size: 12px;
+  text-decoration:none;
+
+}
+
 .accepted {
   color: #468847;
 }
@@ -44,32 +66,32 @@
   }
 }
 
-  /* Modal + Carousel*/
+/* Modal + Carousel*/
 
-  .modal {
-    text-align:center;
-    background-color:  rgba(0,0,0,0.94);
+.modal {
+  text-align:center;
+  background-color:  rgba(0,0,0,0.94);
 
-  }
+}
 
-  #image_slider .modal-dialog {
-    display: inline-block;
-    width: auto;
-    height: auto;
+#image_slider .modal-dialog {
+  display: inline-block;
+  width: auto;
+  height: auto;
 
-  }
+}
 
-  .carousel-inner > .item > img {
-    display: block;
-  }
+.carousel-inner > .item > img {
+  display: block;
+}
 
-  /* Layout date and time classes/ids */
-  .datepicker {
-    background-color: #fff ;
-    color: #333 ;
-  }
+/* Layout date and time classes/ids */
+.datepicker {
+  background-color: #fff ;
+  color: #333 ;
+}
 
-  #timepicker5{
-    background-color: #fff ;
-    color: #333 ;
-  }
+#timepicker5{
+  background-color: #fff ;
+  color: #333 ;
+}

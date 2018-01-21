@@ -53,27 +53,32 @@ class PropertyController extends Controller
       /* Do nothing - property coordinates are correct */
     }
 
-
     Mapper::map($property->latitude, $property->longitude,
-    ['title' => $property->adress,
-    'zoom' => 15,
-    'scrollWheelZoom' => false,
-    'icon' =>'/img/maps/location-marker-green.png'
-  ]);
-  Mapper::marker(40.209407, -8.421083,
-  ['title' => 'Coimbra Academic Association',
-  'icon' => '/img/maps/location-marker.png'
-]);
+    [
+      'zoom' => 15,
+      'scrollWheelZoom' => false,
+      'icon' =>'/img/maps/house.png',
+      'cluster' => false
+    ]
+  );
 
+  $price_display = '<span class="price_map">' . $property->price . ' €</span>';
+  $view_on_maps_display = '</p><a class="view_on_map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=' . $property->latitude . "," . $property->longitude . '">View in Google Maps!</a>';
+  $maps_display_text = $price_display . $view_on_maps_display;
 
-Mapper::marker(40.208967, -8.424132,
-['title' => 'University of Coimbra',
-'icon' => '/img/maps/location-marker.png']);
+  Mapper::informationWindow(
+    $property->latitude, $property->longitude,
+    $maps_display_text,
+    [
+      'open' => 'true',
+      'animation' => 'NONE',
+      'icon' => 'NONE'
+    ]
+  );
 
+  $images = $this->RetrieveAllImagesFromProperty($property->route);
 
-$images = $this->RetrieveAllImagesFromProperty($property->route);
-
-return view('property', ['property' => $property, 'images' => $images]);
+  return view('property', ['property' => $property, 'images' => $images]);
 
 }
 
