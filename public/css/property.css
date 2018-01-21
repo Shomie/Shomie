@@ -4,81 +4,72 @@
 
 .pending
 {
-	color: #f89406;
+  color: #f89406;
 }
 
 .pending-requests
 {
-	background-color: #e3a615;
+  background-color: #e3a615;
 }
 
 .rejected {
   color: #b94a48;
 }
 
+.header_image{
+  width: 100%;
+  height:350px;
+  margin: auto;
+  cursor: pointer;
+  overflow:hidden;
+
+}
 /* Main House Image */
 
-.thumbnail {
-  margin-top: 5px;
-  margin-bottom: 5px;
+@media (max-width:700px)  {
 
-  position: relative;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  cursor: pointer;
-}
-.thumbnail img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 100%;
-  width: auto;
-  -webkit-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-}
-
-.thumbnail img.portrait {
-  width: 100%;
-  height: 100%;
-}
-
-@media (min-width:641px)  {
-
-  .thumbnail img.portrait {
+  .header_image{
     width: 100%;
-    height: auto;
+    height:250px;
+    margin: auto;
+    cursor: pointer;
+    overflow:hidden;
+  }
+
+  .container-full {
+    margin: 0 auto;
+    width:auto ;
+    padding: 0;
+    margin: 0;
   }
 }
 
+  /* Modal + Carousel*/
 
-/* Modal + Carousel*/
+  .modal {
+    text-align:center;
+    background-color:  rgba(0,0,0,0.94);
 
-.modal {
-  text-align:center;
-  background-color:  rgba(0,0,0,0.94);
+  }
 
-}
+  #image_slider .modal-dialog {
+    display: inline-block;
+    width: auto;
+    height: auto;
 
-#image_slider .modal-dialog {
-  display: inline-block;
-  width: auto;
-  height: auto;
+  }
 
-}
+  .carousel-inner > .item > img {
+    display: block;
+  }
 
-.carousel-inner > .item > img {
-  display: block;
-}
+  /* Layout date and time classes/ids */
+  .datepicker {
+    background-color: #fff ;
+    color: #333 ;
+  }
 
-/* Layout date and time classes/ids */
-.datepicker {
-  background-color: #fff ;
-  color: #333 ;
-}
-
-#timepicker5{
-  background-color: #fff ;
-  color: #333 ;
-}
+  #timepicker5{
+    background-color: #fff ;
+    color: #333 ;
+  }

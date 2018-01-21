@@ -14,7 +14,7 @@
 
 
 <body class="property-page">
-  <nav class="navbar navbar-default navbar-fixed-top" style="color:#5cb160;">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -45,35 +45,35 @@
           @else
 
           <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Notifications <span class="badge pending-requests">5</span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 12/04/2018 at 12:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-times rejected"></i> Visit at 12/05/2018 at 15:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-clock-o pending"></i> Visit at 12/05/2018 at 15:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-times rejected "></i> Visit at 13/05/2018 at 16:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 11/05/2018 at 15:20. </a></li>
-        </ul>
-        </li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            {{ Auth::user()->name }} <span class="caret"></span>
-          </a>
-
-
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <a href="{{ route('logout') }}"
-              onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">
-              Logout
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              {{ csrf_field() }}
-            </form>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Notifications <span class="badge pending-requests">5</span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 12/04/2018 at 12:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-times rejected"></i> Visit at 12/05/2018 at 15:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-clock-o pending"></i> Visit at 12/05/2018 at 15:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-times rejected "></i> Visit at 13/05/2018 at 16:20. </a></li>
+              <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 11/05/2018 at 15:20. </a></li>
+            </ul>
           </li>
-        </ul>
-      </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+
+
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+              </form>
+            </li>
+          </ul>
+        </li>
         @endif
       </ul>
     </div>
@@ -157,96 +157,85 @@
 </div>
 
 
+<div class="wrapper" style="background-color:white;">
+  <div class="container container-full">
 
-<div class="wrapper" style="background:white;">
-
-  <div class="container" style="padding-top:70px;">
-
-    <div class="center-block">
-
-      <div class="thumbnail">
-
+    <div class="panel panel-default ">
+      <div class="panel-heading" style="padding:0;">
 
         @if(!empty($images))
-        <img src="/{{ $images[0] }}" class="img-rounded portrait" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
+        <img src="/{{ $images[0] }}" class="header_image" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
         @else
-        <img src="" class="img-rounded portrait" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
+        <img src="" class="header_image" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
         @endif
-
 
       </div>
 
-
-    </div>
-
-    <div class="panel panel-default ">
       <div class="panel-body">
-        <div class="row" style="margin:0px;border-bottom: 1px solid #cbcbcb;">
-          <div class="col-md-8 col-sm-12" style="margin-top: 10px;">
-            <p class="description">
-              {{ $property->description }}
+        <div class="col-md-8 col-sm-12" style="margin-top: 10px;">
+          <p class="description">
+            {{ $property->description }}
+          </p>
+        </div>
 
-            </p>
-          </div>
-          <div class="col-md-4 col-sm-12" style="padding:0px;">
-            <div class="panel panel-default" style="box-shadow: none;border: 1px solid #cbcbcb;border-bottom:none;border-radius:0px;border-right:none;">
-              <div class="panel-heading" style="background-color:#515151;border-radius:0px;color:#fff;text-align:center;">
-                <h4>  {{ $property->price }}€ per month</h4>
-              </div>
-              <div class="panel-body" style="padding:15px;">
-                <button class="btn btn-success btn-lg" type="button" style="width:234px;font-size:18px;font-weight:500;display:block;margin-right:auto;margin-left:auto;border-radius:2px" data-toggle="modal" data-target="#modal-request">Request to Visit</button>
-              </div>
+        <div class="col-md-4 col-sm-12" style="padding:0px;">
+          <div class="panel panel-default" style="box-shadow: none;border: 1px solid #cbcbcb;border-radius:0px;border-right:none;border-bottom:none;">
+            <div class="panel-heading" style="background-color:#515151;border-radius:0px;color:#fff;text-align:center;">
+              <h4>  {{ $property->price }}€ per month</h4>
+            </div>
+            <div class="panel-body" style="padding:15px;margin-top:0;">
+              <button class="btn btn-success btn-lg" type="button" style="width:234px;font-size:18px;font-weight:500;display:block;margin-right:auto;margin-left:auto;border-radius:2px" data-toggle="modal" data-target="#modal-request">Request to Visit</button>
+            </div>
 
+            <div class="modal fade in" id="modal-request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      <i class="material-icons">clear</i>
+                    </button>
 
-              <!-- Modal fullscreen -->
-              <div class="modal fade in" id="modal-request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <i class="material-icons">clear</i>
-                      </button>
+                    <h4 class="modal-title">Request visit</h4>
 
-                      <h4 class="modal-title">Request visit</h4>
+                  </div>
+                  <div class="modal-body">
 
-                    </div>
-                    <div class="modal-body">
+                    <form method="post" action="{{route('request_visit', ['id'=> $property->id]) }}" >
+                      <div class="fom-group" style="margin-top:10px;">
+                        <input class="datepicker booking center-block" type="text" name="visit_date" id="request-date" style="width:234px;"/>
+                      </div>
 
-                      <form method="post" action="{{route('request_visit', ['id'=> $property->id]) }}" >
-                        <div class="fom-group" style="margin-top:10px;">
-                          <input class="datepicker booking center-block" type="text" name="visit_date" id="request-date" style="width:234px;"/>
-                        </div>
+                      <div class="bootstrap-timepicker">
+                        <input class="booking center-block" id="timepicker5" name="visit_time" type="text" style="width:234px;">
+                        <i class="icon-time"></i>
+                      </div>
 
-                        <div class="bootstrap-timepicker">
-                          <input class="booking center-block" id="timepicker5" name="visit_time" type="text" style="width:234px;">
-                          <i class="icon-time"></i>
-                        </div>
-
-                        <button class="btn btn-default btn-success btn-search-submit" type="submit">Request Visit</button>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
+                      <button class="btn btn-default btn-success btn-search-submit" type="submit">Request Visit</button>
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
 
 
-                      </form>
+                    </form>
 
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close
-                        <div class="ripple-container">
-                          <div class="ripple ripple-on ripple-out" style="left: 65.5781px; top: 19px; background-color: rgb(244, 67, 54); transform: scale(8.5);"></div>
-                        </div>
-                      </button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close
+                      <div class="ripple-container">
+                        <div class="ripple ripple-on ripple-out" style="left: 65.5781px; top: 19px; background-color: rgb(244, 67, 54); transform: scale(8.5);"></div>
+                      </div>
+                    </button>
 
-                    </div>
                   </div>
                 </div>
               </div>
-
-
             </div>
-          </div>
 
+
+          </div>
         </div>
-        <div class="row" >
+      </div>
+      
+      <div class="panel-footer">
+        <div class="row">
           <div class="col-md-3 col-sm-6">
             <button class="btn  btn-simple btn-default btn-lg btn-block">
               <div class="pull-left">
@@ -356,21 +345,22 @@
         </div>
       </div>
     </div>
-    <div class="row" style="margin-left:0px;margin-right:0px;">
-      <div style="width: 100%; height: 500px;">
-        {!! Mapper::render() !!}
-      </div>
+  </div>
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <!-- TODO; Insert footer here or delete this div -->
-        </div>
-      </div>
 
+  <div class="row" style="margin-left:0px;margin-right:0px;">
+    <div style="width: 100%; height: 500px;">
+      {!! Mapper::render() !!}
     </div>
 
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <!-- TODO; Insert footer here or delete this div -->
+      </div>
+    </div>
 
-    <script>
+  </div>
+</div>
 
-    </script>
-    @endsection
+</div>
+@endsection
