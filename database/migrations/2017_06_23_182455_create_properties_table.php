@@ -20,12 +20,12 @@ class CreatePropertiesTable extends Migration
 		$table->string('number')->nullable();
 		$table->string('floor')->nullable();
 		$table->string('type');
-		$table->float('price');
+		$table->integer('price');
 		$table->integer('capacity')->nullable();
 		$table->string('availibility')->nullable();
 		$table->integer('number_wcs')->nullable();
-		$table->float('latitude')->nullable();
-		$table->float('longitude')->nullable();
+		$table->float('latitude',6)->nullable();
+		$table->float('longitude',6)->nullable();
 		$table->boolean('has_living_room')->nullable();
 		$table->boolean('has_cleaning')->nullable();
 		$table->boolean('expenses_included')->nullable();
