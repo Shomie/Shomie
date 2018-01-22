@@ -57,7 +57,7 @@ class PropertyController extends Controller
     [
       'zoom' => 15,
       'scrollWheelZoom' => false,
-      'icon' =>'/img/maps/house.png',
+      'icon' =>'/img/property/house.png',
       'cluster' => false
     ]
   );

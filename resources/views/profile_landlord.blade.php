@@ -81,7 +81,7 @@
     <!-- Columna de la izquierda -->
     <div class="col-md-3">
       <div class="col-md-12" align="center">
-        <img class="img-responsive img-portfolio img-hover" src="img/marc.jpg">
+        <img class="img-responsive img-portfolio img-hover" src="img/default.png">
       </div>
       <div class="col-md-12">
         <p class="text-center"><strong>{{ Auth::user()->name }}</strong></p>

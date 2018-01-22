@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 
-  <link rel="apple-touch-icon" sizes="76x76" href="{{URL::asset('/img/apple-icon.png')}}">
-  <link rel="icon" type="image/png" href="{{URL::asset('/img/favicon.png')}}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{URL::asset('/img/logo/apple-icon.png')}}">
+  <link rel="icon" type="image/png" href="{{URL::asset('/img/logo/favicon.png')}}">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
