@@ -40,6 +40,14 @@ p{
     height: 200px;
 }
 
+.expando
+{
+  display: none;
+}
+
+.expando:target {
+  display: block;
+}
 
 @media (max-width: 700px){
 
