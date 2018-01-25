@@ -13,13 +13,20 @@ class AddTypeToUsers extends Migration
      */
     public function up()
     {
-       Schema::table('users', function($table) {        
+       Schema::table('users', function($table) {
 	  $table->boolean('type');
-	  $table->integer('landlord_id')->nullable();
-	  $table->foreign('landlord_id')->references('landlord_id')->on('properties');
-		
-	
-    });  
+	  $table->integer('landlord_id')->unsigned()->nullable();
+
+
+    });
+
+
+
+
+
+        Schema::table('users', function($table) {
+          $table->foreign('landlord_id')->references('landlord_id')->on('properties');
+        });
     }
 
     /**
