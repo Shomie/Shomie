@@ -172,7 +172,20 @@
                       <div class="panel panel-default">
                         <div class="panel-body">
                           <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a>
-                          <img src="img/RoomPics/01/0101/DSC01375.jpg" alt="Room Image" class="img-responsive">
+                          <?php
+
+                          $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+                          $images = glob($image_search, GLOB_BRACE);
+
+                          if(!empty($images))
+                          {
+                            echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
+                          }
+                          else
+                          {
+                            echo "<img src='' alt='Room Image' class='img-responsive'>";
+                          }
+                          ?>
                         </div>
                         <div class="panel-footer">
                           <p>{{ $property->adress }}, {{ $property->number }}</p>
@@ -280,8 +293,10 @@
               <div class="panel panel-default">
                 <div class="panel-body">
                   <?php
-                  $image_search = $property->route. "/*.{jpg,jpeg,gif,png,JPG}";
+
+                  $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
                   $images = glob($image_search, GLOB_BRACE);
+
                   if(!empty($images))
                   {
                     echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
