@@ -207,7 +207,7 @@
 
                       <?php
 
-                      $image_search = $value->route . "/*.{jpg,jpeg,gif,png,JPG}";
+                      $image_search = "img/RoomsPics/". $value->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
                       $images = glob($image_search, GLOB_BRACE);
 
                       if(!empty($images))

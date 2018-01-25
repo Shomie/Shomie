@@ -27,7 +27,7 @@ class PropertyController extends Controller
 
   public function RetrieveAllImagesFromProperty($dir_path) {
 
-    $image_search = $dir_path . "/*.{jpg,jpeg,gif,png,JPG}";
+    $image_search = $dir_path . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
     $images = glob($image_search, GLOB_BRACE);
 
     return $images;
@@ -76,7 +76,8 @@ class PropertyController extends Controller
     ]
   );
 
-  $images = $this->RetrieveAllImagesFromProperty($property->route);
+  $path = "img/RoomsPics/" . $property->id;
+  $images = $this->RetrieveAllImagesFromProperty($path);
 
   return view('property', ['property' => $property, 'images' => $images]);
 
