@@ -7,6 +7,21 @@
 <link href="{{ URL::asset('/css/property.css') }}" rel="stylesheet"/>
 <script src= "{{ URL::asset('/js/property.js') }}" type="text/javascript"></script>
 
+<!-- Core CSS file -->
+<link rel="stylesheet" href="{{ URL::asset('/photo_swipe/photoswipe.css') }}">
+
+<!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+In the folder of skin CSS file there are also:
+- .png and .svg icons sprite,
+- preloader.gif (for browsers that do not support CSS animations) -->
+<link rel="stylesheet" href="{{ URL::asset('/photo_swipe/default-skin/default-skin.css') }}">
+
+<!-- Core JS file -->
+<script src="{{ URL::asset('/photo_swipe/photoswipe.min.js') }}" type="text/javascript"></script>
+
+<!-- UI JS file -->
+<script src="{{ URL::asset('/photo_swipe/photoswipe-ui-default.min.js') }}" type="text/javascript"></script>
+
 @endsection
 
 
@@ -81,78 +96,32 @@
 </nav>
 
 
+<div class="picture" itemscope itemtype="http://schema.org/ImageGallery">
+
+  @foreach($images as $key => $image)
+  <?php static $i = 0; ?>
+
+  @if($i == 0)
+
+  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <a id="main" href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="0">
+      <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="Beach">
+    </a>
+  </figure>
+  @else
+
+  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <a href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="1">
+      <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="">
+    </a>
+  </figure>
+
+  @endif
+  @endforeach
+</div>
+
+
 <div class="container text-center" style="padding-top:70px;">
-
-
-  <div id="image_slider" class="modal fade in bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-      <div class="modal-content ">
-
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            <i class="material-icons">clear</i>
-          </button>
-
-          <h5 class="modal-title">Gorgeous room!</h5>
-
-        </div>
-
-        <div class="modal-body">
-          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
-            <ol class="carousel-indicators">
-
-              @foreach($images as $key => $image)
-              <?php static $i = 0; ?>
-
-              @if($i == 0)
-              <li data-target="#carousel-example" data-slide-to="{{ $i }}" class="active"></li>
-              @else
-              <li data-target="#carousel-example" data-slide-to="{{ $i }}"></li>
-              @endif
-
-              <?php $i++; ?>
-
-              @endforeach
-
-            </ol>
-
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-
-              @foreach($images as $key => $image)
-              <?php static $j = 0; ?>
-
-              @if($j == 0)
-              <div class="item active">
-                <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
-              </div>
-              @else
-              <div class="item">
-                <img class="img-responsive center-block" src="/{{ $image }}" alt="...">
-              </div>
-              @endif
-
-              <?php $j++; ?>
-
-              @endforeach
-
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
 </div>
 
@@ -164,9 +133,9 @@
       <div class="panel-heading" style="padding:0;">
 
         @if(!empty($images))
-        <img src="/{{ $images[0] }}" class="header_image" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
+        <img src="/{{ $images[0] }}" id="main_trigger" class="header_image" alt="aaa">
         @else
-        <img src="" class="header_image" alt="aaa" data-toggle="modal" data-target=".bs-example-modal-lg">
+        <img src="" class="header_image" id="main_trigger" alt="aaa">
         @endif
 
       </div>
@@ -373,4 +342,45 @@ Washing Machine
 </div>
 
 </div>
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="pswp__bg"></div>
+  <div class="pswp__scroll-wrap">
+
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <div class="pswp__counter"></div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
