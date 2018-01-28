@@ -295,7 +295,7 @@
                 <div class="panel-footer">
                   <p>{{ $property->adress }}, {{ $property->number }}</p>
                   <div class="btn-group" id="status" data-toggle="buttons">
-                    @if($property->availability == "available")
+                    @if($property->availibility == "available")
                     <label class="btn btn-default btn-on btn-sm active">
                       <input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
                       <label class="btn btn-default btn-off btn-sm ">
@@ -346,6 +346,7 @@
       <h3 style="text-align: center">O meu perfil <p><small>Visitas para ver quartos</small></p></h3>
     </div>
     <form method="post">
+        {{ csrf_field() }}
       <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
         <div class="col-md-8 col-md-offset-2">
           <div class="control-group form-group">
@@ -354,7 +355,9 @@
             <label>Mensagens: </label>
           </br>
           <div class="container1">
-            
+            <?php
+               echo (string) $communication[0][0];
+            ?>
           </div>
         </div>
       </div>
