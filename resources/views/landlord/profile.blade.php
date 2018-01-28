@@ -24,7 +24,7 @@
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-offcanvas"><i class="fa fa-angle-left rotate" aria-hidden="true"></i></button>
 				</div>
-				
+
 				<a class="navbar-brand" href="{{ url('/') }}">
 					{{ config('app.name', 'shomie') }}
 				</a>
@@ -63,25 +63,20 @@
 			<div class="user-account">
 				<img src="/img/default.png" class="img-responsive img-circle user-photo" alt="User Profile Picture">
 				<div class="dropdown">
-					<a href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Olá, <strong>{{ Auth::user()->name }}</strong> <i class="fa fa-caret-down"></i></a>
-					<ul class="dropdown-menu dropdown-menu-right account">
-						<li><a href="#">Perfil</a></li>
-						<li><a href="#">Definições</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Logout</a></li>
-					</ul>
+					<p href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Olá, <strong>{{ Auth::user()->name }}</strong></p>
 				</div>
 			</div>
 			<nav id="left-sidebar-nav" class="sidebar-nav">
 				<ul id="main-menu" class="metismenu">
-					<li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span>Menu Principal</span></a></li>
+					<li class=""><a href="{{ route('landlord') }}"><i class="fa fa-home" aria-hidden="true"></i><span>Menu Principal</span></a></li>
+
 					<li class="">
 						<a href="#" class="has-arrow" aria-expanded="false"><i class="fa fa-bed" aria-hidden="true"></i> <span>Quartos</span></a>
 						<ul aria-expanded="true">
 							<li class=""><a href="#">Adicionar</a></li>
 							<li class=""><a href="#">Remover</a></li>
 							<li class=""><a href="#">Editar Quarto</a></li>
-							<li class=""><a href="#">Mudar Disponibilidade</a></li>
+							<li class=""><a href="{{ route('landlord_availability_rooms') }}">Mudar Disponibilidade</a></li>
 						</ul>
 					</li>
 					<li class="">
@@ -89,8 +84,10 @@
 						<ul aria-expanded="true">
 							<li class=""><a href="#">Ver Notificações</a></li>
 							<li class=""><a href="#">Vista de Calendário</a></li>
-
 						</ul>
+					</li>
+					<li class="active">
+						<a href="{{ route('landlord_profile') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span>Perfil</span></a>
 					</li>
 				</ul>
 			</nav>
@@ -103,70 +100,55 @@
 			<h1 class="sr-only">Menu Principal</h1>
 			<div class="dashboard-section">
 				<div class="section-heading clearfix">
-					<h2 class="section-title"><i class="fa fa-pie-chart"></i> Estatistica </h2>
+					<h2 class="section-title"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Perfil </h2>
 				</div>
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-12">
 						<div class="panel-content">
-							<h3 class="heading"><i class="fa fa-bookmark" aria-hidden="true"></i>Visão Global</h3>
-							<div class="table-responsive">
-								<table class="table table-striped no-margin">
-									<thead>
-										<tr>
-											<th>Quarto</th>
-											<th>Rua</th>
-											<th>Preço</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach($properties as $key => $property)
-										<tr>
-											<td>  <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a></td>
-											<td>{{$property->adress}}</td>
-											<td>{{$property->price}} €</td>
-											<td>{{$property->availibility}}</td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
+							<h3 class="heading"><i class="fa fa-cog" aria-hidden="true"></i>Modificar detalhes </h3>
+							<form method="post" action="{{ route('landlord_update') }}">
+								{{ csrf_field() }}
+								<div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
+									<div class="col-md-8 col-md-offset-2">
+										<div class="control-group form-group">
+											<div class="controls">
+											</br>
+											<span data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
+												<input type="text" class="form-control" name="landlord_name" placeholder="Introduza o seu nome" value="{{ Auth::user()->name }}">
+											</span>
+											<br >
+											<span data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
+												<input type="text" class="form-control" name="landlord_email" placeholder="Introduza o seu email" value="{{ Auth::user()->email }}">
+											</span>
+											<br >
+											<span data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
+												<input type="text" class="form-control" name="landlord_phone" placeholder="Introduza o seu numero de telefone"  value="{{ Auth::user()->phone_number }}">
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 container allFormButtons">
+									<div class="col-md-8 col-md-offset-4">
+										<div class="form-group">
+											<button type="submit" class="btn btn-primary">Guardar</button>
+										</div>
+									</div>
+									&nbsp;
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel-content">
-							<h3 class="heading"><i class="fa fa-info-circle" aria-hidden="true"></i> Pedidos de visita</h3>
-							<ul class="list-unstyled list-referrals">
-								<li>
-									<p><span class="value">60</span><span class="text-muted">Visitas aceites</span></p>
-									<div class="progress">
-										<div class="progress-bar bg-success" role="progressbar" style="width: 60%;background-color:#468847;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-								</li>
-								<li>
-									<p><span class="value">30</span><span class="text-muted">Visitas rejeitadas</span></p>
-									<div class="progress">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: 30%;background-color:#b94a48;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-								</li>
-								<li>
-									<p><span class="value">10</span><span class="text-muted">Visitas por aceitar</span></p>
-									<div class="progress">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: 10%;background-color:#f89406;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									</li
-								</ul>
-							</div>
-						</div>
-
+						</form>
 					</div>
 				</div>
+
+
 			</div>
 		</div>
-		<div class="clearfix"></div>
-		<footer>
-			<p class="copyright">&copy; 2018 Shomie</p>
-		</footer>
 	</div>
+</div>
+<div class="clearfix"></div>
+<footer>
+	<p class="copyright">&copy; 2018 Shomie</p>
+</footer>
+</div>
 
-	@endsection
+@endsection

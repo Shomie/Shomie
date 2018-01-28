@@ -38,23 +38,15 @@ class LordController extends Controller
   public function update()
   {
     $user = Auth::user();
-    /*
-    $data = Request::all();
-
-    $rules = array(
-    'landlord_name' => 'required',
-    'landlord_email' => 'required|email|unique:users,email,',
-    'lanlord_number' => 'required|min:9|max14');
-
-    $validator = Validator::make($data,$rules);
-    */
 
     $user->name = Request::get('landlord_name');
     $user->phone_number = Request::get('landlord_phone');
     $user->email = Request::get('landlord_email');
+    /* TODO: Verify the email (if it is unique as well) and validate the new inputs */
+
     $user->save();
 
-    return redirect()->route('landlord', ['notice' => 'O usuario foi modificado correctamente.']);
+    return redirect()->route('landlord_profile');
   }
 
   public function GetPorpertiesNewAvailability()
@@ -80,10 +72,6 @@ class LordController extends Controller
     $porperties_availabitlity = $this->GetPorpertiesNewAvailability(); /* Array with all the indexes and respective property ides */
     $property_id_index = 0;
     $availability_index = 1;
-    $index = array();
-    $index1 = array();
-
-
 
     for($i = 0; $i < count($porperties_availabitlity);$i++)
     {
@@ -96,7 +84,7 @@ class LordController extends Controller
       }
     }
 
-    return redirect()->route('landlord');
+    return redirect()->route('landlord'); /* TODO: Verify this route */
   }
 
   public function GetAllNotification()
@@ -118,7 +106,21 @@ class LordController extends Controller
 
     $all_notification_properties = $this->GetAllNotification();
     $properties = $this->getLandlordProperties();
-    return view('landlord.profile_landlord', ['properties' => $properties->get()], ['communication' =>$all_notification_properties]);
+    return view('landlord.main_menu', ['properties' => $properties->get()], ['communication' =>$all_notification_properties]);
   }
+
+
+  public function profile()
+  {
+    $properties = $this->getLandlordProperties();
+    return view('landlord.profile', ['properties' => $properties->get()]);
+  }
+
+  public function availability_rooms()
+  {
+    $properties = $this->getLandlordProperties();
+    return view('landlord.availability_rooms', ['properties' => $properties->get()]);
+  }
+
 
 }
