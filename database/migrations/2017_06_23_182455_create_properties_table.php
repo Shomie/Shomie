@@ -16,13 +16,13 @@ class CreatePropertiesTable extends Migration
     Schema::create('properties',function(Blueprint $table){
       $table->increments('id')->unique();
       $table->string('description');
-      $table->string('adress');
+      $table->string('address');
       $table->string('number')->nullable();
       $table->string('floor')->nullable();
       $table->string('type');
       $table->integer('price');
       $table->integer('capacity')->nullable();
-      $table->string('availibility')->nullable();
+      $table->string('availability')->nullable()->default('not_available');
       $table->integer('number_wcs')->nullable();
       $table->double('latitude', 9, 7)->nullable();
       $table->double('longitude', 10, 7)->nullable();

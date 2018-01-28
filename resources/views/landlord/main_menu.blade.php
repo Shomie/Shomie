@@ -122,7 +122,7 @@
 											<td>  <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a></td>
 											<td>{{$property->adress}}</td>
 											<td>{{$property->price}} €</td>
-											<td>{{$property->availibility}}</td>
+											<td>{{$property->availability}}</td>
 										</tr>
 										@endforeach
 									</tbody>

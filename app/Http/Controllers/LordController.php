@@ -64,7 +64,7 @@ class LordController extends Controller
     }
     return $porperties_availabitlity;
   }
-  
+
   public function available()
   {
     $properties = $this->getLandlordProperties()->get();
@@ -78,7 +78,7 @@ class LordController extends Controller
       $property = Property::where("id",$porperties_availabitlity[$property_id_index][$i]);
       if($property!=null)
       {
-        $property->update(['availibility'=>$porperties_availabitlity[$availability_index][$i]]);
+        $property->update(['availability'=>$porperties_availabitlity[$availability_index][$i]]);
 
         // TODO add new column in properties called updated_at, to change the availability :)
       }
