@@ -22,8 +22,11 @@
   <link href="{{ URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet" />
   <link href="{{ URL::asset('/css/material-kit.css')}}" rel="stylesheet"/>
 
+
   <!--   Core JS Files   -->
   <script src= "{{ URL::asset('/js/jquery.min.js') }}" type="text/javascript"></script>
+  <script src="{{ URL::asset('/js/popper.min.js') }}" type="text/javascript"></script>
+
   <script src="{{ URL::asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
   <script src="{{ URL::asset('/js/material.min.js') }}" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->

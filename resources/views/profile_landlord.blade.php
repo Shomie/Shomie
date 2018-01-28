@@ -1,372 +1,613 @@
 @extends('layouts.app')
 
 @section('assets')
-<link href="{{ URL::asset('/css/starter-template.css') }}" rel="stylesheet" type="text/css"/>
-<link href="{{ URL::asset('/css/personalizado.css') }}" rel="stylesheet" type="text/css"/>
-<link href="{{ URL::asset('/css/profile.css') }}" rel="stylesheet"/>
-<script src="{{ URL::asset('/js/landlord.js') }}" type="text/javascript"></script>
+
+
+
+
+<!-- VENDOR CSS -->
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/linearicons/style.css')}}" />
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/metisMenu/metisMenu.css')}}" />
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}" />
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/chartist/css/chartist.min.css')}}" />
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/chartist-plugin-tooltip/chartist-plugin-tooltip.css')}}" />
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/toastr/toastr.min.css')}}" />
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/main.css')}}" />
+<link rel="stylesheet" href="{{ URL::asset('/css/profile/demo.css')}}" />
+
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+
+
+  <script src= "{{ URL::asset('/js/profile/metisMenu/metisMenu.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/jquery-sparkline/js/jquery.sparkline.min.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/bootstrap-progressbar/js/bootstrap-progressbar.min.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/chartist/js/chartist.min.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/chartist-plugin-tooltip/chartist-plugin-tooltip.min.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/chartist-plugin-axistitle/chartist-plugin-axistitle.min.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/chartist-plugin-legend-latest/chartist-plugin-legend.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/toastr/toastr.js') }}" type="text/javascript"></script>
+  <script src= "{{ URL::asset('/js/profile/common.js') }}" type="text/javascript"></script>
+
 
 
 @endsection
 
 @section('content')
-<body class="home-page">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-          <span class="sr-only">Toggle Navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
 
-        <!-- Branding Image -->
-        <a class="navbar-brand" href="{{ url('/') }}">
-          Landlord {{ config('app.name', 'shomie') }}
-        </a>
-      </div>
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu"></i></button>
+				</div>
+				<!-- logo -->
+				<div class="navbar-brand">
+					<a href="index.html">  <i class="fa fa-bed"></i> SHOMIE</a>
+				</div>
+				<!-- end logo -->
+				<div class="navbar-right">
 
-      <div class="collapse navbar-collapse" id="app-navbar-collapse">
-        <!-- Left Side Of Navbar -->
-        <ul class="nav navbar-nav">
-          &nbsp;
-        </ul>
+					<!-- navbar menu -->
+					<div id="navbar-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+									<i class="lnr lnr-alarm"></i>
+									<span class="notification-dot"></span>
+								</a>
+								<ul class="dropdown-menu notifications">
+									<li class="header"><strong>You have 7 new notifications</strong></li>
+									<li>
+										<a href="#">
+											<div class="media">
+												<div class="media-left">
+													<i class="fa fa-fw fa-flag-checkered text-muted"></i>
+												</div>
+												<div class="media-body">
+													<p class="text">Your campaign <strong>Holiday Sale</strong> is starting to engage potential customers.</p>
+													<span class="timestamp">24 minutes ago</span>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="media">
+												<div class="media-left">
+													<i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
+												</div>
+												<div class="media-body">
+													<p class="text">Campaign <strong>Holiday Sale</strong> is nearly reach budget limit.</p>
+													<span class="timestamp">2 hours ago</span>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="media">
+												<div class="media-left">
+													<i class="fa fa-fw fa-bar-chart text-muted"></i>
+												</div>
+												<div class="media-body">
+													<p class="text">Website visits from Facebook is 27% higher than last week.</p>
+													<span class="timestamp">Yesterday</span>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="media">
+												<div class="media-left">
+													<i class="fa fa-fw fa-check-circle text-success"></i>
+												</div>
+												<div class="media-body">
+													<p class="text">Your campaign <strong>Holiday Sale</strong> is approved.</p>
+													<span class="timestamp">2 days ago</span>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="media">
+												<div class="media-left">
+													<i class="fa fa-fw fa-exclamation-circle text-danger"></i>
+												</div>
+												<div class="media-body">
+													<p class="text">Error on website analytics configurations</p>
+													<span class="timestamp">3 days ago</span>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="footer"><a href="#" class="more">See all notifications</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+									<i class="lnr lnr-cog"></i>
+								</a>
+								<ul class="dropdown-menu user-menu menu-icon">
+									<li class="menu-heading">ACCOUNT SETTINGS</li>
+									<li><a href="#"><i class="fa fa-fw fa-edit"></i> <span>Basic</span></a></li>
+									<li><a href="#"><i class="fa fa-fw fa-bell"></i> <span>Notifications</span></a></li>
+									<li><a href="#"><i class="fa fa-fw fa-sliders"></i> <span>Preferences</span></a></li>
+									<li><a href="#"><i class="fa fa-fw fa-lock"></i> <span>Privacy</span></a></li>
+									<li class="menu-heading">BILLING</li>
+									<li><a href="#"><i class="fa fa-fw fa-file-text-o"></i> <span>Invoices</span></a></li>
+									<li><a href="#"><i class="fa fa-fw fa-credit-card"></i> <span>Payments</span></a></li>
+									<li><a href="#"><i class="fa fa-fw fa-refresh"></i> <span>Renewals</span></a></li>
+									<li class="menu-button">
+										<a href="#" class="btn btn-primary"><i class="fa fa-rocket"></i> UPGRADE PLAN</a>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+									<i class="lnr lnr-question-circle"></i>
+								</a>
+								<ul class="dropdown-menu user-menu">
+									<li>
+										<form class="search-form help-search-form">
+											<input value="" class="form-control" placeholder="How can we help?" type="text">
+											<button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+										</form>
+									</li>
+									<li class="menu-heading">HOW-TO</li>
+									<li><a href="#">Setting up Campaign</a></li>
+									<li><a href="#">Understanding Website Analytics</a></li>
+									<li><a href="#">Boost Your Sales</a></li>
+									<li><a href="#">Knowing Your Audience</a></li>
+									<li class="menu-heading">ACCOUNT</li>
+									<li><a href="#">Change Password</a></li>
+									<li><a href="#">Privacy &amp; Security</a></li>
+									<li><a href="#">Membership</a></li>
+									<li class="menu-heading">BILLING</li>
+									<li><a href="#">Setup Payment</a></li>
+									<li><a href="#">Auto-Renewal Program</a></li>
+									<li><a href="#">Cancellation</a></li>
+									<li class="menu-button">
+										<a href="#" class="btn btn-primary"><i class="fa fa-question-circle"></i> HELP CENTER</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<!-- end navbar menu -->
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="left-sidebar" class="sidebar">
+			<button type="button" class="btn btn-xs btn-link btn-toggle-fullwidth">
+				<span class="sr-only">Toggle Fullwidth</span>
+				<i class="fa fa-angle-left"></i>
+			</button>
+			<div class="sidebar-scroll">
+				<div class="user-account">
+					<img src="/img/default.png" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+					<div class="dropdown">
+						<a href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Hello, <strong>Austin Hoffman</strong> <i class="fa fa-caret-down"></i></a>
+						<ul class="dropdown-menu dropdown-menu-right account">
+							<li><a href="#">My Profile</a></li>
+							<li><a href="#">Messages</a></li>
+							<li><a href="#">Settings</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+				<nav id="left-sidebar-nav" class="sidebar-nav">
+					<ul id="main-menu" class="metismenu">
+						<li class="active"><a href="index.html"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li class="">
+							<a href="#uiElements" class="has-arrow" aria-expanded="false"><i class="lnr lnr-magic-wand"></i> <span>UI Elements</span></a>
+							<ul aria-expanded="true">
+								<li class=""><a href="ui-tabs.html">Tabs</a></li>
+								<li class=""><a href="ui-buttons.html">Buttons</a></li>
+								<li class=""><a href="ui-bootstrap.html">Bootstrap UI</a></li>
+								<li class=""><a href="ui-icons.html"><span>Icons</span></a></li>
+							</ul>
+						</li>
+						<li class="">
+							<a href="#subPages" class="has-arrow" aria-expanded="false"><i class="lnr lnr-file-empty"></i> <span>Pages</span></a>
+							<ul aria-expanded="true">
+								<li class=""><a href="page-profile.html">User Profile</a></li>
+								<li class=""><a href="page-login.html">Login</a></li>
+								<li class=""><a href="page-register.html">Register</a></li>
+								<li class=""><a href="page-lockscreen.html">Lockscreen</a></li>
+								<li class=""><a href="page-forgot-password.html">Forgot Password</a></li>
+								<li class=""><a href="page-404.html">Page 404</a></li>
+								<li class=""><a href="page-500.html">Page 500</a></li>
+							</ul>
+						</li>
+						<li class="">
+							<a href="#forms" class="has-arrow" aria-expanded="false"><i class="lnr lnr-pencil"></i> <span>Forms</span></a>
+							<ul aria-expanded="true">
+								<li class=""><a href="forms-validation.html">Form Validation</a></li>
+								<li class=""><a href="forms-advanced.html">Advanced Form Elements</a></li>
+								<li class=""><a href="forms-basic.html">Basic Form Elements</a></li>
+								<li class=""><a href="forms-dragdropupload.html">Drag &amp; Drop Upload</a></li>
+								<li class=""><a href="forms-texteditor.html">Text Editor</a></li>
+							</ul>
+						</li>
+						<li class="">
+							<a href="#charts" class="has-arrow" aria-expanded="false"><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a>
+							<ul aria-expanded="true">
+								<li class=""><a href="charts-chartist.html">Chartist</a></li>
+								<li class=""><a href="charts-sparkline.html">Sparkline Chart</a></li>
+							</ul>
+						</li>
+						<li class=""><a href="notifications.html"><i class="lnr lnr-alarm"></i> <span>Notifications</span> <span class="badge bg-danger">15</span></a></li>
+						<li class=""><a href="typography.html"><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
+					</ul>
+				</nav>
+				<div style="padding: 30px; text-align: center;">
+					<h2 style="font-size: 16px; margin-bottom: 15px; font-weight: 700;">Other Similar Template</h2>
+					<a href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=diffdash&utm_medium=template&utm_campaign=KlorofilPro" target="_blank"><img src="assets/img/klorofilpro.png" class="img-responsive thumbnail" alt=""></a>
+					<a href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=diffdash&utm_medium=template&utm_campaign=KlorofilPro" target="_blank" class="btn btn-primary">VIEW DEMO</a>
+				</div>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN CONTENT -->
+		<div id="main-content">
+			<div class="container-fluid">
+				<h1 class="sr-only">Dashboard</h1>
+				<!-- WEBSITE ANALYTICS -->
+				<div class="dashboard-section">
+					<div class="section-heading clearfix">
+						<h2 class="section-title"><i class="fa fa-pie-chart"></i> Website Analytics</h2>
+						<a href="#" class="right">View Full Analytics Reports</a>
+					</div>
+					<div class="panel-content">
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="number-chart">
+									<div class="mini-stat">
+										<div id="number-chart1" class="inlinesparkline">23,65,89,32,67,38,63,12,34,22</div>
+										<p class="text-muted"><i class="fa fa-caret-up text-success"></i> 19% compared to last week</p>
+									</div>
+									<div class="number"><span>$22,500</span> <span>EARNINGS</span></div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="number-chart">
+									<div class="mini-stat">
+										<div id="number-chart2" class="inlinesparkline">77,44,10,80,88,87,19,59,83,88</div>
+										<p class="text-muted"><i class="fa fa-caret-up text-success"></i> 24% compared to last week</p>
+									</div>
+									<div class="number"><span>245</span> <span>SALES</span></div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="number-chart">
+									<div class="mini-stat">
+										<div id="number-chart3" class="inlinesparkline">99,86,31,72,62,94,50,18,74,18</div>
+										<p class="text-muted"><i class="fa fa-caret-up text-success"></i> 44% compared to last week</p>
+									</div>
+									<div class="number"><span>561,724</span> <span>VISITS</span></div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="number-chart">
+									<div class="mini-stat">
+										<div id="number-chart4" class="inlinesparkline">28,44,70,21,86,54,90,25,83,42</div>
+										<p class="text-muted"><i class="fa fa-caret-down text-danger"></i> 6% compared to last week</p>
+									</div>
+									<div class="number"><span>372,500</span> <span>LIKES</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<!-- TRAFFIC SOURCES -->
+							<div class="panel-content">
+								<h2 class="heading"><i class="fa fa-square"></i> Traffic Sources</h2>
+								<div id="demo-pie-chart" class="ct-chart"></div>
+							</div>
+							<!-- END TRAFFIC SOURCES -->
+						</div>
+						<div class="col-md-4">
+							<!-- REFERRALS -->
+							<div class="panel-content">
+								<h2 class="heading"><i class="fa fa-square"></i> Referrals</h2>
+								<ul class="list-unstyled list-referrals">
+									<li>
+										<p><span class="value">3,454</span><span class="text-muted">visits from Facebook</span></p>
+										<div class="progress progress-xs progress-transparent custom-color-blue">
+											<div class="progress-bar" data-transitiongoal="87"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value">2,102</span><span class="text-muted">visits from Twitter</span></p>
+										<div class="progress progress-xs progress-transparent custom-color-purple">
+											<div class="progress-bar" data-transitiongoal="34"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value">2,874</span><span class="text-muted">visits from Affiliates</span></p>
+										<div class="progress progress-xs progress-transparent custom-color-green">
+											<div class="progress-bar" data-transitiongoal="67"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value">2,623</span><span class="text-muted">visits from Search</span></p>
+										<div class="progress progress-xs progress-transparent custom-color-yellow">
+											<div class="progress-bar" data-transitiongoal="54"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!-- END REFERRALS -->
+						</div>
+						<div class="col-md-4">
+							<div class="panel-content">
+								<!-- BROWSERS -->
+								<h2 class="heading"><i class="fa fa-square"></i> Browsers</h2>
+								<div class="table-responsive">
+									<table class="table no-margin">
+										<thead>
+											<tr>
+												<th>Browsers</th>
+												<th>Sessions</th>
+												<th>% Sessions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Chrome</td>
+												<td>1,756</td>
+												<td>23%</td>
+											</tr>
+											<tr>
+												<td>Firefox</td>
+												<td>1,379</td>
+												<td>14%</td>
+											</tr>
+											<tr>
+												<td>Safari</td>
+												<td>1,100</td>
+												<td>17%</td>
+											</tr>
+											<tr>
+												<td>Edge</td>
+												<td>982</td>
+												<td>25%</td>
+											</tr>
+											<tr>
+												<td>Opera</td>
+												<td>967</td>
+												<td>19%</td>
+											</tr>
+											<tr>
+												<td>IE</td>
+												<td>896</td>
+												<td>12%</td>
+											</tr>
+											<tr>
+												<td>Android Browser</td>
+												<td>752</td>
+												<td>27%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- END BROWSERS -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END WEBSITE ANALYTICS -->
+				<!-- SALES SUMMARY -->
+				<div class="dashboard-section">
+					<div class="section-heading clearfix">
+						<h2 class="section-title"><i class="fa fa-shopping-basket"></i> Sales Summary</h2>
+						<a href="#" class="right">View Sales Reports</a>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel-content">
+								<h3 class="heading"><i class="fa fa-square"></i> Today</h3>
+								<ul class="list-unstyled list-justify large-number">
+									<li class="clearfix">Earnings <span>$215</span></li>
+									<li class="clearfix">Sales <span>47</span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="panel-content">
+								<h3 class="heading"><i class="fa fa-square"></i> Sales Performance</h3>
+								<div class="row">
+									<div class="col-md-6">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>&nbsp;</th>
+													<th>Last Week</th>
+													<th>This Week</th>
+													<th>Change</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>Earnings</th>
+													<td>$2752</td>
+													<td><span class="text-info">$3854</span></td>
+													<td><span class="text-success">40.04%</span></td>
+												</tr>
+												<tr>
+													<th>Sales</th>
+													<td>243</td>
+													<td>
+														<div class="text-info">322</div>
+													</td>
+													<td><span class="text-success">32.51%</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-md-6">
+										<div id="chart-sales-performance">Loading ...</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<div class="panel-content">
+								<h3 class="heading"><i class="fa fa-square"></i> Recent Purchases</h3>
+								<div class="table-responsive">
+									<table class="table table-striped no-margin">
+										<thead>
+											<tr>
+												<th>Order No.</th>
+												<th>Name</th>
+												<th>Amount</th>
+												<th>Date &amp; Time</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><a href="#">763648</a></td>
+												<td>Steve</td>
+												<td>$122</td>
+												<td>Oct 21, 2016</td>
+												<td><span class="label label-success">COMPLETED</span></td>
+											</tr>
+											<tr>
+												<td><a href="#">763649</a></td>
+												<td>Amber</td>
+												<td>$62</td>
+												<td>Oct 21, 2016</td>
+												<td><span class="label label-warning">PENDING</span></td>
+											</tr>
+											<tr>
+												<td><a href="#">763650</a></td>
+												<td>Michael</td>
+												<td>$34</td>
+												<td>Oct 18, 2016</td>
+												<td><span class="label label-danger">FAILED</span></td>
+											</tr>
+											<tr>
+												<td><a href="#">763651</a></td>
+												<td>Roger</td>
+												<td>$186</td>
+												<td>Oct 17, 2016</td>
+												<td><span class="label label-success">SUCCESS</span></td>
+											</tr>
+											<tr>
+												<td><a href="#">763652</a></td>
+												<td>Smith</td>
+												<td>$362</td>
+												<td>Oct 16, 2016</td>
+												<td><span class="label label-success">SUCCESS</span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="panel-content">
+								<h3 class="heading"><i class="fa fa-square"></i> Top Products</h3>
+								<div id="chart-top-products" class="chartist"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END SALES SUMMARY -->
+				<!-- CAMPAIGN -->
+				<div class="dashboard-section">
+					<div class="section-heading clearfix">
+						<h2 class="section-title"><i class="fa fa-flag-checkered"></i> Campaign</h2>
+						<a href="#" class="right">View All Campaigns</a>
+					</div>
+					<div class="panel-content">
+						<div class="row margin-bottom-15">
+							<div class="col-md-8 col-sm-7 left">
+								<div id="demo-line-chart" class="ct-chart"></div>
+							</div>
+							<div class="col-md-4 col-sm-5 right">
+								<div class="row margin-bottom-30">
+									<div class="col-xs-4">
+										<p class="text-right text-larger"><span class="text-muted">Impression</span>
+											<br><strong>32,743</strong></p>
+									</div>
+									<div class="col-xs-4">
+										<p class="text-right text-larger"><span class="text-muted">Clicks</span>
+											<br><strong>1423</strong></p>
+									</div>
+									<div class="col-xs-4">
+										<p class="text-right text-larger"><span class="text-muted">CTR</span>
+											<br><strong>4,34%</strong></p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-4">
+										<p class="text-right text-larger"><span class="text-muted">Cost</span>
+											<br><strong>$42.69</strong></p>
+									</div>
+									<div class="col-xs-4">
+										<p class="text-right text-larger"><span class="text-muted">CPC</span>
+											<br><strong>$0,03</strong></p>
+									</div>
+									<div class="col-xs-4">
+										<p class="text-right text-larger"><span class="text-muted">Budget</span>
+											<br><strong>$200</strong></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="action-buttons">
+							<a href="#" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Add Budget</a> <a href="#" class="btn btn-default"><i class="fa fa-file-text-o"></i> View Campaign Details</a>
+						</div>
+					</div>
+				</div>
+				<!-- END CAMPAIGN -->
+				<!-- SOCIAL -->
+				<div class="dashboard-section no-margin">
+					<div class="section-heading clearfix">
+						<h2 class="section-title"><i class="fa fa-user-circle"></i> Social <span class="section-subtitle">(7 days report)</span></h2>
+						<a href="#" class="right">View Social Reports</a>
+					</div>
+					<div class="panel-content">
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<p class="metric-inline"><i class="fa fa-thumbs-o-up"></i> +636 <span>LIKES</span></p>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<p class="metric-inline"><i class="fa fa-reply-all"></i> +528 <span>FOLLOWERS</span></p>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<p class="metric-inline"><i class="fa fa-envelope-o"></i> +1065 <span>SUBSCRIBERS</span></p>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<p class="metric-inline"><i class="fa fa-user-circle-o"></i> +201 <span>USERS</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END SOCIAL -->
+			</div>
+		</div>
+		<!-- END MAIN CONTENT -->
+		<div class="clearfix"></div>
+		<footer>
+			<p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
+		</footer>
+	</div>
 
-        <!-- Right Side Of Navbar -->
-        <ul class="nav navbar-nav navbar-right">
-          <!-- Authentication Links -->
-          @if (Auth::guest())
-          <li><a href="{{ route('login') }}">Login</a></li>
-          <li><a href="{{ route('register') }}">Register</a></li>
-          @else
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
-
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                Logout
-              </a>
-
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-              </form>
-            </li>
-          </ul>
-        </li>
-        @endif
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Contenido de la página -->
-<div class="container" style="padding-top:70px;">
-
-  <!-- Encabezado de página / Breadcrumb -->
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="text-center page-header">Perfil do Senhorio
-        <small>Detalhes</small>
-      </h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <!-- Columna de la izquierda -->
-    <div class="col-md-3">
-      <div class="col-md-12" align="center">
-        <img class="img-responsive img-portfolio img-hover" src="img/default.png">
-      </div>
-      <div class="col-md-12">
-        <p class="text-center"><strong>{{ Auth::user()->name }}</strong></p>
-        <p class="text-center"><em>Functions</em></p>
-      </div>
-
-      <div class="col-md-12 text-center">
-        <!-- Redes sociales-->
-        <ul class="list-unstyled list-inline list-social-icons">
-          <li>
-            <a href="https://www.facebook.com/SH0mie/"><i class="editIcons icon-facebook-square editSizeIcons"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="editIcons icon-google-plus-square editSizeIcons"></i></a>
-          </li>
-        </ul>
-        <!-- Fin redes sociales -->
-      </div>
-
-      <div id="content" class="col-md-12">
-        <div id="profiletabs">
-          <!-- Barra vertical de opciones del perfil de usuairo -->
-          <br >
-          <ul class="list-group list-primary">
-            <a href="#detail"  onclick="showhide()" class="list-group-item">Detalhes Senhorio</a>
-            <a href="#change_detail" onclick="showdetails()" class="list-group-item">Mudar Detalhes Senhorio</a>
-            <a href="#available" onclick="showchange()"  class="list-group-item">Mudar Disponibilidade</a>
-            <a href="#notification" class="list-group-item">Notificaçoes</a>
-          </ul>
-        </div>
-      </div>
-      <!-- Fin Barra vertical de opciones del perfil de usuario -->
-    </div>
-    <!-- Fin de Columna de la izquierda -->
-
-    <!-- Parte central -->
-    <section id="detail">
-      <div id="detalhes" class="col-md-9">
-        <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
-          <h3 style="text-align: center">O meu perfil <p><small>Detalhes da sua Conta</small></p></h3>
-        </div>
-        <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-        <form name="modifyProfile" id="profileForm" novalidate>
-          <!-- Inicio del div central parte de formulario información básica -->
-          <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
-            <div class="col-md-8 col-md-offset-2">
-
-              <div class="control-group form-group">
-                <div class="controls">
-                  <br >
-                  <h5 style="text-align: center">Informaçao básica</h5>
-                  <br>
-                  <span id="alertName" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                    <label>Nome e Apelidos:</label>
-                    <p>{{ Auth::user()->name }}</p>
-
-                  </span>
-                  <br >
-                  <span id="alertSurname" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                    <label>Numero de Telefone:</label>
-                    <p>{{ Auth::user()->phone_number }}</p>
-
-                  </span>
-                  <br >
-                  <span id="alertQualification" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                    <label>Email: </label>
-                    <p>{{ Auth::user()->email }}</p>
-                  </span>
-                  <br >
-                  <p class="help-block"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Fin del div central parte de formulario información básica -->
-
-          <!-- Parte central - enlaces -->
-          <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
-            <!-- Parte de redes sociales en el alta de perfil -->
-            <div class="col-md-8 col-md-offset-2">
-              <div class="control-group form-group">
-                <div class="controls">
-                  <br >
-                  <label>Propriedades: </label>
-                  <div class="container1">
-                    @foreach($properties as $key => $property)
-                    <div class="col-md-6 col-sm-3">
-                      <div class="panel panel-default">
-                        <div class="panel-body">
-                          <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a>
-                          <?php
-
-                          $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-                          $images = glob($image_search, GLOB_BRACE);
-
-                          if(!empty($images))
-                          {
-                            echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
-                          }
-                          else
-                          {
-                            echo "<img src='' alt='Room Image' class='img-responsive'>";
-                          }
-                          ?>
-                        </div>
-                        <div class="panel-footer">
-                          <p>{{ $property->adress }}, {{ $property->number }}</p>
-                        </div>
-                      </div>
-                    </div>
-                    @endforeach
-                  </div>
-                  <br>
-                  <br >
-                </div>
-              </div>
-            </div>
-            <!-- Fin Parte de redes sociales en el alta de perfil -->
-          </div>
-          <!-- Fin Parte central - enlaces -->
-        </form>
-        <!-- Fin del form -->
-      </div>
-    </section>
-    <!-- Fin del div de parte central -->
-
-    <!-- Editar Detalhes
-    <div class="col-md-9">
-    <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
-    <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
-  </div>
-  <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-  <section id="change_detail" class="hidden">
-    <div class="col-md-9">
-      <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
-        <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
-      </div>
-      <form method="post" action="{{ route('landlord_update') }}">
-        <!-- Inicio del div central parte de formulario informaci�n b�sica -->
-        {{ csrf_field() }}
-        <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #f1f3f6;">
-          <div class="col-md-8 col-md-offset-2">
-            <div class="control-group form-group">
-              <div class="controls">
-              </br>
-              <span id="alertName" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" name="landlord_name" placeholder="Nome e apelido" value="{{ Auth::user()->name }}" required data-validation-required-message="Porfavor introduza o seu Nome.">
-              </span>
-              <br >
-              <span id="alertQualification" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" name="landlord_email" placeholder="Introduza um email" value="{{ Auth::user()->email }}" required data-validation-required-message="Porfavor introduza o seu Email.">
-              </span>
-              <br >
-              <span id="alertEmail" data-toggle="popover" data-trigger="hover" data-placement="right" title="" data-content="">
-                <input type="text" class="form-control" name="landlord_phone" placeholder="Numero de telefone"  value="{{ Auth::user()->phone_number }}" required data-validation-required-message="Porfavor introduzca o seu numero de Telefone.">
-              </span>
-              <p class="help-block"></p>
-            </div>
-          </div>
-        </div>
-        <!-- Botones formulario -->
-        <div class="col-md-12 container allFormButtons">
-          <br >
-          <div class="col-md-2 col-md-offset-2">
-            <div class="form-group">
-              <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
-            </div>
-          </div>
-          <div class="col-md-5 col-md-offset-3">
-            <div class="form-group">
-              <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
-              <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-            </div>
-          </div>
-          &nbsp;
-        </div>
-      </div>
-      <!-- Fin del div central parte de formulario informaci�n b�sica -->
-    </form>
-    <!-- Fin del form -->
-  </div>
-</section>
-
-
-<!-- prOoblem bellow -->
-<section id="available" class="hidden">
-  <div class="col-md-9">
-    <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
-      <h3 style="text-align: center">O meu perfil <p><small>Editar disponibilidade dos seus quartos</small></p></h3>
-    </div>
-    <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-    <form method="post" action="{{ route('landlord_available') }}">
-      {{ csrf_field() }}
-      <!-- Inicio del div central parte de formulario informaci�n b�sica -->
-      <!-- Parte central - enlaces -->
-      <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
-        <!-- Parte de redes sociales en el alta de perfil -->
-        <div class="col-md-8 col-md-offset-2">
-          <div class="control-group form-group">
-            <div class="controls">
-            </br>
-            <label>Propriedades: </label>
-          </br>
-          <div class="container1">
-            <?php $var = 0; ?>
-            @foreach($properties as $key => $property)
-
-            <div class="col-md-6 col-sm-10">
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <?php
-
-                  $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-                  $images = glob($image_search, GLOB_BRACE);
-
-                  if(!empty($images))
-                  {
-                    echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
-                  }
-                  else
-                  {
-                    echo "<img src='' alt='Room Image' class='img-responsive'>";
-                  }
-                  ?>
-                </div>
-                <div class="panel-footer">
-                  <p>{{ $property->adress }}, {{ $property->number }}</p>
-                  <div class="btn-group" id="status" data-toggle="buttons">
-                    <label class="btn btn-default btn-on btn-sm active">
-                      <input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
-                      <label class="btn btn-default btn-off btn-sm ">
-                        <input type="radio" value="{{ $property->id }}_0" name="landlord_houses[<?php echo $var; ?>]">Indisponivel</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <?php $var +=  1; ?>
-                @endforeach
-              </div>
-            </br>
-          </br>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12 container allFormButtons">
-      <br >
-      <div class="col-md-2 col-md-offset-2">
-        <div class="form-group">
-          <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
-        </div>
-      </div>
-      <div class="col-md-5 col-md-offset-3">
-        <div class="form-group">
-          <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
-          <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-        </div>
-      </div>
-      &nbsp;
-    </div>
-    <!-- Fin Parte de redes sociales en el alta de perfil -->
-  </div>
-</form>
-</div>
-</section>
-<!-- Botones formulario -->
-</div>
-</div>
-
-
-
-<!-- Fin del div central parte de formulario informaci�n b�sica -->
-<!-- Fin del form -->
-<!-- Fin Campos del formulario de contacto con validación de campos -->
-&nbsp;
-<hr>
-
-<!-- Footer -->
-<footer>
-  <div class="row">
-    <div class="col-lg-12 footer-align">
-      <p>Shomie &copy;</p>
-    </div>
-  </div>
-</footer>
-
-</div>
-<!-- /.container -->
 @endsection
