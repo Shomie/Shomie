@@ -89,24 +89,20 @@ class LordController extends Controller
 
   public function GetAllNotification()
   {
-    $properties = $this->getLandlordProperties()->get();
-    $id = NULL;
+    $notification = NULL;
+    $user = Auth::user();
+    $landlord = $user->landlord_id;
+    $notification = Communication::join('properties','communication.property_id','=', 'properties.id')->where('properties.landlord_id','=', $landlord)->get();
 
-    foreach( $properties as $key => $value ) {
-      $temp = Communication::where("property_id", $value['id'])->get();
-      $id[] = $temp->pluck('id')->toArray();
-    }
+    return $notification;
 
-    return $id;
   }
 
 
   public function index()
   {
-
-    $all_notification_properties = $this->GetAllNotification();
     $properties = $this->getLandlordProperties();
-    return view('landlord.main_menu', ['properties' => $properties->get()], ['communication' =>$all_notification_properties]);
+    return view('landlord.main_menu', ['properties' => $properties->get()]);
   }
 
 
@@ -121,6 +117,14 @@ class LordController extends Controller
     $properties = $this->getLandlordProperties();
     return view('landlord.availability_rooms', ['properties' => $properties->get()]);
   }
+
+  public function notification()
+  {
+    $communication = $this->GetAllNotification();
+    
+    return view('landlord.notifications', ['communications' => $communication]);
+  }
+
 
 
 }

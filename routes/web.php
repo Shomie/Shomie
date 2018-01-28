@@ -38,8 +38,12 @@ Route::get('/landlord', 'LordController@index')->name('landlord');
 Route::post('/landlord', 'LordController@update')->name('landlord_update');
 
 Route::get('/landlord_profile', 'LordController@profile')->name('landlord_profile');
+
 Route::get('/landlord_availability_rooms', 'LordController@availability_rooms')->name('landlord_availability_rooms');
 Route::post('/landlord_availability_rooms', 'LordController@available')->name('landlord_available');
+
+Route::get('/landlord_notifications', 'LordController@notification')->name('landlord_notifications');
+
 
 
 

@@ -82,7 +82,7 @@
 					<li class="">
 						<a href="" class="has-arrow" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> <span>Notificações</span></a>
 						<ul aria-expanded="true">
-							<li class=""><a href="#">Ver Notificações</a></li>
+							<li class=""><a href="{{ route('landlord_notifications') }}">Ver Notificações</a></li>
 							<li class=""><a href="#">Vista de Calendário</a></li>
 						</ul>
 					</li>
