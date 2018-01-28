@@ -324,8 +324,8 @@ html.fullscreen-bg #wrapper {
   .user-account .user-photo {
     margin: 0 auto;
     border: 5px solid #dfdede;
-    width: 50px;
-    height: 50px; }
+    width: 80px;
+    height: 80px; }
   .user-account .user-name {
     display: block;
     margin-top: 12px;

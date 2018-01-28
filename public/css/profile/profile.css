@@ -1,0 +1,21 @@
+/* BEGIN Notifications */
+
+.accepted {
+  color: #468847;
+}
+
+.pending
+{
+  color: #f89406;
+}
+
+.pending-requests
+{
+  background-color: #e3a615;
+}
+
+.rejected {
+  color: #b94a48;
+}
+
+/* END Notifications */
