@@ -15,7 +15,6 @@
 
 <script src= "{{ URL::asset('/js/profile/metisMenu/metisMenu.js') }}" type="text/javascript"></script>
 <script src= "{{ URL::asset('/js/profile/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src= "{{ URL::asset('/js/profile/jquery-sparkline/js/jquery.sparkline.min.js') }}" type="text/javascript"></script>
 <script src= "{{ URL::asset('/js/profile/common.js') }}" type="text/javascript"></script>
 <script src= "{{ URL::asset('/js/profile/profile.js') }}" type="text/javascript"></script>
 
@@ -40,17 +39,6 @@
 
 					<div id="navbar-menu">
 						<ul class="nav navbar-nav">
-
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> <span class="badge pending-requests">5</span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 12/04/2018 at 12:20. </a></li>
-									<li><a href="#"><i class="fa fa-fw fa-times rejected"></i> Visit at 12/05/2018 at 15:20. </a></li>
-									<li><a href="#"><i class="fa fa-fw fa-clock-o pending"></i> Visit at 12/05/2018 at 15:20. </a></li>
-									<li><a href="#"><i class="fa fa-fw fa-times rejected "></i> Visit at 13/05/2018 at 16:20. </a></li>
-									<li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 11/05/2018 at 15:20. </a></li>
-								</ul>
-							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 									{{ Auth::user()->name }} <span class="caret"></span>
@@ -93,21 +81,21 @@
 			</div>
 			<nav id="left-sidebar-nav" class="sidebar-nav">
 				<ul id="main-menu" class="metismenu">
-					<li class="active"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i><span>Menu Principal</span></a></li>
+					<li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span>Menu Principal</span></a></li>
 					<li class="">
-						<a href="#uiElements" class="has-arrow" aria-expanded="false"><i class="fa fa-bed" aria-hidden="true"></i> <span>Quartos</span></a>
+						<a href="#" class="has-arrow" aria-expanded="false"><i class="fa fa-bed" aria-hidden="true"></i> <span>Quartos</span></a>
 						<ul aria-expanded="true">
-							<li class=""><a href="ui-tabs.html">Adicionar</a></li>
-							<li class=""><a href="ui-buttons.html">Remover</a></li>
-							<li class=""><a href="ui-icons.html">Editar Quarto</a></li>
-							<li class=""><a href="ui-bootstrap.html">Mudar Disponibilidade</a></li>
+							<li class=""><a href="#">Adicionar</a></li>
+							<li class=""><a href="#">Remover</a></li>
+							<li class=""><a href="#">Editar Quarto</a></li>
+							<li class=""><a href="#">Mudar Disponibilidade</a></li>
 						</ul>
 					</li>
 					<li class="">
-						<a href="#subPages" class="has-arrow" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> <span>Notificações</span></a>
+						<a href="" class="has-arrow" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> <span>Notificações</span></a>
 						<ul aria-expanded="true">
-							<li class=""><a href="page-profile.html">Ver Notificações</a></li>
-							<li class=""><a href="page-profile.html">Vista de Calendário</a></li>
+							<li class=""><a href="#">Ver Notificações</a></li>
+							<li class=""><a href="#">Vista de Calendário</a></li>
 
 						</ul>
 					</li>
@@ -139,30 +127,14 @@
 										</tr>
 									</thead>
 									<tbody>
+										@foreach($properties as $key => $property)
 										<tr>
-											<td><a href="#">763648</a></td>
-											<td>Rua da Praça</td>
-											<td>125€</td>
-											<td><span class="label label-success">Ocupado</span></td>
+											<td>  <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a></td>
+											<td>{{$property->adress}}</td>
+											<td>{{$property->price}} €</td>
+											<td>{{$property->availibility}}</td>
 										</tr>
-										<tr>
-											<td><a href="#">7648</a></td>
-											<td>Rua da Cordoba</td>
-											<td>150€</td>
-											<td><span class="label label-danger">Livre</span></td>
-										</tr>
-										<tr>
-											<td><a href="#">763648</a></td>
-											<td>Rua da Praça</td>
-											<td>125€</td>
-											<td><span class="label label-success">Ocupado</span></td>
-										</tr>
-										<tr>
-											<td><a href="#">763648</a></td>
-											<td>Rua da Praça</td>
-											<td>125€</td>
-											<td><span class="label label-success">Ocupado</span></td>
-										</tr>
+										@endforeach
 									</tbody>
 								</table>
 							</div>

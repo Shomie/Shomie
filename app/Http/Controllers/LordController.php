@@ -27,13 +27,6 @@ class LordController extends Controller
   }
 
 
-  public function getLandlordProperties()
-  {
-    $user = Auth::user();
-    $landlord = $user->landlord_id;
-    $properties = Property::where("landlord_id", $landlord);
-    return $properties;
-  }
 
 
   public function update()
@@ -92,12 +85,21 @@ class LordController extends Controller
     return redirect()->route('landlord');
   }
 
+  /* Remove Garbage above later */
+
+  public function getLandlordProperties()
+  {
+    $user = Auth::user();
+    $landlord = $user->landlord_id;
+    $properties = Property::where("landlord_id", $landlord)->where("availibility", "available");
+    return $properties;
+  }
 
 
   public function index()
   {
     $properties = $this->getLandlordProperties();
-    return view('profile_landlord', ['properties' => $properties->get()]);
+    return view('landlord.profile_landlord', ['properties' => $properties->get()]);
   }
 
 }
