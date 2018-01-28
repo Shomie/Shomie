@@ -97,7 +97,7 @@
 
 	<div id="main-content">
 		<div class="container-fluid">
-			<h1 class="sr-only">Menu Principal</h1>
+			<h1 class="sr-only">Perfil</h1>
 			<div class="dashboard-section">
 				<div class="section-heading clearfix">
 					<h2 class="section-title"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Perfil </h2>

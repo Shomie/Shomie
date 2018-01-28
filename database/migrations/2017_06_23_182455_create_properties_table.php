@@ -39,7 +39,7 @@ class CreatePropertiesTable extends Migration
       $table->boolean('gas')->nullable()->default(false);
       $table->boolean('internet')->nullable()->default(false);
       $table->boolean('washing_machine')->nullable()->default(false);
-
+      $table->timestamps();
     });
 
 

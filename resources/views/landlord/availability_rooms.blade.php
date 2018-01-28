@@ -97,7 +97,7 @@
 
 	<div id="main-content">
 		<div class="container-fluid">
-			<h1 class="sr-only">Menu Principal</h1>
+			<h1 class="sr-only">Disponibilidade de Quartos</h1>
 			<div class="dashboard-section">
 				<div class="section-heading clearfix">
 					<h2 class="section-title"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Quartos </h2>
@@ -106,46 +106,51 @@
 					<div class="col-md-12">
 						<div class="panel-content">
 							<h3 class="heading"><i class="fa fa-cog" aria-hidden="true"></i>Modificar disponibilidade </h3>
+							<form method="post" action="{{ route('landlord_availability_rooms') }}">
+								{{ csrf_field() }}
+								<?php $var = 0; ?>
+								@foreach($properties as $key => $property)
 
-							<?php $var = 0; ?>
-							@foreach($properties as $key => $property)
-
-							<div class="col-md-4 col-sm-8">
-								<div class="panel panel-default">
-									<div class="panel-body">
-										<?php
-										$image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-										$images = glob($image_search, GLOB_BRACE);
-										if(!empty($images))
-										{
-											echo "<img src='/$images[0]' alt='Room Image' class='img-responsive' style='width:100vh; height:250px;'>";
-										}
-										else
-										{
-											echo "<img src='' alt='Room Image' class='img-responsive'>";
-										}
-										?>
-									</div>
-									<div class="panel-footer">
-										<p>{{ $property->adress }}, {{ $property->number }}</p>
-										<div class="btn-group" id="status" data-toggle="buttons">
-											@if($property->availibility == "available")
-											<label class="btn btn-default btn-on btn-sm active">
-												<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
-												<label class="btn btn-default btn-off btn-sm ">
-													<input type="radio" value="{{ $property->id }}_0" name="landlord_houses[<?php echo $var; ?>]">Indisponivel</label>
-													@else
-													<label class="btn btn-default btn-on btn-sm">
-														<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]">Disponivel</label>
-														<label class="btn btn-default btn-off btn-sm active">
-															<input type="radio" value="{{ $property->id }}_0" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Indisponivel</label>
-															@endif
+								<div class="col-md-4 col-sm-8">
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<?php
+											$image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+											$images = glob($image_search, GLOB_BRACE);
+											if(!empty($images))
+											{
+												echo "<img src='/$images[0]' alt='Room Image' class='img-responsive' style='width:100vh; height:250px;'>";
+											}
+											else
+											{
+												echo "<img src='' alt='Room Image' class='img-responsive'>";
+											}
+											?>
+										</div>
+										<div class="panel-footer">
+											<p>{{ $property->adress }}, {{ $property->number }}</p>
+											<div class="btn-group" id="status" data-toggle="buttons">
+												@if($property->availibility == "available")
+												<label class="btn btn-default btn-on btn-sm active">
+													<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
+													<label class="btn btn-default btn-off btn-sm ">
+														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]">Indisponivel</label>
+														@else
+														<label class="btn btn-default btn-on btn-sm">
+															<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]">Disponivel</label>
+															<label class="btn btn-default btn-off btn-sm active">
+																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Indisponivel</label>
+																@endif
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-											<?php $var +=  1; ?>
-											@endforeach
+												<?php $var +=  1; ?>
+												@endforeach
+
+												<button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+											</form>
+
 
 										</div>
 									</div>

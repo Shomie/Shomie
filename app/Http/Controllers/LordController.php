@@ -31,7 +31,7 @@ class LordController extends Controller
   {
     $user = Auth::user();
     $landlord = $user->landlord_id;
-    $properties = Property::where("landlord_id", $landlord)->where("availibility", "available");
+    $properties = Property::where("landlord_id", $landlord);
     return $properties;
   }
 
@@ -58,13 +58,13 @@ class LordController extends Controller
     $availability_index = 1;
     foreach(Request::get('landlord_houses') as $key => $value)
     {
-      list($id_local, $availability_local) = explode("_", $value);
+      list($id_local, $availability_local) = explode("_", $value, 2);
       $porperties_availabitlity[$property_id_index][] =$id_local;
       $porperties_availabitlity[$availability_index][] = $availability_local;
     }
     return $porperties_availabitlity;
   }
-
+  
   public function available()
   {
     $properties = $this->getLandlordProperties()->get();
@@ -84,21 +84,21 @@ class LordController extends Controller
       }
     }
 
-    return redirect()->route('landlord'); /* TODO: Verify this route */
+    return redirect()->route('landlord_availability_rooms'); /* TODO: Verify this route */
   }
 
   public function GetAllNotification()
   {
     $properties = $this->getLandlordProperties()->get();
-    $id;
+    $id = NULL;
 
     foreach( $properties as $key => $value ) {
-    $temp = Communication::where("property_id", $value['id'])->get();
-    $id[] = $temp->pluck('id')->toArray();
-  }
+      $temp = Communication::where("property_id", $value['id'])->get();
+      $id[] = $temp->pluck('id')->toArray();
+    }
 
     return $id;
-}
+  }
 
 
   public function index()
