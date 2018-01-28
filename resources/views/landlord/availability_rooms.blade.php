@@ -148,7 +148,7 @@
 												<?php $var +=  1; ?>
 												@endforeach
 
-												<button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+												<button type="submit" class="btn btn-primary">Guardar</button>
 											</form>
 
 

@@ -115,6 +115,7 @@
 											<th>Data da visita</th>
 											<th>Hora da visita</th>
 											<th>Estado</th>
+											<th>Pedidos</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -124,24 +125,30 @@
 											<td>{{$communication->visit_date}}</td>
 											<td>{{$communication->visit_time}}</td>
 											<td>{{$communication->state}}</td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
+											<td>
+												<span style="cursor:pointer;padding-right:10px;"><i class="fa fa-fw fa-check accepted"></i> </span>
+
+												<span style="cursor:pointer;"><i class="fa fa-fw fa-times rejected"></i>  </span>
+
+													</td>
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
+
+								</div>
 							</div>
+
 
 						</div>
 					</div>
-
-
 				</div>
 			</div>
+			<div class="clearfix"></div>
+			<footer>
+				<p class="copyright">&copy; 2018 Shomie</p>
+			</footer>
 		</div>
-	</div>
-	<div class="clearfix"></div>
-	<footer>
-		<p class="copyright">&copy; 2018 Shomie</p>
-	</footer>
-</div>
 
-@endsection
+		@endsection
