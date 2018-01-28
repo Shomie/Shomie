@@ -324,8 +324,8 @@ html.fullscreen-bg #wrapper {
   .user-account .user-photo {
     margin: 0 auto;
     border: 5px solid #dfdede;
-    width: 80px;
-    height: 80px; }
+    width: 100px;
+    height: 100px; }
   .user-account .user-name {
     display: block;
     margin-top: 12px;
@@ -371,7 +371,9 @@ html.fullscreen-bg #wrapper {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    position: relative; }
+    position: relative;
+    padding-bottom: 0px;
+ }
   .sidebar-nav .metismenu a {
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
