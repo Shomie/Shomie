@@ -2,14 +2,9 @@
 
 @section('assets')
 
-
-
-
-<!-- VENDOR CSS -->
 <link rel="stylesheet" href="{{ URL::asset('/css/profile/metisMenu/metisMenu.css')}}" />
 <link rel="stylesheet" href="{{ URL::asset('/css/profile/main.css')}}" />
 <link rel="stylesheet" href="{{ URL::asset('/css/profile/profile.css')}}" />
-
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
@@ -29,9 +24,7 @@
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-offcanvas"><i class="fa fa-angle-left rotate" aria-hidden="true"></i></button>
 				</div>
-
-
-
+				
 				<a class="navbar-brand" href="{{ url('/') }}">
 					{{ config('app.name', 'shomie') }}
 				</a>
