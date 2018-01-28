@@ -106,9 +106,9 @@
           <!-- Barra vertical de opciones del perfil de usuairo -->
           <br >
           <ul class="list-group list-primary">
-            <a href="#detail"  onclick="showhide()" class="list-group-item">Detalhes Senhorio</a>
-            <a href="#change_detail" onclick="showdetails()" class="list-group-item">Mudar Detalhes Senhorio</a>
-            <a href="#available" onclick="showchange()"  class="list-group-item">Mudar Disponibilidade</a>
+            <a href="#detail" class="list-group-item">Detalhes Senhorio</a>
+            <a href="#change_detail" class="list-group-item">Mudar Detalhes Senhorio</a>
+            <a href="#available"  class="list-group-item">Mudar Disponibilidade</a>
             <a href="#notification" class="list-group-item">Notificaçoes</a>
           </ul>
         </div>
@@ -118,7 +118,7 @@
     <!-- Fin de Columna de la izquierda -->
 
     <!-- Parte central -->
-    <section id="detail">
+    <section id="detail" class="expando">
       <div id="detalhes" class="col-md-9">
         <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
           <h3 style="text-align: center">O meu perfil <p><small>Detalhes da sua Conta</small></p></h3>
@@ -214,7 +214,7 @@
     <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
   </div>
   <!-- Se inicia el form (ojo todos los elementos de formulario deben ir dentro de esta etiqueta-->
-  <section id="change_detail" class="hidden">
+  <section id="change_detail" class="expando">
     <div class="col-md-9">
       <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
         <h3 style="text-align: center">O meu perfil <p><small>Editar detalhes da sua conta</small></p></h3>
@@ -267,7 +267,7 @@
 
 
 <!-- prOoblem bellow -->
-<section id="available" class="hidden">
+<section id="available" class="expando">
   <div class="col-md-9">
     <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
       <h3 style="text-align: center">O meu perfil <p><small>Editar disponibilidade dos seus quartos</small></p></h3>
@@ -310,43 +310,78 @@
                 <div class="panel-footer">
                   <p>{{ $property->adress }}, {{ $property->number }}</p>
                   <div class="btn-group" id="status" data-toggle="buttons">
+                    @if($property->availibility == "available")
                     <label class="btn btn-default btn-on btn-sm active">
                       <input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
                       <label class="btn btn-default btn-off btn-sm ">
                         <input type="radio" value="{{ $property->id }}_0" name="landlord_houses[<?php echo $var; ?>]">Indisponivel</label>
+                        @else
+                        <label class="btn btn-default btn-on btn-sm">
+                          <input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]">Disponivel</label>
+                          <label class="btn btn-default btn-off btn-sm active">
+                            <input type="radio" value="{{ $property->id }}_0" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Indisponivel</label>
+                            @endif
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    <?php $var +=  1; ?>
+                    @endforeach
                   </div>
-                </div>
-                <?php $var +=  1; ?>
-                @endforeach
-              </div>
+                </br>
+              </br>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 container allFormButtons">
+          <br >
+          <div class="col-md-2 col-md-offset-2">
+            <div class="form-group">
+              <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-3">
+            <div class="form-group">
+              <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
+              <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+          &nbsp;
+        </div>
+        <!-- Fin Parte de redes sociales en el alta de perfil -->
+      </div>
+    </form>
+  </div>
+</section>
+<!-- Botones formulario -->
+
+<section id="notification" class="expando">
+  <div class="col-md-9">
+    <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
+      <h3 style="text-align: center">O meu perfil <p><small>Visitas para ver quartos</small></p></h3>
+    </div>
+    <form method="post">
+        {{ csrf_field() }}
+      <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="control-group form-group">
+            <div class="controls">
             </br>
+            <label>Mensagens: </label>
           </br>
+          <div class="container1">
+            <?php
+               echo (string) $communication[0][0];
+            ?>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-12 container allFormButtons">
-      <br >
-      <div class="col-md-2 col-md-offset-2">
-        <div class="form-group">
-          <button type="button" id="btnCancel" class="btn btn-danger" onclick="history.back()">Cancelar</button>
-        </div>
-      </div>
-      <div class="col-md-5 col-md-offset-3">
-        <div class="form-group">
-          <button type="button" id="btnClean" class="btn btn-warning">Refresh</button>
-          <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
-        </div>
-      </div>
-      &nbsp;
-    </div>
-    <!-- Fin Parte de redes sociales en el alta de perfil -->
   </div>
 </form>
 </div>
 </section>
-<!-- Botones formulario -->
+
 </div>
 </div>
 

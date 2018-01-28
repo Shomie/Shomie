@@ -9,6 +9,7 @@ use View;
 use App\User;
 use Auth;
 use Validator;
+use App\Communication;
 
 
 
@@ -26,8 +27,13 @@ class LordController extends Controller
     /* TODO: If in the index the user is not an landlord send it away */
   }
 
-
-
+  public function getLandlordProperties()
+  {
+    $user = Auth::user();
+    $landlord = $user->landlord_id;
+    $properties = Property::where("landlord_id", $landlord)->where("availibility", "available");
+    return $properties;
+  }
 
   public function update()
   {
@@ -69,37 +75,50 @@ class LordController extends Controller
 
   public function available()
   {
+    $properties = $this->getLandlordProperties()->get();
 
     $porperties_availabitlity = $this->GetPorpertiesNewAvailability(); /* Array with all the indexes and respective property ides */
     $property_id_index = 0;
     $availability_index = 1;
+    $index = array();
+    $index1 = array();
+
+
 
     for($i = 0; $i < count($porperties_availabitlity);$i++)
     {
-      /* One item to process: */
-      // $porperties_availabitlity[$availability_index][$i];
-      // $porperties_availabitlity[$property_id_index][$i];
-      /* TODO: Update each availability in the database. */
+      $property = Property::where("id",$porperties_availabitlity[$property_id_index][$i]);
+      if($property!=null)
+      {
+        $property->update(['availibility'=>$porperties_availabitlity[$availability_index][$i]]);
+
+        // TODO add new column in properties called updated_at, to change the availability :)
+      }
     }
 
     return redirect()->route('landlord');
   }
 
-  /* Remove Garbage above later */
-
-  public function getLandlordProperties()
+  public function GetAllNotification()
   {
-    $user = Auth::user();
-    $landlord = $user->landlord_id;
-    $properties = Property::where("landlord_id", $landlord)->where("availibility", "available");
-    return $properties;
+    $properties = $this->getLandlordProperties()->get();
+    $id;
+
+    foreach( $properties as $key => $value ) {
+    $temp = Communication::where("property_id", $value['id'])->get();
+    $id[] = $temp->pluck('id')->toArray();
   }
+
+    return $id;
+}
 
 
   public function index()
   {
+
+    $all_notification_properties = $this->GetAllNotification();
     $properties = $this->getLandlordProperties();
-    return view('landlord.profile_landlord', ['properties' => $properties->get()]);
+    return view('landlord.profile_landlord', ['properties' => $properties->get()], ['communication' =>$all_notification_properties]);
   }
 
 }
