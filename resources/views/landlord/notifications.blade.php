@@ -124,13 +124,18 @@
 											<td>  <a href="{{ route('property', ['id'=> $communication->property_id]) }}" target="_blank">{{ $communication->property_id }}</a></td>
 											<td>{{$communication->visit_date}}</td>
 											<td>{{$communication->visit_time}}</td>
-											<td>{{$communication->state}}</td>
+											@if($communication->state == 0)
+											<td>Pendente</td>
+											@elseif($communication->state == 1)
+											<td>Aceite</td>
+											@else
+											<td>Rejeitado</td>
+											@endif
+
 											<td>
-												<span style="cursor:pointer;padding-right:10px;"><i class="fa fa-fw fa-check accepted"></i> </span>
-
+												<span type="button" style="cursor:pointer;padding-right:10px;"><i class="fa fa-fw fa-check accepted"></i> </span>
 												<span style="cursor:pointer;"><i class="fa fa-fw fa-times rejected"></i>  </span>
-
-													</td>
+											</td>
 												</tr>
 												@endforeach
 											</tbody>
