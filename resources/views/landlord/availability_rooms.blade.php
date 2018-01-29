@@ -25,9 +25,9 @@
 					<button type="button" class="btn-toggle-offcanvas"><i class="fa fa-angle-left rotate" aria-hidden="true"></i></button>
 				</div>
 
-				<a class="navbar-brand" href="{{ url('/') }}">
+				<span class="navbar-brand">
 					{{ config('app.name', 'shomie') }}
-				</a>
+				</span>
 				<div class="navbar-right">
 
 					<div id="navbar-menu">
@@ -129,17 +129,17 @@
 										</div>
 										<div class="panel-footer text-center">
 											<p>{{ $property->adress }}, {{ $property->number }}</p>
-											<div class="btn-group " id="status" data-toggle="buttons">
+											<div class="btn-group" data-toggle="buttons">
 												@if($property->availability == "available")
-												<label class="btn btn-default btn-on btn-sm active">
-													<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
-													<label class="btn btn-default btn-off btn-sm ">
-														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]">Indisponivel</label>
+												<label class="btn btn-on active">
+													<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">Disponivel</label>
+													<label class="btn btn-off">
+														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">Indisponivel</label>
 														@else
-														<label class="btn btn-default btn-on btn-sm">
-															<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]">Disponivel</label>
-															<label class="btn btn-default btn-off btn-sm active">
-																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Indisponivel</label>
+														<label class="btn btn-on">
+															<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">Disponivel</label>
+															<label class="btn btn-off active">
+																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked  autocomplete="off">Indisponivel</label>
 																@endif
 															</div>
 														</div>

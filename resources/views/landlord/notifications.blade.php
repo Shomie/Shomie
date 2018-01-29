@@ -25,9 +25,9 @@
 					<button type="button" class="btn-toggle-offcanvas"><i class="fa fa-angle-left rotate" aria-hidden="true"></i></button>
 				</div>
 
-				<a class="navbar-brand" href="{{ url('/') }}">
+				<span class="navbar-brand">
 					{{ config('app.name', 'shomie') }}
-				</a>
+				</span>
 				<div class="navbar-right">
 
 					<div id="navbar-menu">
