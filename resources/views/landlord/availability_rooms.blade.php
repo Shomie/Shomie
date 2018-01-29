@@ -127,9 +127,9 @@
 											}
 											?>
 										</div>
-										<div class="panel-footer">
+										<div class="panel-footer text-center">
 											<p>{{ $property->adress }}, {{ $property->number }}</p>
-											<div class="btn-group" id="status" data-toggle="buttons">
+											<div class="btn-group " id="status" data-toggle="buttons">
 												@if($property->availability == "available")
 												<label class="btn btn-default btn-on btn-sm active">
 													<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked="checked">Disponivel</label>
