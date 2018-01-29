@@ -92,7 +92,7 @@ class LordController extends Controller
     $notification = NULL;
     $user = Auth::user();
     $landlord = $user->landlord_id;
-    $notification = Communication::join('properties','communication.property_id','=', 'properties.id')->where('properties.landlord_id','=', $landlord)->get();
+    $notification = Communication::join('properties','communication.property_id','=', 'properties.id')->where('properties.landlord_id','=', $landlord)->orderBy('visit_date','desc')->orderBy('visit_time', 'asc')->get();
 
     return $notification;
 
@@ -121,7 +121,7 @@ class LordController extends Controller
   public function notification()
   {
     $communication = $this->GetAllNotification();
-    
+
     return view('landlord.notifications', ['communications' => $communication]);
   }
 
