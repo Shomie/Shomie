@@ -31,7 +31,7 @@ class HomeController extends Controller
     $user = Auth::user();
 
     if($user->type==1 ){
-      return redirect()->route('landlord');
+      return redirect()->route('landlord_notifications');
     }
     else{
       $min = 75;

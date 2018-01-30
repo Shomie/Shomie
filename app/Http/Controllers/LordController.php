@@ -73,7 +73,7 @@ class LordController extends Controller
     $property_id_index = 0;
     $availability_index = 1;
 
-    for($i = 0; $i < count($porperties_availabitlity);$i++)
+    for($i = 0; $i < count($porperties_availabitlity[$property_id_index]);$i++)
     {
       $property = Property::where("id",$porperties_availabitlity[$property_id_index][$i]);
       if($property!=null)
@@ -121,7 +121,7 @@ class LordController extends Controller
   public function notification()
   {
     $communication = $this->GetAllNotification();
-    
+
     return view('landlord.notifications', ['communications' => $communication]);
   }
 
