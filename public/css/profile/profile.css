@@ -19,7 +19,18 @@
 }
 
 /* END Notifications */
-
+.btn.btn-reject{
+  background:red;
+}
+.btn.btn-reject:active{
+  background:red;
+}
+.btn.btn-accepted{
+  background:green;
+}
+.btn.btn-accepted:active{
+  background:red;
+}
 
 .rotate{
     -moz-transition: all 0.3s linear;

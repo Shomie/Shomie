@@ -119,6 +119,9 @@
 										</tr>
 									</thead>
 									<tbody>
+									
+										{{ csrf_field() }}
+										<?php $var = 0; ?>
 										@foreach($communications as $key => $communication)
 										<tr>
 											<td>  <a href="{{ route('property', ['id'=> $communication->property_id]) }}" target="_blank">{{ $communication->property_id }}</a></td>
@@ -134,11 +137,18 @@
 												@endif
 											</td>
 											<td>
-												<span type="button" style="cursor:pointer;padding-right:10px;"><i class="fa fa-fw fa-check accepted"></i> </span>
-												<span style="cursor:pointer;"><i class="fa fa-fw fa-times rejected"></i>  </span>
+												<div class="btn-group" data-toggle="buttons">
+													<label class="btn btn-primary btn-accepted">
+														<input type="button" value="{{ $communication->id }}_1" name="notification[<?php echo $var; ?>]" > Aceitar
+													</label>
+													<label class="btn btn-primary btn-reject">
+														<input type="button" value="{{ $communication->id }}_2" name="notification[<?php echo $var; ?>]" > Rejeitar
+													</label>
+												</div>
 											</td>
 										</tr>
 										@endforeach
+									</form>
 									</tbody>
 								</table>
 							</div>
