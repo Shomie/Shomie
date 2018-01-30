@@ -123,12 +123,12 @@
 											}
 											else
 											{
-												echo "<img src='' alt='Room Image' class='img-responsive'>";
+												echo "<img src='/img/not_available.jpg' alt='Room Image' class='img-responsive' style='width:100vh; height:250px;'>";
 											}
 											?>
 										</div>
 										<div class="panel-footer text-center">
-											<p>{{ $property->adress }}, {{ $property->number }}</p>
+											<p>{{ $property->address }}, {{ $property->number }}</p>
 											<div class="btn-group" data-toggle="buttons">
 												@if($property->availability == "available")
 												<label class="btn btn-on active">
