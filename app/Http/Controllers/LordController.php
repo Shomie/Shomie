@@ -102,7 +102,23 @@ class LordController extends Controller
   public function index()
   {
     $properties = $this->getLandlordProperties();
-    return view('landlord.main_menu', ['properties' => $properties->get()]);
+
+    $notifications = $this->GetAllNotification();
+    $pending_notification = $notifications->where('state', '=', '0')->count();
+    $accepted_notification = $notifications->where('state', '=', '1')->count();
+    $rejected_notification = $notifications->where('state', '=', '2')->count();
+    $total_notification = $pending_notification + $accepted_notification + $rejected_notification;
+
+    if($total_notification <= 0)
+    {
+      $total_notification = 1;
+    }
+    return view('landlord.main_menu', ['properties' => $properties->get(),
+                                       'pending_notification' => $pending_notification,
+                                       'accepted_notification' => $accepted_notification,
+                                       'rejected_notification' => $rejected_notification,
+                                       'total_notification' => $total_notification/100
+                                     ]);
   }
 
 
