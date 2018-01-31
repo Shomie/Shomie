@@ -203,35 +203,24 @@ In the folder of skin CSS file there are also:
           <div class="col-md-3 col-sm-6">
             <button class="btn  btn-simple btn-default btn-lg btn-block">
               <div class="pull-left">
+                @if ($property->type === "appartment")
+                <i class="fa fa-home"></i>
+                  Apartment
+                @elseif ($property->type === "single_room")
                 <i class="fa fa-bed"></i>
-                @if ($property->type === "appartment") {{"Appartment"}} @elseif ($property->type === "single_room") {{"Single Room"}}  @elseif ($property->type === "double_room") {{"Double Room"}} @endif
+                {{"Single Room"}}
+                @elseif ($property->type === "double_room")
+                <i class="fa fa-bed"></i>
+                {{"Double Room"}}
+                @endif
               </div>
 
             </button>
           </div>
 
-          <div class="col-md-3 col-sm-6">
-            <button class="btn  btn-simple btn-default btn-lg btn-block">
-              <div class="pull-left">
-
-                <i class="fa fa-wifi"></i>
-                Wifi
-              </div>
-            </button>
-          </div>
 
           <div class="col-md-3 col-sm-6">
-            <button class="btn  btn-simple btn-default btn-lg btn-block">
-              <div class="pull-left">
-                <i class="fa fa-bath"></i>
-                {{ $property->number_wcs }} Bathroom
-              </div>
-            </button>
-          </div>
-
-          @if($property->expenses_included===1)
-          <div class="col-md-3 col-sm-6">
-            <button class="btn  btn-simple btn-success btn-lg btn-block">
+            <button class="btn  btn-simple btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">
               <div class="pull-left">
                 <i class="fa fa-dollar">
                 </i>
@@ -239,16 +228,102 @@ In the folder of skin CSS file there are also:
               </div>
             </button>
           </div>
-          @endif
 
-          <div class="col-md-3 col-sm-6">
+          @if($property->capacity>0)
+          <div class="col-md-3 col-sm-12">
             <button class="btn  btn-simple btn-default btn-lg btn-block">
               <div class="pull-left">
-                <i class="fa fa-university"></i>
-                Distance to university
+                <i class="fa fa-users"></i>
+                {{$property->capacity}} Flatmates
               </div>
             </button>
           </div>
+          @endif
+
+          @if($property->has_living_room===1)
+          <div class="col-md-3 col-sm-12">
+            <button class="btn btn-simple btn-default btn-lg btn-block">
+              <div class="pull-left">
+
+                <i class="fa fa-tv"></i>
+                Living room
+              </div>
+            </button>
+          </div>
+          @endif
+
+          @if($property->washing_machine===1)
+          <div class="col-md-3 col-sm-12">
+            <button class="btn btn-simple btn-default btn-lg btn-block">
+              <div class="pull-left">
+
+                <i class="fa fa-shopping-basket"></i>
+                Washing machine
+              </div>
+            </button>
+          </div>
+          @endif
+
+          @if($property->has_cleaning===1)
+          <div class="col-md-3 col-sm-12">
+            <button class="btn btn-simple btn-default btn-lg btn-block">
+              <div class="pull-left">
+
+                <i class="fa fa-trash"></i>
+                Cleaning House
+              </div>
+            </button>
+          </div>
+          @endif
+
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Expenses Included</h4>
+                </div>
+                <div class="modal-body">
+                  @if($property->water===1)
+                  <i class="fa fa-fw fa-check accepted"></i>
+                  Water
+                  @else
+                  <i class="fa fa-fw fa-times rejected"></i>
+                  Water
+                  @endif
+
+                  @if($property->Gas===1)
+                  <i class="fa fa-fw fa-check accepted"></i>
+                  Gas
+                  @else
+                  <i class="fa fa-fw fa-times rejected"></i>
+                  Gas
+                  @endif
+
+                  @if($property->electricity===1)
+                  <i class="fa fa-fw fa-check accepted"></i>
+                  electricity
+                  @else
+                  <i class="fa fa-fw fa-times rejected"></i>
+                  electricity
+                  @endif
+
+                  @if($property->internet===1)
+                  <i class="fa fa-fw fa-check accepted"></i>
+                  Internet
+                  @else
+                  <i class="fa fa-fw fa-times rejected"></i>
+                  Internet
+                  @endif
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    
 
         </div>
       </div>
