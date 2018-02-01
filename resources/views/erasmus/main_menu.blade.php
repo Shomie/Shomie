@@ -122,6 +122,11 @@
 												<span class="accepted">
 													Accepted
 												</span>
+												<i class="fa fa-address-card-o" style="padding-left:10px;">
+													{{ $notification->address}}
+													{{ $notification->floor}}
+													{{ $notification->number}}
+												</i>
 												@elseif($notification->state == "2")
 												<span class="rejected" >
 													Rejected
