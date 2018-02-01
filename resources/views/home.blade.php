@@ -207,11 +207,12 @@
 
                       <?php
 
-                      $image_search = "img/RoomsPics/". $value->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+                      $image_search = "img/RoomsPics/". $value->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
                       $images = glob($image_search, GLOB_BRACE);
 
                       if(!empty($images))
                       {
+
                         echo "<img src='/$images[0]' alt='Room Image' class='img-responsive'>";
                       }
                       else
