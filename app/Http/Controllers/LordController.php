@@ -103,6 +103,12 @@ class LordController extends Controller
 
   public function index()
   {
+    $user = Auth::user();
+
+    if($user->type == 0 ){
+      return redirect()->route('home');
+    }
+
     $properties = $this->getLandlordProperties();
 
     $notifications = $this->GetAllNotification();
@@ -126,17 +132,35 @@ class LordController extends Controller
 
 public function profile()
 {
+  $user = Auth::user();
+
+  if($user->type == 0 ){
+    return redirect()->route('home');
+  }
+
   return view('landlord.profile');
 }
 
 public function availability_rooms()
 {
+  $user = Auth::user();
+
+  if($user->type == 0 ){
+    return redirect()->route('home');
+  }
+
   $properties = $this->getLandlordProperties();
   return view('landlord.availability_rooms', ['properties' => $properties->get()]);
 }
 
 public function notification()
 {
+  $user = Auth::user();
+
+  if($user->type == 0 ){
+    return redirect()->route('home');
+  }
+
   $communication = $this->GetAllNotification();
   return view('landlord.notifications', ['communications' => $communication]);
 }

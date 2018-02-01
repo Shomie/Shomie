@@ -42,6 +42,12 @@ class ErasmusController extends Controller
 
   public function index()
   {
+    $user = Auth::user();
+
+    if($user->type == 1 ){
+      return redirect()->route('home');
+    }
+
     $notifications = $this->GetAllNotification();
     $pending_notification = $notifications->where('state', '=', '0')->count();
     $accepted_notification = $notifications->where('state', '=', '1')->count();
@@ -52,33 +58,42 @@ class ErasmusController extends Controller
     {
       $total_notification = 1;
     }
+
     return view('erasmus.main_menu', [
-    'notifications' => $notifications,
-    'pending_notification' => $pending_notification,
-    'accepted_notification' => $accepted_notification,
-    'rejected_notification' => $rejected_notification,
-    'total_notification' => $total_notification/100
-  ]);
-}
+      'notifications' => $notifications,
+      'pending_notification' => $pending_notification,
+      'accepted_notification' => $accepted_notification,
+      'rejected_notification' => $rejected_notification,
+      'total_notification' => $total_notification/100
+    ]);
+  }
 
-public function profile()
-{
-  return view('erasmus.profile');
-}
+  public function profile()
+  {
+    $user = Auth::user();
+
+    if($user->type == 1 ){
+      return redirect()->route('home');
+    }
+    
+    return view('erasmus.profile');
+  }
 
 
-public function update()
-{
-  $user = Auth::user();
+  public function update()
+  {
+    $this->RedirectIfNotErasmus();
 
-  $user->name = Request::get('erasmus_name');
-  $user->phone_number = Request::get('erasmus_phone');
-  $user->email = Request::get('erasmus_email');
-  /* TODO: Verify the email (if it is unique as well) and validate the new inputs */
+    $user = Auth::user();
 
-  $user->save();
+    $user->name = Request::get('erasmus_name');
+    $user->phone_number = Request::get('erasmus_phone');
+    $user->email = Request::get('erasmus_email');
+    /* TODO: Verify the email (if it is unique as well) and validate the new inputs */
 
-  return redirect()->route('erasmus_update');
-}
+    $user->save();
+
+    return redirect()->route('erasmus_update');
+  }
 
 }
