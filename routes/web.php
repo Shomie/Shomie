@@ -35,9 +35,9 @@ Route::get('/search', 'HomeController@search')->name('search');
 
 
 Route::get('/landlord', 'LordController@index')->name('landlord');
-Route::post('/landlord', 'LordController@update')->name('landlord_update');
 
 Route::get('/landlord_profile', 'LordController@profile')->name('landlord_profile');
+Route::post('/landlord_profile', 'LordController@update')->name('landlord_update');
 
 Route::get('/landlord_availability_rooms', 'LordController@availability_rooms')->name('landlord_availability_rooms');
 Route::post('/landlord_availability_rooms', 'LordController@available')->name('landlord_available');
@@ -45,6 +45,10 @@ Route::post('/landlord_availability_rooms', 'LordController@available')->name('l
 Route::get('/landlord_notifications', 'LordController@notification')->name('landlord_notifications');
 Route::post('/landlord_notification_answer', 'LordController@notification_reply')->name('landlord_notification_answer');
 
+Route::get('/erasmus_main_menu', 'ErasmusController@index')->name('erasmus_main_menu');
+
+Route::get('/erasmus_profile', 'ErasmusController@profile')->name('erasmus_profile');
+Route::post('/erasmus_profile', 'ErasmusController@update')->name('erasmus_update');
 
 
 

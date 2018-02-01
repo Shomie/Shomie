@@ -126,8 +126,7 @@ class LordController extends Controller
 
 public function profile()
 {
-  $properties = $this->getLandlordProperties();
-  return view('landlord.profile', ['properties' => $properties->get()]);
+  return view('landlord.profile');
 }
 
 public function availability_rooms()

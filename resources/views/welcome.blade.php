@@ -41,16 +41,19 @@
           <li><a href="{{ route('register') }}">Register</a></li>
           @else
 
-          <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Notifications <span class="badge pending-requests">5</span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 12/04/2018 at 12:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-times rejected"></i> Visit at 12/05/2018 at 15:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-clock-o pending"></i> Visit at 12/05/2018 at 15:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-times rejected "></i> Visit at 13/05/2018 at 16:20. </a></li>
-          <li><a href="#"><i class="fa fa-fw fa-check accepted"></i> Visit at 11/05/2018 at 15:20. </a></li>
-        </ul>
-      </li>
+          <li>
+            @if(Auth::user()->type == 0)
+            <a href="{{ route('erasmus_main_menu') }}">
+              <i class="fa fa-fw fa-bell-o"></i>
+              Notifications
+            </a>
+            @else
+            <a href="{{ route('landlord_notifications') }}">
+              <i class="fa fa-fw fa-location-arrow"></i>
+              Dashboard
+            </a>
+            @endif
+          </li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -123,23 +126,21 @@
               <p class="card-text">Book a visit to see the house.</p>
             </div>
           </div>
-      </div>
-      <div class="col-sm-4 card_bottom">
-        <div class="card" style="width: 18rem;">
-          <i class="fa_color card-img-top fa fa-map-marker fa-5x" ></i>
-          <div class="card-body">
-            <h5 class="card-title">VISIT</h5>
-            <p class="card-text">Be there on time and enjoy.</p>
+        </div>
+        <div class="col-sm-4 card_bottom">
+          <div class="card" style="width: 18rem;">
+            <i class="fa_color card-img-top fa fa-map-marker fa-5x" ></i>
+            <div class="card-body">
+              <h5 class="card-title">VISIT</h5>
+              <p class="card-text">Be there on time and enjoy.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
 
-  </div>
-</section>
-
-
+    </div>
+  </section>
 
 
 
@@ -147,16 +148,18 @@
 
 
 
-<!--
-<div class="container">
-<div class="row">
-<footer class="text-center">
-<ul>
-<li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-<li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
-<li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
-<li><a href="#"><i class="fa fa-github-square"></i></a></li>
+
+
+  <!--
+  <div class="container">
+  <div class="row">
+  <footer class="text-center">
+  <ul>
+  <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+  <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+  <li><a href="#"><i class="fa fa-snapchat-square"></i></a></li>
+  <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+  <li><a href="#"><i class="fa fa-github-square"></i></a></li>
 </ul>
 <p>Shomie &copy;</p>
 </footer>
