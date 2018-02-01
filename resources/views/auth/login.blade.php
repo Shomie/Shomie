@@ -65,6 +65,9 @@
                   <div class="social-line">
                     <a href="{{ url('/auth/facebook') }}" class="btn btn-simple btn-just-icon">
                       <i class="fa fa-facebook-square"></i>
+                    </a>
+                    <a href="{{ url('/auth/google') }}" class="btn btn-simple btn-just-icon">
+                      <i class="fa fa-google-plus"></i>
                     </a>        
                   </div>
                 </div>

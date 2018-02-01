@@ -43,6 +43,7 @@ Route::get('/landlord_availability_rooms', 'LordController@availability_rooms')-
 Route::post('/landlord_availability_rooms', 'LordController@available')->name('landlord_available');
 
 Route::get('/landlord_notifications', 'LordController@notification')->name('landlord_notifications');
+Route::post('/landlord_notifications', 'LordController@notification_landlord')->name('landlord_notifications_post');
 
 
 
