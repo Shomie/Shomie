@@ -144,15 +144,21 @@ In the folder of skin CSS file there are also:
             {{ $property->description }}
           </p>
         </div>
+
         <div class="col-md-4 col-sm-12" style="padding:0px;">
           <div class="panel panel-default" style="box-shadow: none;border: 1px solid #cbcbcb;border-radius:0px;border-right:none;border-bottom:none;">
             <div class="panel-heading" style="background-color:#515151;border-radius:0px;color:#fff;text-align:center;">
               <h4>  {{ $property->price }}€ per month</h4>
             </div>
-            <div class="panel-body" style="padding:15px;margin-top:0;">
-              <button class="btn btn-success btn-lg" type="button" style="width:234px;font-size:18px;font-weight:500;display:block;margin-right:auto;margin-left:auto;border-radius:2px" data-toggle="modal" data-target="#modal-request">Request to Visit</button>
-            </div>
 
+            <div class="panel-body" style="padding:15px;margin-top:0;">
+              @if(Auth::user()->type != 1)
+              <button class="btn btn-success btn-lg" type="button" style="width:234px;font-size:18px;font-weight:500;display:block;margin-right:auto;margin-left:auto;border-radius:2px" data-toggle="modal" data-target="#modal-request">Request to Visit</button>
+              @else
+              <button class="btn btn-success btn-lg" type="button" style="width:234px;font-size:18px;font-weight:500;display:block;margin-right:auto;margin-left:auto;border-radius:2px">Request to Visit</button>
+              @endif
+
+            </div>
             <div class="modal fade in" id="modal-request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
