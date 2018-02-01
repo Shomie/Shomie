@@ -32,6 +32,12 @@
 
 					<div id="navbar-menu">
 						<ul class="nav navbar-nav">
+							<li>
+								<a href="{{ route('home') }}">
+									<i class="fa fa-fw fa-search"></i>
+									Home
+								</a>
+							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 									{{ Auth::user()->name }} <span class="caret"></span>
@@ -54,6 +60,7 @@
 			</div>
 		</div>
 	</nav>
+	
 	<div id="left-sidebar" class="sidebar">
 		<button type="button" class="btn btn-xs btn-link btn-toggle-fullwidth">
 			<span class="sr-only">Toggle Fullwidth</span>
