@@ -22,6 +22,7 @@ class CreateCommunicationTable extends Migration
       $table->date('visit_date');
       $table->string('visit_time');
       $table->boolean('sms_status')->default(false);
+      $table->timestamps();
     });
 
     Schema::table('communication', function($table) {

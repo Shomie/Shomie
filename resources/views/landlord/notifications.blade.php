@@ -121,34 +121,48 @@
 									<tbody>
 										@foreach($communications as $key => $communication)
 										<tr>
-											<td>  <a href="{{ route('property', ['id'=> $communication->property_id]) }}" target="_blank">{{ $communication->property_id }}</a></td>
-											<td>{{$communication->visit_date}}</td>
-											<td>{{$communication->visit_time}}</td>
-											<td>{{$communication->state}}</td>
-											<td>
-												<span style="cursor:pointer;padding-right:10px;"><i class="fa fa-fw fa-check accepted"></i> </span>
+											<form method="post" action="{{ route('landlord_notification_answer') }}">
+												{{ csrf_field() }}
 
-												<span style="cursor:pointer;"><i class="fa fa-fw fa-times rejected"></i>  </span>
+												<td>  <a href="{{ route('property', ['id'=> $communication->property_id]) }}" target="_blank">{{ $communication->property_id }}</a></td>
+												<td>{{$communication->visit_date}}</td>
+												<td>{{$communication->visit_time}}</td>
+												<td>{{$communication->state}}</td>
+												<td>
+													@if($communication->state == "0")
+													<button type="submit" class="btn btn-success" name="notification_reply" value="accepted">
+														<i class="fa fa-fw fa-check" aria-hidden="true"></i>Aceitar
+													</button>
 
-													</td>
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-
-								</div>
+													<button type="submit" class="btn btn-danger" name="notification_reply" value="rejected">
+														<i class="fa fa-fw fa-times" aria-hidden="true"></i>Rejeitar
+													</button>
+													@elseif($communication->state == "1")
+													<span class="accepted">accepted</span>
+													@elseif($communication->state == "2")
+													<span class="rejected">rejected</span>
+													@endif
+												</td>
+												<input type="hidden" name="id" value="{{ $communication->id }}">
+											</form>
+										</tr>
+										@endforeach
+									</tbody>
+								</table>
 							</div>
-
 
 						</div>
 					</div>
+
+
 				</div>
 			</div>
-			<div class="clearfix"></div>
-			<footer>
-				<p class="copyright">&copy; 2018 Shomie</p>
-			</footer>
 		</div>
+	</div>
+	<div class="clearfix"></div>
+	<footer>
+		<p class="copyright">&copy; 2018 Shomie</p>
+	</footer>
+</div>
 
-		@endsection
+@endsection

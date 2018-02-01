@@ -92,7 +92,9 @@ class LordController extends Controller
     $notification = NULL;
     $user = Auth::user();
     $landlord = $user->landlord_id;
-    $notification = Communication::join('properties','communication.property_id','=', 'properties.id')->where('properties.landlord_id','=', $landlord)->get();
+    $notification = Communication::join('properties','communication.property_id','=', 'properties.id')
+    ->where('properties.landlord_id','=', $landlord)
+    ->select('communication.id', 'communication.visit_time', 'communication.visit_date', 'communication.property_id', 'communication.state')->get();
 
     return $notification;
 
@@ -114,33 +116,60 @@ class LordController extends Controller
       $total_notification = 1;
     }
     return view('landlord.main_menu', ['properties' => $properties->get(),
-                                       'pending_notification' => $pending_notification,
-                                       'accepted_notification' => $accepted_notification,
-                                       'rejected_notification' => $rejected_notification,
-                                       'total_notification' => $total_notification/100
-                                     ]);
-  }
+    'pending_notification' => $pending_notification,
+    'accepted_notification' => $accepted_notification,
+    'rejected_notification' => $rejected_notification,
+    'total_notification' => $total_notification/100
+  ]);
+}
 
 
-  public function profile()
+public function profile()
+{
+  $properties = $this->getLandlordProperties();
+  return view('landlord.profile', ['properties' => $properties->get()]);
+}
+
+public function availability_rooms()
+{
+  $properties = $this->getLandlordProperties();
+  return view('landlord.availability_rooms', ['properties' => $properties->get()]);
+}
+
+public function notification()
+{
+  $communication = $this->GetAllNotification();
+  return view('landlord.notifications', ['communications' => $communication]);
+}
+
+public function notification_reply()
+{
+  $id = Request::get('id');
+  $reply = Request::get('notification_reply');
+  $new_notification_state = 0;
+
+  if($reply == "accepted")
   {
-    $properties = $this->getLandlordProperties();
-    return view('landlord.profile', ['properties' => $properties->get()]);
+    $new_notification_state = 1;
+  }
+  else if ($reply == "rejected"){
+    $new_notification_state = 2;
+  }
+  else {
+    /**Do nothing*/
   }
 
-  public function availability_rooms()
+  if($new_notification_state > 0)
   {
-    $properties = $this->getLandlordProperties();
-    return view('landlord.availability_rooms', ['properties' => $properties->get()]);
-  }
-
-  public function notification()
-  {
-    $communication = $this->GetAllNotification();
-
-    return view('landlord.notifications', ['communications' => $communication]);
+    $notification = Communication::where('id','=', $id);
+    if($notification)
+    {
+      $notification->update(['state'=>$new_notification_state]);
+    }
   }
 
 
+  return redirect()->route('landlord_notifications');
+}
 
 }

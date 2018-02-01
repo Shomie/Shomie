@@ -26,7 +26,6 @@ class CreateUsersTable extends Migration
       $table->string('twitter_id')->nullable();
       $table->string('google_id')->nullable();
       $table->integer('phone_number')->nullable();
-
       $table->timestamps();
     });
   }
