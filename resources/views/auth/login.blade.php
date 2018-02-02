@@ -52,7 +52,7 @@
   </nav>
 
   <div class="wrapper">
-    <div class="header header-filter" style="background-image: url('/img/uc_2.jpg'); background-size: cover; background-position: top center;">
+    <div class="header header-filter" style="background-image: url('/img/login/uc_2.jpg'); background-size: cover; background-position: top center;">
 
       <div class="container">
         <div class="row">
@@ -68,7 +68,7 @@
                     </a>
                     <a href="{{ url('/auth/google') }}" class="btn btn-simple btn-just-icon">
                       <i class="fa fa-google-plus"></i>
-                    </a>        
+                    </a>
                   </div>
                 </div>
                 <p class="text-divider">Login with your account</p>
