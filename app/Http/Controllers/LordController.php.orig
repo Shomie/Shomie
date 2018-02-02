@@ -92,9 +92,15 @@ class LordController extends Controller
     $notification = NULL;
     $user = Auth::user();
     $landlord = $user->landlord_id;
+<<<<<<< HEAD
     $notification = Communication::join('properties','communication.property_id','=', 'properties.id')
     ->where('properties.landlord_id','=', $landlord)
-    ->select('communication.id', 'communication.visit_time', 'communication.visit_date', 'communication.property_id', 'communication.state')->orderBy('visit_date','desc')->orderBy('visit_time', 'asc')->get();
+    ->select('communication.id', 'communication.visit_time', 'communication.visit_date', 'communication.property_id', 'communication.state')->get();
+||||||| merged common ancestors
+    $notification = Communication::join('properties','communication.property_id','=', 'properties.id')->where('properties.landlord_id','=', $landlord)->get();
+=======
+    $notification = Communication::join('properties','communication.property_id','=', 'properties.id')->where('properties.landlord_id','=', $landlord)->orderBy('visit_date','desc')->orderBy('visit_time', 'asc')->get();
+>>>>>>> origin/ruben_dev
 
     return $notification;
 
@@ -184,11 +190,21 @@ public function notification_reply()
 
   if($new_notification_state > 0)
   {
+<<<<<<< HEAD
     $notification = Communication::where('id','=', $id);
     if($notification)
     {
       $notification->update(['state'=>$new_notification_state]);
     }
+||||||| merged common ancestors
+    $communication = $this->GetAllNotification();
+    
+    return view('landlord.notifications', ['communications' => $communication]);
+=======
+    $communication = $this->GetAllNotification();
+
+    return view('landlord.notifications', ['communications' => $communication]);
+>>>>>>> origin/ruben_dev
   }
 
 

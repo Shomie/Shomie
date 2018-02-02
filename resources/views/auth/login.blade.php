@@ -66,12 +66,9 @@
                     <a href="{{ url('/auth/facebook') }}" class="btn btn-simple btn-just-icon">
                       <i class="fa fa-facebook-square"></i>
                     </a>
-                    <a href="{{ url('/auth/twitter') }}" class="btn btn-simple btn-just-icon">
-                      <i class="fa fa-twitter"></i>
-                    </a>
                     <a href="{{ url('/auth/google') }}" class="btn btn-simple btn-just-icon">
                       <i class="fa fa-google-plus"></i>
-                    </a>
+                    </a>        
                   </div>
                 </div>
                 <p class="text-divider">Login with your account</p>
