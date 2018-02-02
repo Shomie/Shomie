@@ -152,7 +152,7 @@ In the folder of skin CSS file there are also:
             </div>
 
             <div class="panel-body" style="padding:15px;margin-top:0;">
-              @if(Auth::user()->type != 1)
+              @if(Auth::user()->type != 1 && $property->availability == "available")
               <button class="btn btn-success btn-lg" type="button" style="width:234px;font-size:18px;font-weight:500;display:block;margin-right:auto;margin-left:auto;border-radius:2px" data-toggle="modal" data-target="#modal-request">Request to Visit</button>
               @else
               <button class="btn btn-success btn-lg" type="button" style="width:234px;font-size:18px;font-weight:500;display:block;margin-right:auto;margin-left:auto;border-radius:2px">Request to Visit</button>
@@ -332,7 +332,7 @@ In the folder of skin CSS file there are also:
               </div>
             </div>
           </div>
-    
+
 
         </div>
       </div>

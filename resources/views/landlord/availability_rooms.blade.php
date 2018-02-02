@@ -128,6 +128,7 @@
 											?>
 										</div>
 										<div class="panel-footer text-center">
+											<p> <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a></p>
 											<p>{{ $property->address }}, {{ $property->number }}</p>
 											<div class="btn-group" data-toggle="buttons">
 												@if($property->availability == "available")

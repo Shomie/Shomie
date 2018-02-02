@@ -109,6 +109,7 @@
 											<th>Visit Date</th>
 											<th>Visit Time</th>
 											<th>Status</th>
+											<th>Address</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -123,63 +124,66 @@
 												<span class="pending">
 													Pending
 												</span>
-
 												@elseif($notification->state == "1")
 												<span class="accepted">
 													Accepted
-												</span>
-												<i class="fa fa-address-card-o" style="padding-left:10px;">
-													{{ $notification->address}}
-													{{ $notification->floor}}
-													{{ $notification->number}}
-												</i>
-												@elseif($notification->state == "2")
-												<span class="rejected" >
-													Rejected
-												</span>
-												@endif
-											</td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
+													</span
+													@elseif($notification->state == "2")
+													<span class="rejected">
+														Rejected
+													</span>
+													@endif
+												</td>
+												<td>
+													@if($notification->state == "1")
+													<i class="fa fa-address-card-o" style="padding-left:10px;">
+														{{ $notification->address}}
+														{{ $notification->floor}}
+														{{ $notification->number}}
+													</i>
+													@endif
+												</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel-content">
-							<h3 class="heading"><i class="fa fa-info-circle" aria-hidden="true"></i> Pedidos de visita</h3>
-							<ul class="list-unstyled list-referrals">
-								<li>
-									<p><span class="value">{{$accepted_notification}}</span><span class="text-muted">Visitas aceites</span></p>
-									<div class="progress">
-										<div class="progress-bar bg-success" role="progressbar" style="width: {{$accepted_notification/$total_notification}}%;background-color:#468847;" aria-valuenow="{{$accepted_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-								</li>
-								<li>
-									<p><span class="value">{{$rejected_notification}}</span><span class="text-muted">Visitas rejeitadas</span></p>
-									<div class="progress">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: {{$rejected_notification/$total_notification}}%;background-color:#b94a48;" aria-valuenow="{{$rejected_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-								</li>
-								<li>
-									<p><span class="value">{{$pending_notification}}</span><span class="text-muted">Visitas por aceitar</span></p>
-									<div class="progress">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: {{$pending_notification/$total_notification}}%;background-color:#f89406;" aria-valuenow="{{$pending_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									</li
-								</ul>
+						<div class="col-md-4">
+							<div class="panel-content">
+								<h3 class="heading"><i class="fa fa-info-circle" aria-hidden="true"></i> Pedidos de visita</h3>
+								<ul class="list-unstyled list-referrals">
+									<li>
+										<p><span class="value">{{$accepted_notification}}</span><span class="text-muted">Visitas aceites</span></p>
+										<div class="progress">
+											<div class="progress-bar bg-success" role="progressbar" style="width: {{$accepted_notification/$total_notification}}%;background-color:#468847;" aria-valuenow="{{$accepted_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value">{{$rejected_notification}}</span><span class="text-muted">Visitas rejeitadas</span></p>
+										<div class="progress">
+											<div class="progress-bar bg-warning" role="progressbar" style="width: {{$rejected_notification/$total_notification}}%;background-color:#b94a48;" aria-valuenow="{{$rejected_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value">{{$pending_notification}}</span><span class="text-muted">Visitas por aceitar</span></p>
+										<div class="progress">
+											<div class="progress-bar bg-warning" role="progressbar" style="width: {{$pending_notification/$total_notification}}%;background-color:#f89406;" aria-valuenow="{{$pending_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										</li
+									</ul>
+								</div>
 							</div>
-						</div>
 
+						</div>
 					</div>
 				</div>
 			</div>
+			<div class="clearfix"></div>
+			<footer>
+				<p class="copyright">&copy; 2018 Shomie</p>
+			</footer>
 		</div>
-		<div class="clearfix"></div>
-		<footer>
-			<p class="copyright">&copy; 2018 Shomie</p>
-		</footer>
-	</div>
 
-	@endsection
+		@endsection

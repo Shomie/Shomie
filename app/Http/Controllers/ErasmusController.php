@@ -75,17 +75,19 @@ class ErasmusController extends Controller
     if($user->type == 1 ){
       return redirect()->route('home');
     }
-    
+
     return view('erasmus.profile');
   }
 
 
   public function update()
   {
-    $this->RedirectIfNotErasmus();
-
     $user = Auth::user();
 
+    if($user->type == 1 ){
+      return redirect()->route('home');
+    }
+    
     $user->name = Request::get('erasmus_name');
     $user->phone_number = Request::get('erasmus_phone');
     $user->email = Request::get('erasmus_email');
