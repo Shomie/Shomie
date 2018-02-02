@@ -27,9 +27,9 @@
         </button>
 
         <!-- Branding Image -->
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <span class="navbar-brand">
           {{ config('app.name', 'shomie') }}
-        </a>
+        </span>
       </div>
 
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
