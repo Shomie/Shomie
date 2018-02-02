@@ -101,7 +101,7 @@ In the folder of skin CSS file there are also:
 
 <div class="picture" itemscope itemtype="http://schema.org/ImageGallery">
 
-  @foreach($images as $key => $image)
+  @foreach($slider_images as $key => $image)
   <?php static $i = 0; ?>
 
   @if($i == 0)
@@ -130,11 +130,28 @@ In the folder of skin CSS file there are also:
     <div class="panel panel-default ">
       <div class="panel-heading" style="padding:0;">
 
-        @if(!empty($images))
-        <img src="/{{ $images[0] }}" id="main_trigger" class="header_image" alt="aaa">
-        @else
-        <img src="" class="header_image" id="main_trigger" alt="aaa">
-        @endif
+        <?php
+
+        $image_search = "img/RoomsPics/". $property->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+        $images = glob($image_search, GLOB_BRACE);
+
+        if(count($images) == 0)
+        {
+          /* If the main image is not found search for one existing image */
+          $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+          $images = glob($image_search, GLOB_BRACE);
+        }
+
+        if(!empty($images))
+        {
+          echo "<img src='/$images[0]' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
+        }
+        else
+        {
+          echo "<img src='/img/not_available.jpg' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
+        }
+        ?>
+
 
       </div>
 

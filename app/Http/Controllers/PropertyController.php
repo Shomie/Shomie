@@ -79,7 +79,7 @@ class PropertyController extends Controller
   $path = "img/RoomsPics/" . $property->id;
   $images = $this->RetrieveAllImagesFromProperty($path);
 
-  return view('property', ['property' => $property, 'images' => $images]);
+  return view('property', ['property' => $property, 'slider_images' => $images]);
 
 }
 

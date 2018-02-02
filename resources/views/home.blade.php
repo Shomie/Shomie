@@ -206,6 +206,13 @@
                       $image_search = "img/RoomsPics/". $value->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
                       $images = glob($image_search, GLOB_BRACE);
 
+                      if(count($images) == 0)
+                      {
+                        /* If the main image is not found search for one existing image */
+                        $image_search = "img/RoomsPics/". $value->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+                        $images = glob($image_search, GLOB_BRACE);
+                      }
+
                       if(!empty($images))
                       {
 
@@ -213,7 +220,7 @@
                       }
                       else
                       {
-                        echo "<img src='' alt='Room Image' class='img-responsive'>";
+                        echo "<img src='/img/not_available.jpg' alt='Room Image' class='img-responsive'>";
                       }
                       ?>
                     </a>
