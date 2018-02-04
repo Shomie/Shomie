@@ -7,22 +7,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-use App\User;
-
-
 class NotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $myUser;
+    protected $notification;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $myUser)
+    public function __construct($notification)
     {
-      $this->myUser = $myUser;
+      $this->notification = $notification;
     }
 
     /**
@@ -33,6 +30,6 @@ class NotificationMail extends Mailable
     public function build()
     {
         return $this->view('emails.notification')
-        ->with(['username' => $this->myUser]);
+        ->with(['notification' => $this->notification]);
     }
 }

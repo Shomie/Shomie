@@ -5,9 +5,9 @@
 </head>
 
 <body>
-  <h2>Hello {{ $username->name}}</h2>
+  <h2>Hello</h2>
   <br/>
-  Your email is {{$username->email }}.
+  Your email is .
 </body>
 
 </html>

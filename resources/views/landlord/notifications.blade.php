@@ -158,10 +158,6 @@
 
 				</div>
 			</div>
-			<div class="clearfix"></div>
-			<footer>
-				<p class="copyright">&copy; 2018 Shomie</p>
-			</footer>
 		</div>
 	</div>
 	<div class="clearfix"></div>

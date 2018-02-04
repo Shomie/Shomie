@@ -10,7 +10,9 @@ use App\User;
 use Auth;
 use Validator;
 use App\Communication;
-
+use Illuminate\Mail\Mailable;
+use Mail;
+use App\Mail\NotificationMail;
 
 
 class LordController extends Controller
@@ -188,6 +190,21 @@ public function notification_reply()
     if($notification)
     {
       $notification->update(['state'=>$new_notification_state]);
+
+      /* If accepted send an email to the erasmus */
+      if($new_notification_state == 1)
+      {
+        $user_id = Communication::where('id','=', $id)->pluck('user_id');
+        $email = User::where('id','=', $user_id)->pluck('email');
+        if(!empty($email))
+        {
+          try {
+            Mail::to($email)->send(new NotificationMail($notification));
+          } catch (Exception $e) {
+            /* Do nothing */
+          }
+        }
+      }
     }
   }
 
