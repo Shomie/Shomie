@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Routing\Redirector;
 use Request;
 use App\Property;
@@ -10,6 +11,9 @@ use App\User;
 use Auth;
 use Validator;
 use App\Communication;
+use Illuminate\Mail\Mailable;
+use Mail;
+use App\Mail\DemoMail;
 
 
 
@@ -44,6 +48,7 @@ class ErasmusController extends Controller
   {
     $user = Auth::user();
 
+
     if($user->type == 1 ){
       return redirect()->route('home');
     }
@@ -58,6 +63,8 @@ class ErasmusController extends Controller
     {
       $total_notification = 1;
     }
+    $email = Auth::user()->email;
+    Mail::to($email)->send(new DemoMail());
 
     return view('erasmus.main_menu', [
       'notifications' => $notifications,
@@ -87,7 +94,7 @@ class ErasmusController extends Controller
     if($user->type == 1 ){
       return redirect()->route('home');
     }
-    
+
     $user->name = Request::get('erasmus_name');
     $user->phone_number = Request::get('erasmus_phone');
     $user->email = Request::get('erasmus_email');
