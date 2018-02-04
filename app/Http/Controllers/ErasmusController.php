@@ -13,7 +13,7 @@ use Validator;
 use App\Communication;
 use Illuminate\Mail\Mailable;
 use Mail;
-use App\Mail\DemoMail;
+use App\Mail\NotificationMail;
 
 
 
@@ -64,7 +64,7 @@ class ErasmusController extends Controller
       $total_notification = 1;
     }
     $email = Auth::user()->email;
-    Mail::to($email)->send(new DemoMail());
+    Mail::to($email)->send(new NotificationMail(Auth::user()));
 
     return view('erasmus.main_menu', [
       'notifications' => $notifications,
