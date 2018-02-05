@@ -196,10 +196,16 @@ public function notification_reply()
       {
         $user_id = Communication::where('id','=', $id)->pluck('user_id');
         $email = User::where('id','=', $user_id)->pluck('email');
+        $user = User::where('id','=', $user_id);
+
+        $property_id = Communication::where('id','=', $id)->value('property_id');
+        $property = Property::where('id','=', $property_id);
+
+
         if(!empty($email))
         {
           try {
-            Mail::to($email)->send(new NotificationMail($notification));
+            Mail::to($email)->send(new NotificationMail($notification, $property, $user));
           } catch (Exception $e) {
             /* Do nothing */
           }
