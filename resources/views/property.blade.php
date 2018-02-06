@@ -318,7 +318,7 @@ In the folder of skin CSS file there are also:
                   Water
                   @endif
 
-                  @if($property->Gas===1)
+                  @if($property->gas===1)
                   <i class="fa fa-fw fa-check accepted"></i>
                   Gas
                   @else
