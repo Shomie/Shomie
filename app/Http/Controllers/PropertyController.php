@@ -11,7 +11,10 @@ use Auth;
 
 use View;
 use Mapper;
-
+use Illuminate\Mail\Mailable;
+use Mail;
+use App\Mail\NotificationMail;
+use App\Mail\NotificationNewRequests;
 
 class PropertyController extends Controller
 {
@@ -105,11 +108,19 @@ public function RequestVisitToProperty($id)
   $property_id = $id;
 
   $Communication_hanlder = new Communication();
-  $Communication_hanlder->InsertRequest($property_id, $user_id, $visit_date, $visit_time);
-  /*TODO: If any problems detected call $this->index($id) and validate the form once again
-  until everything is good to go and only in the end rout it as bellow.
+  $id_notification = $Communication_hanlder->InsertRequest($property_id, $user_id, $visit_date, $visit_time);
 
-  */
+  if($id_notification != null)
+  {
+    $user = User::where('id','=', $user->id);
+    $notification = Communication::where('id','=', $id_notification);
+
+    try {
+      Mail::to("shomie.organization@gmail.com")->send(new NotificationNewRequests($notification, $property, $user));
+    } catch (Exception $e) {
+      /* Do nothing */
+    }
+  }
 
   /* IMPORTANT: When using post to validate forms to prevent a F5 action we just
   redirect to the property page once again. No further problem

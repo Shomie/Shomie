@@ -28,9 +28,14 @@ class Communication extends Model
 
   */
   public function InsertRequest($property_id, $user_id, $visit_date, $visit_time){
-    Communication::insert([
-      ['property_id' => $property_id, 'user_id' => $user_id, 'visit_date' => $visit_date, 'visit_time' => $visit_time]
-    ]);
+    $id = null;
+    $id = Communication::insertGetId(array(
+            'property_id' => $property_id,
+            'user_id' => $user_id,
+            'visit_date' => $visit_date,
+            'visit_time' => $visit_time
+    ));
+    return $id;
   }
 
 }
