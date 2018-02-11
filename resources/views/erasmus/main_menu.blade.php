@@ -77,7 +77,7 @@
 					<li class="active">
 						<a href="" class="has-arrow" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> <span>Notifications</span></a>
 						<ul aria-expanded="true">
-							<li class="active"><a href="{{ route('landlord_notifications') }}">See Notifications</a></li>
+							<li class="active"><a href="{{ route('erasmus_main_menu') }}">See Notifications</a></li>
 							<li class=""><a href="#">Calendar View</a></li>
 						</ul>
 					</li>
