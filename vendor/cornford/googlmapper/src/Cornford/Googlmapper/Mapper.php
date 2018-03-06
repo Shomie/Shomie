@@ -118,6 +118,7 @@ class Mapper extends MapperBase implements MappingInterface {
 	 */
 	public function location($location)
 	{
+		$location = strip_tags($location);
 		if (empty($location)) {
 			throw new MapperArgumentException('Invalid location search term provided.');
 		}
@@ -161,7 +162,7 @@ class Mapper extends MapperBase implements MappingInterface {
 		}
 
 		if (!isset($resultObject->results[0]->formatted_address) ||
-			!isset($resultObject->results[0]->address_components[0]->types[0]) ||
+			!isset($resultObject->results[0]->address_components[0]->types) ||
 			!isset($resultObject->results[0]->geometry->location->lat) ||
 			!isset($resultObject->results[0]->geometry->location->lng) ||
 			!isset($resultObject->results[0]->place_id) ||
@@ -170,15 +171,24 @@ class Mapper extends MapperBase implements MappingInterface {
 			throw new MapperException('The location search return invalid result data.');
 		}
 
-		return new Location([
-			'mapper'    => $this,
-			'search'    => $location,
-			'address'   => $resultObject->results[0]->formatted_address,
-			'type'      => $resultObject->results[0]->address_components[0]->types[0],
-			'latitude'  => $resultObject->results[0]->geometry->location->lat,
-			'longitude' => $resultObject->results[0]->geometry->location->lng,
-			'placeId'   => $resultObject->results[0]->place_id,
-		]);
+        $postalCode = null;
+
+        foreach ($resultObject->results[0]->address_components as $addressComponent) {
+            if ($addressComponent->types[0] == 'postal_code') {
+                $postalCode = $addressComponent->long_name;
+            }
+        }
+
+        return new Location([
+            'mapper'     => $this,
+            'search'     => $location,
+            'address'    => $resultObject->results[0]->formatted_address,
+            'postalCode' => $postalCode,
+            'type'       => (isset($resultObject->results[0]->address_components[0]->types[0]) ? $resultObject->results[0]->address_components[0]->types[0] : null),
+            'latitude'   => $resultObject->results[0]->geometry->location->lat,
+            'longitude'  => $resultObject->results[0]->geometry->location->lng,
+            'placeId'    => $resultObject->results[0]->place_id,
+        ]);
 	}
 
 	/**

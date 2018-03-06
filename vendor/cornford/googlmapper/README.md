@@ -63,11 +63,17 @@ You can now configure Googlmapper in a few simple steps. Open `app/config/packag
 - `locate` - Automatically center Google Maps around the users current location, when false, Google Maps will automatically center the map, e.g. true.
 - `zoom` - Set the default zoom level for Google Maps, e.g. 8.
 - `scrollWheelZoom` - Set the default scroll wheel zoom Google Maps, e.g. true.
+- `zoomControl` - Set the default zoom control for Google Maps, e.g. true.
+- `mapTypeControl` - Set the default map type control for Google Maps, e.g. true.
+- `scaleControl` - Set the default scale control for Google Maps, e.g. true.
+- `streetViewControl` - Set the default street view control for Google Maps, e.g. true.
+- `rotateControl` - Set the default rotate control for Google Maps, e.g. true.
 - `fullscreenControl` - Set the default fullscreen control for Google Maps, e.g. true.
 - `type` - Set the default map type for Google Maps, e.g. ROADMAP, SATELLITE, HYBRID, TERRAIN.
 - `ui` - Show the Google Maps default UI options, e.g. true.
 - `markers.icon` - Set the default marker icon, e.g. img/icon.png.
 - `markers.animation` - Set the default marker animation, e.g. NONE, DROP, BOUNCE.
+- `markers.autoclose` - Automatically close Information Windows of current marker when other markers are clicked, e.g. true.
 - `cluster` - Set if map marker clusters should be used.
 - `clusters.icon` - Display custom images for clusters using icon path.
 - `clusters.grid` - The grid size of a cluster in pixels.
@@ -99,7 +105,7 @@ This will give you access to
 
 Initialize the map in your controller `MapController.php`:
 
-    use Cornford\Googlmapper\Mapper;
+    use Mapper;
 
 	public function index()
 	{
@@ -174,6 +180,12 @@ If you need draggable marker, you can add option draggable.
 This event is fired when the marker icon was clicked.
 
 	Mapper::marker(53.381128999999990000, -1.470085000000040000, ['draggable' => true, 'eventClick' => 'console.log("left click");']);
+
+**Double Click**
+
+This event is fired when the marker icon was double clicked.
+
+	Mapper::marker(53.381128999999990000, -1.470085000000040000, ['draggable' => true, 'eventDblClick' => 'console.log("double left click");']);
 
 **Right Click**
 

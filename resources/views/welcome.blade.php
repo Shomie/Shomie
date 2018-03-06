@@ -2,105 +2,84 @@
 
 @section('assets')
 <!-- Internal resources -->
-<link href="{{ URL::asset('/css/welcome.css')}}" rel="stylesheet"/>
 
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-<script src= "{{ URL::asset('/js/welcome.js') }}" type="text/javascript"></script>
+<style>
 
+</style>
 @endsection
 
 @section('content')
-<body class="home-page">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-          <span class="sr-only">Toggle Navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+<body>
 
-        <!-- Branding Image -->
-        <span class="navbar-brand">
-          {{ config('app.name', 'shomie') }}
-        </span>
-      </div>
+  <nav class="navbar navbar-default navbar-expand-sm navbar-light bg-faded">
+  <div class="container">
+    <a class="navbar-brand" href="#">{{ config('app.name', 'shomie') }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
 
-      <div class="collapse navbar-collapse" id="app-navbar-collapse">
-        <!-- Left Side Of Navbar -->
-        <ul class="nav navbar-nav">
-          &nbsp;
-        </ul>
-
-        <!-- Right Side Of Navbar -->
-        <ul class="nav navbar-nav navbar-right">
-          <!-- Authentication Links -->
-          @if (Auth::guest())
-          <li><a href="{{ route('login') }}">Login</a></li>
-          <li><a href="{{ route('register') }}">Register</a></li>
-          @else
-
-          <li>
-            @if(Auth::user()->type == 0)
-            <a href="{{ route('erasmus_main_menu') }}">
-              <i class="fa fa-fw fa-bell-o"></i>
-              Notifications
-            </a>
-            @else
-            <a href="{{ route('landlord_notifications') }}">
-              <i class="fa fa-fw fa-location-arrow"></i>
-              Dashboard
-            </a>
-            @endif
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
-
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                Logout
-              </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-              </form>
-            </li>
-          </ul>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        @if (Auth::guest())
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('login') }}">Login</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('register') }}">Register</a>
+        </li>
+        @else
+        @if(Auth::user()->type == 0)
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
+        </li>
+
+        @else
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
+        </li>
+
         @endif
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ Auth::user()->name }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="Preview">
+            <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+
+          </div>
+        </li>
+
+        @endif
+
       </ul>
     </div>
   </div>
 </nav>
 
-<section class="welcome_main">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="text-center">
-          <h1>The <strong> fastest </strong> way to <strong> visit</strong> your new
-            <strong>Coimbra</strong> home!</h1>
-          </div>
-        </div>
-      </br>
-    </div>
 
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="text-center">
-          <a href="{{ url('/home') }}">
-            <input class="btn btn-default btn-success" value="Start searching!" type="button"/>
-          </a>
-        </div>
-      </div>
+
+
+  <div class="container text-center">
+
+    <div class="jumbotron">
+      <h1 class="display-3">Shomie is here to help you out.</h1>
+      <p class="lead">The fastest way to find your home in Coimbra.</p>
+      <hr class="my-4">
+      <p> We have a nice amount of rooms for you to visit.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{ url('/home') }}" role="button">Start right away!</a>
+      </p>
     </div>
-  </section>
+  </div>
+
 
 
   <section class="welcome_second">
