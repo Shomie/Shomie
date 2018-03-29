@@ -14,10 +14,10 @@ $(function() {
   var date_today = day+'/'+month+'/'+year;
   document.getElementById("request-date").value = date_today;
 
-  $('#timepicker5').timepicker({
-    showMeridian :false,
-    defaultTime:'current',
-  });
+
+  $('#timepicker5').datetimepicker();
+
+
 
 
   $( "#request-date" ).datepicker({
@@ -29,6 +29,7 @@ $(function() {
     event.preventDefault();
 
 
+    console.log("OLA");
 
 
 $('#main').trigger( "click" );

@@ -2,96 +2,157 @@
 
 @section('assets')
 
-<link rel="stylesheet" href="{{ URL::asset('/css/profile/metisMenu/metisMenu.css')}}" />
-<link rel="stylesheet" href="{{ URL::asset('/css/profile/main.css')}}" />
-<link rel="stylesheet" href="{{ URL::asset('/css/profile/profile.css')}}" />
 
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-
-<script src= "{{ URL::asset('/js/profile/metisMenu/metisMenu.js') }}" type="text/javascript"></script>
-<script src= "{{ URL::asset('/js/profile/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src= "{{ URL::asset('/js/profile/common.js') }}" type="text/javascript"></script>
-<script src= "{{ URL::asset('/js/profile/profile.js') }}" type="text/javascript"></script>
 
 @endsection
 
 @section('content')
 
 <body>
-	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-btn">
-					<button type="button" class="btn-toggle-offcanvas"><i class="fa fa-angle-left rotate" aria-hidden="true"></i></button>
-				</div>
 
-				<span class="navbar-brand">
-					{{ config('app.name', 'shomie') }}
-				</span>
-				<div class="navbar-right">
+	<nav class="navbar fixed-top navbar-expand-lg bg-faded">
+	        <div class="container">
+	            <div class="navbar-translate">
+								<a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
 
-					<div id="navbar-menu">
-						<ul class="nav navbar-nav">
-							<li>
-								<a href="{{ route('home') }}">
-									<i class="fa fa-fw fa-search"></i>
-									Home
-								</a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-									{{ Auth::user()->name }} <span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="{{ route('logout') }}"
-										onclick="event.preventDefault();
-										document.getElementById('logout-form').submit();">
-										Logout
-									</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-										{{ csrf_field() }}
-									</form>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</nav>
-	<div id="left-sidebar" class="sidebar">
-		<button type="button" class="btn btn-xs btn-link btn-toggle-fullwidth">
-			<span class="sr-only">Toggle Fullwidth</span>
-			<i class="fa fa-angle-left"></i>
-		</button>
-		<div class="sidebar-scroll">
-			<div class="user-account">
-				<img src="/img/default.png" class="img-responsive img-circle user-photo" alt="User Profile Picture">
-				<div class="dropdown">
-					<p href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Olá, <strong>{{ Auth::user()->name }}</strong></p>
-				</div>
-			</div>
-			<nav id="left-sidebar-nav" class="sidebar-nav">
-				<ul id="main-menu" class="metismenu">
-					<li class="active">
-						<a href="" class="has-arrow" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> <span>Notifications</span></a>
-						<ul aria-expanded="true">
-							<li class="active"><a href="{{ route('erasmus_main_menu') }}">See Notifications</a></li>
-							<li class=""><a href="#">Calendar View</a></li>
-						</ul>
+	                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+	                    <span class="navbar-toggler-icon"></span>
+	                    <span class="navbar-toggler-icon"></span>
+	                    <span class="navbar-toggler-icon"></span>
+	                </button>
+	            </div>
+							<div class="collapse navbar-collapse" id="navbarText">
+								<ul class="navbar-nav">
+
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
+											<span class="sr-only">(current)</span>
+										</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications
+											<span class="sr-only">(current)</span>
+										</a>
+									</li>
+
+
+									<li class="nav-item">
+										<a class="nav-link" href="#">Side Menu Items</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Pricing</a>
+									</li>
+								</ul>
+
+								<ul class="navbar-nav ml-md-auto d-md-flex">
+	                    <li class="dropdown nav-item">
+	                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+	                            <i class="material-icons">apps</i> Components
+	                        </a>
+	                        <div class="dropdown-menu dropdown-with-icons">
+	                            <a href="../index.html" class="dropdown-item">
+	                                <i class="material-icons">layers</i> All Components
+	                            </a>
+	                            <a href="http://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
+	                                <i class="material-icons">content_paste</i> Documentation
+	                            </a>
+	                        </div>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+	                            <i class="material-icons">cloud_download</i> Download
+	                        </a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
+	                            <i class="fa fa-twitter"></i>
+	                        </a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
+	                            <i class="fa fa-facebook-square"></i>
+	                        </a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
+	                            <i class="fa fa-instagram"></i>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
+
+
+	<!--
+		<nav class="navbar navbar-default navbar-expand-sm navbar-light bg-faded">
+		<div class="container">
+			<span class="navbar-toggler-icon leftmenutrigger"></span>
+			<a class="navbar-brand" href="#">{{ config('app.name', 'shomie') }}</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
+				<span class="navbar-toggler-icon"></span>
+				<span class="navbar-toggler-icon"></span>
+				<span class="navbar-toggler-icon"></span>
+
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav animate side-nav">
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
+							<span class="sr-only">(current)</span>
+						</a>
 					</li>
-					<li class="">
-						<a href="{{ route('erasmus_profile') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span>Profile</span></a>
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+
+
+					<li class="nav-item">
+						<a class="nav-link" href="#">Side Menu Items</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Pricing</a>
 					</li>
 				</ul>
-			</nav>
+				<ul class="navbar-nav ml-md-auto d-md-flex">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('home') }}">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
 
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button">
+							{{ Auth::user()->name }}
+						</a>
+						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+								Logout
+							</a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								{{ csrf_field() }}
+							</form>
+
+						</div>
+					</li>
+				</ul>
+			</div>
 		</div>
-	</div>
+		</nav>
+-->
 
-	<div id="main-content">
-		<div class="container-fluid">
+
+
+
+
+
+		<div class="container">
 			<h1 class="sr-only">See Notifications</h1>
 			<div class="dashboard-section">
 				<div class="section-heading clearfix">
@@ -179,11 +240,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="clearfix"></div>
-			<footer>
-				<p class="copyright">&copy; 2018 Shomie</p>
-			</footer>
-		</div>
+
+
 
 		@endsection

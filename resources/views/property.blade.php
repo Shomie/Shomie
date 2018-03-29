@@ -4,6 +4,10 @@
 
 
 @section('assets')
+
+<link href="{{ URL::asset('/datepicker/datepicker.css') }}" rel="stylesheet"/>
+<script src= "{{ URL::asset('/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+
 <link href="{{ URL::asset('/css/property.css') }}" rel="stylesheet"/>
 <script src= "{{ URL::asset('/js/property.js') }}" type="text/javascript"></script>
 
@@ -29,103 +33,110 @@ In the folder of skin CSS file there are also:
 
 
 <body class="property-page">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-          <span class="sr-only">Toggle Navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-
-        <!-- Branding Image -->
-        <span class="navbar-brand">
-          {{ config('app.name', 'shomie') }}
-        </span>
-      </div>
-
-      <div class="collapse navbar-collapse" id="app-navbar-collapse">
-        <!-- Left Side Of Navbar -->
-        <ul class="nav navbar-nav">
-          &nbsp;
-        </ul>
-
-        <!-- Right Side Of Navbar -->
-        <ul class="nav navbar-nav navbar-right">
-          <!-- Authentication Links -->
-          @if (Auth::guest())
-          <li><a href="{{ route('login') }}">Login</a></li>
-          <li><a href="{{ route('register') }}">Register</a></li>
-          @else
-
-          <li>
-            @if(Auth::user()->type == 0)
-            <a href="{{ route('erasmus_main_menu') }}">
-              <i class="fa fa-fw fa-bell-o"></i>
-              Notifications
-            </a>
-            @else
-            <a href="{{ route('landlord_notifications') }}">
-              <i class="fa fa-fw fa-location-arrow"></i>
-              Dashboard
-            </a>
-            @endif
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
 
 
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                Logout
-              </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-              </form>
-            </li>
-          </ul>
-        </li>
-        @endif
-      </ul>
-    </div>
+  <nav class="navbar fixed-top navbar-expand-lg bg-faded">
+	        <div class="container">
+	            <div class="navbar-translate">
+	                <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
+
+	                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+	                    <span class="navbar-toggler-icon"></span>
+	                    <span class="navbar-toggler-icon"></span>
+	                    <span class="navbar-toggler-icon"></span>
+	                </button>
+	            </div>
+							<div class="collapse navbar-collapse" id="navbarText">
+								<ul class="navbar-nav">
+
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
+											<span class="sr-only">(current)</span>
+										</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications
+											<span class="sr-only">(current)</span>
+										</a>
+									</li>
+
+
+									<li class="nav-item">
+										<a class="nav-link" href="#">Side Menu Items</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Pricing</a>
+									</li>
+								</ul>
+
+								<ul class="navbar-nav ml-md-auto d-md-flex">
+	                    <li class="dropdown nav-item">
+	                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+	                            <i class="material-icons">apps</i> Components
+	                        </a>
+	                        <div class="dropdown-menu dropdown-with-icons">
+	                            <a href="../index.html" class="dropdown-item">
+	                                <i class="material-icons">layers</i> All Components
+	                            </a>
+	                            <a href="http://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
+	                                <i class="material-icons">content_paste</i> Documentation
+	                            </a>
+	                        </div>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+	                            <i class="material-icons">cloud_download</i> Download
+	                        </a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
+	                            <i class="fa fa-twitter"></i>
+	                        </a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
+	                            <i class="fa fa-facebook-square"></i>
+	                        </a>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
+	                            <i class="fa fa-instagram"></i>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
+
+<div class="container" style="display:none;">
+  <div class="picture" itemscope itemtype="http://schema.org/ImageGallery">
+
+    @foreach($slider_images as $key => $image)
+    <?php static $i = 0; ?>
+
+    @if($i == 0)
+
+    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+      <a id="main" href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="0">
+        <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="Beach">
+      </a>
+    </figure>
+    @else
+
+    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+      <a href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="1">
+        <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="">
+      </a>
+    </figure>
+
+    @endif
+    @endforeach
   </div>
-</nav>
-
-
-<div class="picture" itemscope itemtype="http://schema.org/ImageGallery">
-
-  @foreach($slider_images as $key => $image)
-  <?php static $i = 0; ?>
-
-  @if($i == 0)
-
-  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <a id="main" href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="0">
-      <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="Beach">
-    </a>
-  </figure>
-  @else
-
-  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <a href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="1">
-      <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="">
-    </a>
-  </figure>
-
-  @endif
-  @endforeach
 </div>
 
-
 <div class="wrapper" style="background-color:white;">
-  <div class="container container-full">
+  <div class="container">
 
     <div class="panel panel-default ">
       <div class="panel-heading" style="padding:0;">
@@ -190,9 +201,14 @@ In the folder of skin CSS file there are also:
                   <div class="modal-body">
 
                     <form method="post" action="{{route('request_visit', ['id'=> $property->id]) }}" >
-                      <div class="fom-group" style="margin-top:10px;">
-                        <input class="datepicker booking center-block" type="text" name="visit_date" id="request-date" style="width:234px;"/>
+
+                      <div class="form-group">
+                      <div class="input-group date" id="timepicker5">
+                          <input type="text" class="form-control" name="visit_date" id="request-date"  />	<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                       </div>
+                  </div>
+
+
 
                       <div class="bootstrap-timepicker">
                         <input class="booking center-block" id="timepicker5" name="visit_time" type="text" style="width:234px;">

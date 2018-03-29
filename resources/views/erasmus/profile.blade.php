@@ -19,48 +19,9 @@
 
 <body>
 	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-btn">
-					<button type="button" class="btn-toggle-offcanvas"><i class="fa fa-angle-left rotate" aria-hidden="true"></i></button>
-				</div>
 
-				<span class="navbar-brand">
-					{{ config('app.name', 'shomie') }}
-				</span>
-				<div class="navbar-right">
+		
 
-					<div id="navbar-menu">
-						<ul class="nav navbar-nav">
-							<li>
-								<a href="{{ route('home') }}">
-									<i class="fa fa-fw fa-search"></i>
-									Home
-								</a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-									{{ Auth::user()->name }} <span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="{{ route('logout') }}"
-										onclick="event.preventDefault();
-										document.getElementById('logout-form').submit();">
-										Logout
-									</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-										{{ csrf_field() }}
-									</form>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</nav>
-	
 	<div id="left-sidebar" class="sidebar">
 		<button type="button" class="btn btn-xs btn-link btn-toggle-fullwidth">
 			<span class="sr-only">Toggle Fullwidth</span>

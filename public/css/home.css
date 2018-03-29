@@ -1,3 +1,10 @@
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+
 /* BEGIN Property stuff */
 .presentation, .type_room
 {
