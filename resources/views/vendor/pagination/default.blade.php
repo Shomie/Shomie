@@ -1,7 +1,7 @@
 @if ($paginator->hasPages())
 <nav>
 
-  <ul class="pagination text-center">
+  <ul class="pagination" style="justify-content: center;">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="page-item disabled">

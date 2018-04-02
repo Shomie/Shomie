@@ -254,9 +254,8 @@ Appartment
 
       </div>
 
-
-            <!-- To append other get variables -->
-            {{ $properties->appends(request()->except('page'))->links() }}
+        <!-- To append other get variables -->
+        {{ $properties->appends(request()->except('page'))->links() }}
     </div>
   </div>
 
