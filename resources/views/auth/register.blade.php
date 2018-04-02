@@ -9,7 +9,7 @@
 @section('content')
 <body class="signup-page">
 
-  <nav class="navbar fixed-top navbar-expand-lg bg-faded">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
@@ -59,51 +59,26 @@
   </nav>
 
 
-  <div class="page-header header-filter" filter-color="purple" data-parallax="true" style=" background-image: url(img/welcome/background.jpg); background-size: cover; background-position: top center;">
+  <div class="page-header" style="background-image: url(img/welcome/background.jpg); background-size: cover; background-position: top center;">
     <div class="container">
       <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="card card-signup">
-            <h2 class="card-title text-center">Register</h2>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-5 ml-auto">
-                  <div class="info info-horizontal">
-                    <div class="icon icon-rose">
-                      <i class="fa fa-eye fa-limit-size"></i>
-                    </div>
-                    <div class="description">
-                      <h4 class="info-title">Book visits</h4>
-                      <p class="description">
-                        Having an account you'll be granted access to book visits to rooms you like.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="info info-horizontal">
-                    <div class="icon icon-primary">
-                      <i class="fa fa-info fa-limit-size"></i>
-                    </div>
-                    <div class="description">
-                      <h4 class="info-title">Support</h4>
-                      <p class="description">
-                        Having an account it's easier for us to give you support if needed.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5 mr-auto">
-                  <div class="social text-center">
-                    <a href="{{ url('/auth/facebook') }}" class="btn btn-primary btn-round btn-just-icon">
-                      <i class="fa fa-facebook-square"></i>
-                    </a>
-                    <a href="{{ url('/auth/google') }}" class="btn btn-primary btn-round btn-just-icon">
-                      <i class="fa fa-google-plus"></i>
-                    </a>
-                    <h4> or register with other method </h4>
-                  </div>
-                  <form class="form" role="form" method="POST" action="{{ route('register') }}">
-                    {{ csrf_field() }}
-
+        <div class="col-md-12 ml-auto mr-auto">
+          <form class="form" role="form" method="POST" action="{{ route('register') }}">
+            {{ csrf_field() }}
+            <div class="card card-signup">
+              <h2 class="card-title text-center">Register</h2>
+              <div class="social text-center">
+                <a href="{{ url('/auth/facebook') }}" class="btn btn-primary btn-round btn-just-icon">
+                  <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="{{ url('/auth/google') }}" class="btn btn-primary btn-round btn-just-icon">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+                <h4> or register with other method </h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 mr-auto">
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -125,6 +100,8 @@
                         <input type="email" class="form-control" placeholder="Email..." name="email" value="{{ old('email') }}" required>
                       </div>
                     </div>
+                  </div>
+                  <div class="col-md-4 mr-auto">
 
                     <div class="form-group">
                       <div class="input-group">
@@ -166,14 +143,39 @@
                     </div>
 
 
-                  </form>
+                  </div>
+                  <div class="col-md-4 ml-auto">
+                    <div class="info info-horizontal">
+                      <div class="icon icon-rose">
+                        <i class="fa fa-eye fa-limit-size"></i>
+                      </div>
+                      <div class="description">
+                        <h4 class="info-title">Book visits</h4>
+                        <p class="description">
+                          Having an account you'll be granted access to book visits to rooms you like.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="info info-horizontal">
+                      <div class="icon icon-primary">
+                        <i class="fa fa-info fa-limit-size"></i>
+                      </div>
+                      <div class="description">
+                        <h4 class="info-title">Support</h4>
+                        <p class="description">
+                          Having an account it's easier for us to give you support if needed.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
+
             </div>
 
           </div>
-
-        </div>
+        </form>
       </div>
     </div>
     <footer class="footer">
@@ -181,12 +183,12 @@
         <nav class="pull-left">
           <ul>
             <li>
-              <a href="https://www.creative-tim.com">
+              <a href="#">
                 About Us
               </a>
             </li>
             <li>
-              <a href="https://www.creative-tim.com">
+              <a href="#">
                 FAQ
               </a>
             </li>

@@ -10,7 +10,7 @@
 <body>
 
 
-<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+  <nav class="navbar fixed-top navbar-expand-lg bg-faded">
         <div class="container">
             <div class="navbar-translate">
               <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
@@ -161,12 +161,12 @@
             <nav class="pull-left">
                 <ul>
                     <li>
-                      <a href="https://www.creative-tim.com">
+                      <a href="#">
                             About Us
                         </a>
                     </li>
                     <li>
-                      <a href="https://www.creative-tim.com">
+                      <a href="#">
                             FAQ
                         </a>
                     </li>
