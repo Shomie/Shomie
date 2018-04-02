@@ -1,0 +1,16 @@
+/* Remove the outline in the form controllers in the BOOTSTRAP V4 */
+
+.form-control:focus{
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+/* Limit the widht and height of fa icons for the login page */
+
+.fa-limit-size{
+  display: inline-block;
+   width:1.25em;
+   text-align:center;
+}

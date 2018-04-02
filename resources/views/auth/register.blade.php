@@ -1,157 +1,212 @@
 @extends('layouts.app')
 
+@section('assets')
+<!-- Internal resources -->
+
+
+@endsection
+
 @section('content')
 <body class="signup-page">
-    <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation-example">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+  <nav class="navbar fixed-top navbar-expand-lg bg-faded">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          @if (Auth::guest())
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}"><i class="material-icons">cloud_download</i>Login</a>
+          </li>
+          @else
+          @if(Auth::user()->type == 0)
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
+          </li>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'shomie') }}
-                    </a>
-                </div>
+          @else
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
+          </li>
 
-                <div class="collapse navbar-collapse" id="navigation-example">
+          @endif
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              {{ Auth::user()->name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="Preview">
+              <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+              </form>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                        @else
-
-                           <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                           </li>
-                        @endif
-                    </ul>
-                </div>
             </div>
-        </nav>
- 	<div class="wrapper">
-            <div class="header header-filter" style="background-image: url('/img/login/uc_2.jpg'); background-size: cover; background-position: top center;">
-	<div class="container">
-      <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-    	      <div class="card card-signup">
-                    <form class="form" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-				<div class="header header-success text-center">
-                                    <h4>Signup with</h4>
-                                    <div class="social-line">
-                                        <a href="{{ url('/auth/facebook') }}" class="btn btn-simple btn-just-icon">
-                                            <i class="fa fa-facebook-square"></i>
-                                        </a>
-                                        <a href="{{ url('/auth/twitter') }}" class="btn btn-simple btn-just-icon">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                        <a href="{{ url('/auth/google') }}" class="btn btn-simple btn-just-icon">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
+          </li>
 
-
-		<div class="content">
-			<div class="input-group">
-                            <span class="input-group-addon">
-                                 <i class="material-icons">account_box</i>
-                            </span>
-
-                       <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" required autofocus>
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-			</div>
-			<div class="input-group">
-                               <span class="input-group-addon">
-                                            <i class="material-icons">email</i>
-                                        </span>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-
-                                <input id="email" type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                         </div>
-			</div>
-			<div class="input-group">
-                            <span class="input-group-addon">
-                                 <i class="material-icons">phone</i>
-                            </span>
-
-                         <div class="form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
-                            <input id="name" type="text" class="form-control" name="phone_number" placeholder="Phone Number" value="{{ old('phone_number') }}" required autofocus>
-                                @if ($errors->has('phone_number'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('phone_number') }}</strong>
-                                    </span>
-                                @endif
-                         </div>
-			</div>
-			<div class="input-group">
-
-                               <span class="input-group-addon">
-                                   <i class="material-icons">lock_outline</i>
-                               </span>
-                       	    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                              </div>
-			</div>
-			<div class="input-group">
-
-                               <span class="input-group-addon">
-                               	<i class="material-icons">lock_outline</i>
-                               </span>
-                            <div class="form-group">
-                                <input id="password-confirm" type="password" class="form-control" placeholder="Password confirmation" name="password_confirmation" required>
-                            </div>
-			</div>
-                        <div class="form-group">
-                                <button type="submit" class="btn btn-simple btn-block">
-                                    Create new account
-                                </button>
-                        </div>
-			</div>
-                    </form>
-                </div>
-            </div>
-        </div>
+          @endif
+        </ul>
+      </div>
     </div>
-</div>
-@endsection
+  </nav>
+
+
+  <div class="page-header header-filter" filter-color="purple" data-parallax="true" style=" background-image: url(img/welcome/background.jpg); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-signup">
+            <h2 class="card-title text-center">Register</h2>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-5 ml-auto">
+                  <div class="info info-horizontal">
+                    <div class="icon icon-rose">
+                      <i class="fa fa-eye fa-limit-size"></i>
+                    </div>
+                    <div class="description">
+                      <h4 class="info-title">Book visits</h4>
+                      <p class="description">
+                        Having an account you'll be granted access to book visits to rooms you like.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="info info-horizontal">
+                    <div class="icon icon-primary">
+                      <i class="fa fa-info fa-limit-size"></i>
+                    </div>
+                    <div class="description">
+                      <h4 class="info-title">Support</h4>
+                      <p class="description">
+                        Having an account it's easier for us to give you support if needed.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 mr-auto">
+                  <div class="social text-center">
+                    <a href="{{ url('/auth/facebook') }}" class="btn btn-primary btn-round btn-just-icon">
+                      <i class="fa fa-facebook-square"></i>
+                    </a>
+                    <a href="{{ url('/auth/google') }}" class="btn btn-primary btn-round btn-just-icon">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                    <h4> or register with other method </h4>
+                  </div>
+                  <form class="form" role="form" method="POST" action="{{ route('register') }}">
+                    {{ csrf_field() }}
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                          </span>
+                        </div>
+                        <input type="text" name="name" class="form-control" placeholder="Name..." value="{{ old('name') }}" required autofocus>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">email</i>
+                          </span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Email..." name="email" value="{{ old('email') }}" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">phone</i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" name="phone_number" placeholder="Phone number..." value="{{ old('phone_number') }}" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                          </span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password..." name="password" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                          </span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password confirmation..." name="password_confirmation" required>
+                      </div>
+                    </div>
+
+
+
+                    <div class="text-center" style="padding-top:10px;">
+                      <button type="submit" class="btn btn-primary btn-round">Create new account</button>
+                    </div>
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <nav class="pull-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com">
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+                FACEBOOK
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          &copy; Shomie,
+          <script>
+          document.write(new Date().getFullYear())
+          </script>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+
+  @endsection

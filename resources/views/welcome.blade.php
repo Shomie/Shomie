@@ -57,12 +57,6 @@
                     </li>
 
                   @endif
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Like us on Facebook">
-                            <i class="fa fa-facebook-square"></i>
-                        </a>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -162,18 +156,23 @@
             </div>
         </div>
     </div>
-    <footer class="footer" style="background-color:#FBF6F5;">
+    <footer class="footer">
         <div class="container">
             <nav class="pull-left">
                 <ul>
                     <li>
-                        <a href="#">
+                      <a href="https://www.creative-tim.com">
                             About Us
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                      <a href="https://www.creative-tim.com">
                             FAQ
+                        </a>
+                    </li>
+                    <li>
+                        <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+                            FACEBOOK
                         </a>
                     </li>
                 </ul>
@@ -186,4 +185,7 @@
             </div>
         </div>
     </footer>
+
+  </div>
+
 @endsection
