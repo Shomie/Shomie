@@ -10,9 +10,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class NotificationNewRequests extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $notification;
-    protected $property;
-    protected $user;
+    protected $notification = null;
+    protected $property = null;
+    protected $user = null;
 
 
     /**
@@ -34,16 +34,17 @@ class NotificationNewRequests extends Mailable
      */
     public function build()
     {
-      $visit_date = $this->notification->value('visit_date');
-      $visit_time = $this->notification->value('visit_time');
-      $id = $this->notification->value('id');
-      $property_id = $this->property->value('id');
-      $landlord_id = $this->property->value('landlord_id');
 
-      $property_address = $this->property->value('address');
-      $property_floor = $this->property->value('floor');
-      $property_number = $this->property->value('number');
-      $user_name = $this->user->value('name');
+      $visit_date = $this->notification["visit_date"];
+      $visit_time = $this->notification["visit_time"];
+      $id = $this->notification["id"];
+      $property_id = $this->property["id"];
+      $landlord_id = $this->property["landlord_id"];
+
+      $property_address = $this->property["address"];
+      $property_floor = $this->property["floor"];
+      $property_number = $this->property["number"];
+      $user_name = $this->user["name"];
 
         return $this->view('emails.notification_new_requests')
         ->with([
@@ -54,7 +55,7 @@ class NotificationNewRequests extends Mailable
                 'property_address' => $property_address,
                 'property_floor' => $property_floor,
                 'property_number' => $property_number,
-                'landlord_id' => $landlord_id, 
+                'landlord_id' => $landlord_id,
                 'user_name'        => $user_name
               ]);
     }

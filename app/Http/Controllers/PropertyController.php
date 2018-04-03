@@ -95,7 +95,7 @@ public function RequestVisitToProperty($id)
   */
 
   /* Inputs */
-  $property = Property::where("id",$id)->first();  /*TODO: function to validate if the id is a valid property */
+    $property = Property::where("id",$id)->first();  /*TODO: function to validate if the id is a valid property */
   $user = Auth::user();
 
   $visit_date =    Request::input('visit_date');
@@ -112,8 +112,8 @@ public function RequestVisitToProperty($id)
 
   if($id_notification != null)
   {
-    $user = User::where('id','=', $user->id);
-    $notification = Communication::where('id','=', $id_notification);
+    $user = User::where('id','=', $user->id)->first();
+    $notification = Communication::where('id','=', $id_notification)->first();
 
     try {
       Mail::to("shomie.organization@gmail.com")->send(new NotificationNewRequests($notification, $property, $user));
