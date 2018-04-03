@@ -120,4 +120,22 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Fix Gmail SSL topics
+    |--------------------------------------------------------------------------
+    |
+    | Fix: stream_socket_enable_crypto(): SSL operation failed
+    |
+    |
+    */
+
+    'stream' => [
+      'ssl' => [
+        'allow_self_signed' => true,
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+     ],
+   ],
+
 ];

@@ -21,7 +21,7 @@
 	                    <span class="navbar-toggler-icon"></span>
 	                </button>
 	            </div>
-							<div class="collapse navbar-collapse" id="navbarText">
+							<div class="collapse navbar-collapse">
 								<ul class="navbar-nav">
 
 									<li class="nav-item">
@@ -97,7 +97,7 @@
 				<span class="navbar-toggler-icon"></span>
 
 			</button>
-			<div class="collapse navbar-collapse" id="navbarText">
+			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav animate side-nav">
 
 					<li class="nav-item">

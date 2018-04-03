@@ -28,7 +28,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-      <div class="collapse navbar-collapse" id="navbarText">
+      <div class="collapse navbar-collapse">
 
 
         <ul class="navbar-nav ml-md-auto d-md-flex">
@@ -195,7 +195,7 @@ Appartment
 
 
 
-<div class="main" id="properties">
+<div class="main">
 
   <div class="section">
     <div class="container">

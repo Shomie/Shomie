@@ -4,10 +4,6 @@
 
 
 @section('assets')
-
-<link href="{{ URL::asset('/datepicker/datepicker.css') }}" rel="stylesheet"/>
-<script src= "{{ URL::asset('/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
-
 <link href="{{ URL::asset('/css/property.css') }}" rel="stylesheet"/>
 <script src= "{{ URL::asset('/js/property.js') }}" type="text/javascript"></script>
 
@@ -30,148 +26,384 @@ In the folder of skin CSS file there are also:
 
 
 @section('content')
-
-
-<body class="property-page">
-
+<body>
 
   <nav class="navbar fixed-top navbar-expand-lg bg-faded">
-	        <div class="container">
-	            <div class="navbar-translate">
-	                <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
 
-	                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-	                    <span class="navbar-toggler-icon"></span>
-	                    <span class="navbar-toggler-icon"></span>
-	                    <span class="navbar-toggler-icon"></span>
-	                </button>
-	            </div>
-							<div class="collapse navbar-collapse" id="navbarText">
-								<ul class="navbar-nav">
-
-									<li class="nav-item">
-										<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
-											<span class="sr-only">(current)</span>
-										</a>
-									</li>
-
-									<li class="nav-item">
-										<a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications
-											<span class="sr-only">(current)</span>
-										</a>
-									</li>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
 
 
-									<li class="nav-item">
-										<a class="nav-link" href="#">Side Menu Items</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Pricing</a>
-									</li>
-								</ul>
+        <ul class="navbar-nav ml-md-auto d-md-flex">
 
-								<ul class="navbar-nav ml-md-auto d-md-flex">
-	                    <li class="dropdown nav-item">
-	                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-	                            <i class="material-icons">apps</i> Components
-	                        </a>
-	                        <div class="dropdown-menu dropdown-with-icons">
-	                            <a href="../index.html" class="dropdown-item">
-	                                <i class="material-icons">layers</i> All Components
-	                            </a>
-	                            <a href="http://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
-	                                <i class="material-icons">content_paste</i> Documentation
-	                            </a>
-	                        </div>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-	                            <i class="material-icons">cloud_download</i> Download
-	                        </a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
-	                            <i class="fa fa-twitter"></i>
-	                        </a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
-	                            <i class="fa fa-facebook-square"></i>
-	                        </a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
-	                            <i class="fa fa-instagram"></i>
-	                        </a>
-	                    </li>
-	                </ul>
-	            </div>
-	        </div>
-	    </nav>
+          @if (Auth::guest())
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">Register</a>
+          </li>
+          @else
+          @if(Auth::user()->type == 0)
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
+          </li>
 
-<div class="container" style="display:none;">
-  <div class="picture" itemscope itemtype="http://schema.org/ImageGallery">
+          @else
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
+          </li>
 
-    @foreach($slider_images as $key => $image)
-    <?php static $i = 0; ?>
+          @endif
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              {{ Auth::user()->name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="Preview">
+              <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+              </form>
 
-    @if($i == 0)
+            </div>
+          </li>
 
-    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a id="main" href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="0">
-        <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="Beach">
-      </a>
-    </figure>
-    @else
+          @endif
 
-    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="1">
-        <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="">
-      </a>
-    </figure>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    @endif
-    @endforeach
+  <!-- Modal bellow -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Request visit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{{route('request_visit', ['id'=> $property->id]) }}" >
+            <div class="fom-group" style="margin-top:10px;">
+              <input class="datepicker booking center-block" type="text" name="visit_date" id="request-date" style="width:234px;"/>
+            </div>
+
+            <div class="bootstrap-timepicker">
+              <input class="booking center-block" id="timepicker5" name="visit_time" type="text" style="width:234px;">
+              <i class="icon-time"></i>
+            </div>
+
+            <button class="btn btn-default btn-success btn-search-submit" type="submit">Request Visit</button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}"/> <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
+
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal above -->
+
+
+  <div class="main">
+    <!-- Photo Swipe all objects creation. This shall be hidden from the user -->
+    <div class="picture" itemscope itemtype="http://schema.org/ImageGallery" style="display:none;">>
+
+      @foreach($slider_images as $key => $image)
+      <?php static $i = 0; ?>
+
+      @if($i == 0)
+
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a id="main" href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="0">
+          <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="Beach">
+        </a>
+      </figure>
+      @else
+
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="1">
+          <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="">
+        </a>
+      </figure>
+
+      @endif
+      @endforeach
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <!-- New code bellow -->
+
+        <div class="row">
+          <div class="col-12 col-md-7">
+
+            <div class="card">
+
+
+              <?php
+
+              $image_search = "img/RoomsPics/". $property->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+              $images = glob($image_search, GLOB_BRACE);
+
+              if(count($images) == 0)
+              {
+                /* If the main image is not found search for one existing image */
+                $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+                $images = glob($image_search, GLOB_BRACE);
+              }
+
+              if(!empty($images))
+              {
+                echo "<img src='/$images[0]' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
+              }
+              else
+              {
+                echo "<img src='/img/not_available.jpg' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
+              }
+              ?>
+
+
+                 <div class="card-body">
+                <p class="card-text">
+                  {{ $property->description }}
+                </p>
+              </div>
+
+
+
+            </div>
+
+
+
+          </div>
+          <div class="col-12 col-md-5">
+
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Information</h4>
+                <h6 class="card-title">{{$property->presentation}} {{$property->zone}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $property->price }}€ per month</h6>
+
+
+                <div class="d-flex flex-wrap justify-content-start">
+                  <div class="p-2">
+                    @if ($property->type === "appartment")
+                    <i class="fa fa-bed"></i>
+                    Apartment
+                    @elseif ($property->type === "single_room")
+                    <i class="fa fa-bed"></i>
+                    Single Room
+                    @elseif ($property->type === "double_room")
+                    <i class="fa fa-bed"></i>
+                    Double Room
+                    @else
+
+                    @endif
+                  </div>
+                  <div class="p-2">
+                    @if ($property->type === "appartment")
+                    <i class="fa fa-bed"></i>
+                    Apartment
+                    @elseif ($property->type === "single_room")
+                    <i class="fa fa-bed"></i>
+                    Single Room
+                    @elseif ($property->type === "double_room")
+                    <i class="fa fa-bed"></i>
+                    Double Room
+                    @else
+
+                    @endif
+                  </div>
+                  <div class="p-2">
+                    @if ($property->type === "appartment")
+                    <i class="fa fa-bed"></i>
+                    Apartment
+                    @elseif ($property->type === "single_room")
+                    <i class="fa fa-bed"></i>
+                    Single Room
+                    @elseif ($property->type === "double_room")
+                    <i class="fa fa-bed"></i>
+                    Double Room
+                    @else
+
+                    @endif
+                  </div>
+                  <div class="p-2">
+                    @if ($property->type === "appartment")
+                    <i class="fa fa-bed"></i>
+                    Apartment
+                    @elseif ($property->type === "single_room")
+                    <i class="fa fa-bed"></i>
+                    Single Room
+                    @elseif ($property->type === "double_room")
+                    <i class="fa fa-bed"></i>
+                    Double Room
+                    @else
+
+                    @endif
+                  </div>
+                  <div class="p-2">
+                    @if ($property->type === "appartment")
+                    <i class="fa fa-bed"></i>
+                    Apartment
+                    @elseif ($property->type === "single_room")
+                    <i class="fa fa-bed"></i>
+                    Single Room
+                    @elseif ($property->type === "double_room")
+                    <i class="fa fa-bed"></i>
+                    Double Room
+                    @else
+
+                    @endif
+                  </div>
+
+                  <div class="p-2">
+                  @if($property->capacity>0)
+                  <i class="fa fa-users"></i>
+                  {{$property->capacity}} Flatmates
+                  @endif
+                </div>
+
+                  <div class="p-2">
+                    @if($property->has_living_room===1)
+                    <i class="fa fa-tv"></i>
+                    Living room
+                    @endif
+                  </div>
+
+                  <div class="p-2">
+                    @if($property->washing_machine===1)
+
+                    <i class="fa fa-shopping-basket"></i>
+                    Washing machine
+
+                    @endif
+                  </div>
+
+                  <div class="p-2">
+                    @if($property->has_cleaning===1)
+
+                    <i class="fa fa-trash"></i>
+                    Cleaning House
+
+
+                    @endif
+                  </div>
+
+                  <div class="p-2">
+                    @if($property->water===1)
+                    <i class="fa fa-fw fa-check accepted"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected"></i>
+                    @endif
+                    Water included
+                  </div>
+
+
+                  <div class="p-2">
+                    @if($property->gas===1)
+                    <i class="fa fa-fw fa-check accepted"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected"></i>
+                    @endif
+                    Gas included
+                  </div>
+
+                  <div class="p-2">
+                    @if($property->electricity===1)
+                    <i class="fa fa-fw fa-check accepted"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected"></i>
+                    @endif
+                    Electricity included
+                  </div>
+
+                  <div class="p-2">
+                    @if($property->internet===1)
+                    <i class="fa fa-fw fa-check accepted"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected"></i>
+                    @endif
+                    Internet included
+                  </div>
+
+                  <div class="p-2">
+
+                  </div>
+
+
+                </div>
+
+
+
+                <div class="col-12 col-md-12">
+                  <div class="text-center" style="padding-top:10px;">
+                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#exampleModal">
+                      Book a visit
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+      <!-- New code above -->
+    </div>
+
   </div>
 </div>
 
-<div class="wrapper" style="background-color:white;">
-  <div class="container">
+
+
+
+<div class="wrapper">
+
+
+
+
+
+
+
+  <div class="container container-full">
 
     <div class="panel panel-default ">
       <div class="panel-heading" style="padding:0;">
 
-        <?php
 
-        $image_search = "img/RoomsPics/". $property->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
-        $images = glob($image_search, GLOB_BRACE);
-
-        if(count($images) == 0)
-        {
-          /* If the main image is not found search for one existing image */
-          $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-          $images = glob($image_search, GLOB_BRACE);
-        }
-
-        if(!empty($images))
-        {
-          echo "<img src='/$images[0]' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
-        }
-        else
-        {
-          echo "<img src='/img/not_available.jpg' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
-        }
-        ?>
 
 
       </div>
 
       <div class="panel-body">
-        <div class="col-md-8 col-sm-12" style="margin-top: 10px;">
-          <p class="description">
-            {{ $property->description }}
-          </p>
-        </div>
+
 
         <div class="col-md-4 col-sm-12" style="padding:0px;">
           <div class="panel panel-default" style="box-shadow: none;border: 1px solid #cbcbcb;border-radius:0px;border-right:none;border-bottom:none;">
@@ -201,14 +433,9 @@ In the folder of skin CSS file there are also:
                   <div class="modal-body">
 
                     <form method="post" action="{{route('request_visit', ['id'=> $property->id]) }}" >
-
-                      <div class="form-group">
-                      <div class="input-group date" id="timepicker5">
-                          <input type="text" class="form-control" name="visit_date" id="request-date"  />	<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                      <div class="fom-group" style="margin-top:10px;">
+                        <input class="datepicker booking center-block" type="text" name="visit_date" id="request-date" style="width:234px;"/>
                       </div>
-                  </div>
-
-
 
                       <div class="bootstrap-timepicker">
                         <input class="booking center-block" id="timepicker5" name="visit_time" type="text" style="width:234px;">
@@ -247,7 +474,7 @@ In the folder of skin CSS file there are also:
               <div class="pull-left">
                 @if ($property->type === "appartment")
                 <i class="fa fa-home"></i>
-                  Apartment
+                Apartment
                 @elseif ($property->type === "single_room")
                 <i class="fa fa-bed"></i>
                 {{"Single Room"}}
