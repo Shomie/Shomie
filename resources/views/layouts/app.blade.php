@@ -13,16 +13,11 @@
 
   <title>{{ config('app.name', 'shomie') }}</title>
 
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-
   <link rel="stylesheet" href="{{ URL::asset('/material-kit/css/material-kit.min.css?v=2.0.2')}}" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-     <link rel="stylesheet" href="{{ URL::asset('/css/global.css')}}" />
+  <link rel="stylesheet" href="{{ URL::asset('/css/global.css')}}" />
 
   <script src="{{ URL::asset('/material-kit/js/core/jquery.min.js') }}" type="text/javascript"></script>
 

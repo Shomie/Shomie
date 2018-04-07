@@ -24,132 +24,62 @@
 							<div class="collapse navbar-collapse">
 								<ul class="navbar-nav">
 
+
+
+									@if (Auth::guest())
+									@else
+
+										@if(Auth::user()->type == 0)
+										<li class="nav-item">
+											<a class="nav-link" href="{{ route('home') }}">Search Room</a>
+										</li>
+
+										@else
+										<li class="nav-item">
+											<a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
+										</li>
+
+										@endif
+									@endif
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
 											<span class="sr-only">(current)</span>
 										</a>
 									</li>
 
-									<li class="nav-item">
-										<a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications
-											<span class="sr-only">(current)</span>
-										</a>
-									</li>
-
-
-									<li class="nav-item">
-										<a class="nav-link" href="#">Side Menu Items</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="#">Pricing</a>
-									</li>
 								</ul>
 
 								<ul class="navbar-nav ml-md-auto d-md-flex">
-	                    <li class="dropdown nav-item">
-	                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-	                            <i class="material-icons">apps</i> Components
-	                        </a>
-	                        <div class="dropdown-menu dropdown-with-icons">
-	                            <a href="../index.html" class="dropdown-item">
-	                                <i class="material-icons">layers</i> All Components
-	                            </a>
-	                            <a href="http://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
-	                                <i class="material-icons">content_paste</i> Documentation
-	                            </a>
-	                        </div>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-	                            <i class="material-icons">cloud_download</i> Download
-	                        </a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
-	                            <i class="fa fa-twitter"></i>
-	                        </a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
-	                            <i class="fa fa-facebook-square"></i>
-	                        </a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
-	                            <i class="fa fa-instagram"></i>
-	                        </a>
-	                    </li>
-	                </ul>
+
+				          @if (Auth::guest())
+				          <li class="nav-item">
+				            <a class="nav-link" href="{{ route('login') }}">Login</a>
+				          </li>
+				          <li class="nav-item">
+				            <a class="nav-link" href="{{ route('register') }}">Register</a>
+				          </li>
+				          @else
+				          <li class="nav-item dropdown">
+				            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+				              {{ Auth::user()->name }}
+				            </a>
+				            <div class="dropdown-menu" aria-labelledby="Preview">
+				              <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+				                Logout
+				              </a>
+				              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				                {{ csrf_field() }}
+				              </form>
+
+				            </div>
+				          </li>
+
+				          @endif
+
+				        </ul>
 	            </div>
 	        </div>
 	    </nav>
-
-
-	<!--
-		<nav class="navbar navbar-default navbar-expand-sm navbar-light bg-faded">
-		<div class="container">
-			<span class="navbar-toggler-icon leftmenutrigger"></span>
-			<a class="navbar-brand" href="#">{{ config('app.name', 'shomie') }}</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-
-				<span class="navbar-toggler-icon"></span>
-				<span class="navbar-toggler-icon"></span>
-				<span class="navbar-toggler-icon"></span>
-
-			</button>
-			<div class="collapse navbar-collapse">
-				<ul class="navbar-nav animate side-nav">
-
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-
-
-					<li class="nav-item">
-						<a class="nav-link" href="#">Side Menu Items</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Pricing</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-md-auto d-md-flex">
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('home') }}">Home
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button">
-							{{ Auth::user()->name }}
-						</a>
-						<div class="dropdown-menu" aria-labelledby="Preview">
-							<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-								Logout
-							</a>
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-								{{ csrf_field() }}
-							</form>
-
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-		</nav>
--->
-
-
-
-
 
 
 		<div class="container">

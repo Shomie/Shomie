@@ -1,5 +1,7 @@
-
-
+.bootstrap-datetimepicker-widget table td.today:before
+{
+  display:none;
+}
 
 .accepted {
   color: #468847;
@@ -38,16 +40,4 @@
     cursor: pointer;
     overflow:hidden;
   }
-}
-
-
-/* Layout date and time classes/ids */
-.datepicker {
-  background-color: #fff ;
-  color: #333 ;
-}
-
-#timepicker5{
-  background-color: #fff ;
-  color: #333 ;
 }

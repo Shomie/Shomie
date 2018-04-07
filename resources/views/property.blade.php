@@ -96,265 +96,308 @@ In the folder of skin CSS file there are also:
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form method="post" action="{{route('request_visit', ['id'=> $property->id]) }}" >
-          <div class="modal-body">
-            <div class="text-center">
-              <div class="fom-group" style="margin-top:10px;">
-                <input class="datepicker booking center-block" type="text" name="visit_date" id="request-date" style="width:234px;"/>
-              </div>
 
-              <div class="bootstrap-timepicker">
-                <input class="booking center-block" id="timepicker5" name="visit_time" type="text" style="width:234px;">
-                <i class="icon-time"></i>
-              </div>
+        <div class="modal-body">
 
-              <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-              <!-- attack protection, laravel needs this to be used in routes otherwise fails -->
+          <!-- input with datetimepicker -->
+
+          <div class="form-group">
+              <label class="label-control">Date</label>
+              <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;"/>
+          </div>
+
+          <div class="form-group">
+              <label class="label-control">Time</label>
+              <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;"/>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+
+          <form method="post">
+            <div class="form-group"> <!-- Submit button -->
+              <button type="button" class="btn btn-primary btn-round btn-rose">
+                Submit
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal above -->
+
+<!-- Photo Swipe all objects creation. This shall be hidden from the user -->
+<div class="picture" itemscope itemtype="http://schema.org/ImageGallery" style="display:none;">>
+
+  @foreach($slider_images as $key => $image)
+  <?php static $i = 0; ?>
+
+  @if($i == 0)
+
+  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <a id="main" href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="0">
+      <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="Beach">
+    </a>
+  </figure>
+  @else
+
+  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <a href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="1">
+      <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="">
+    </a>
+  </figure>
+
+  @endif
+  @endforeach
+</div>
+
+<!-- Photo Swipe Menus -->
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="pswp__bg"></div>
+  <div class="pswp__scroll-wrap">
+
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <div class="pswp__counter"></div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" type="submit">Send</button>
-          </div>
-        </form>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
       </div>
     </div>
   </div>
-  <!-- Modal above -->
-
-  <!-- Photo Swipe all objects creation. This shall be hidden from the user -->
-  <div class="picture" itemscope itemtype="http://schema.org/ImageGallery" style="display:none;">>
-
-    @foreach($slider_images as $key => $image)
-    <?php static $i = 0; ?>
-
-    @if($i == 0)
-
-    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a id="main" href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="0">
-        <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="Beach">
-      </a>
-    </figure>
-    @else
-
-    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a href="/{{ $image }}" itemprop="contentUrl" data-size="1000x667" data-index="1">
-        <img src="/{{ $image }}" height="400" width="600" itemprop="thumbnail" alt="">
-      </a>
-    </figure>
-
-    @endif
-    @endforeach
-  </div>
-
-  <!-- Photo Swipe Menus -->
-
-  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="pswp__bg"></div>
-    <div class="pswp__scroll-wrap">
-
-      <div class="pswp__container">
-        <div class="pswp__item"></div>
-        <div class="pswp__item"></div>
-        <div class="pswp__item"></div>
-      </div>
-
-      <div class="pswp__ui pswp__ui--hidden">
-        <div class="pswp__top-bar">
-          <div class="pswp__counter"></div>
-          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-          <div class="pswp__preloader">
-            <div class="pswp__preloader__icn">
-              <div class="pswp__preloader__cut">
-                <div class="pswp__preloader__donut"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-          <div class="pswp__share-tooltip"></div>
-        </div>
-        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-        </button>
-        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-        </button>
-        <div class="pswp__caption">
-          <div class="pswp__caption__center"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
 
-  <div class="main">
+<div class="main">
 
 
-    <div class="section">
+  <div class="section">
+
+    @if($property->availability !== "available")
+    <div class="alert alert-danger">
       <div class="container">
-        <!-- New code bellow -->
+        <div class="alert-icon">
+          <i class="material-icons">error_outline</i>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"><i class="material-icons">clear</i></span>
+        </button>
+        <b>House not available:</b> This house is no longe available for booking visits. Somebody else got it first.
+      </div>
+    </div>
+    @endif
 
-        <div class="row">
-          <div class="col-12 col-md-7">
+    <div class="container">
+      <!-- New code bellow -->
 
-            <div class="card" style="height:500px;">
+      <div class="row">
 
-              <?php
 
-              $image_search = "img/RoomsPics/". $property->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+        <div class="col-12 col-md-7">
+
+          <div class="card" style="height:500px;">
+
+            <?php
+
+            $image_search = "img/RoomsPics/". $property->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+            $images = glob($image_search, GLOB_BRACE);
+
+            if(count($images) == 0)
+            {
+              /* If the main image is not found search for one existing image */
+              $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
               $images = glob($image_search, GLOB_BRACE);
+            }
 
-              if(count($images) == 0)
-              {
-                /* If the main image is not found search for one existing image */
-                $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-                $images = glob($image_search, GLOB_BRACE);
-              }
-
-              if(!empty($images))
-              {
-                echo "<img src='/$images[0]' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
-              }
-              else
-              {
-                echo "<img src='/img/not_available.jpg' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
-              }
-              ?>
+            if(!empty($images))
+            {
+              echo "<img src='/$images[0]' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
+            }
+            else
+            {
+              echo "<img src='/img/not_available.jpg' id='main_trigger' alt='Room Image' class='header_image img-responsive'>";
+            }
+            ?>
 
 
-              <div class="card-body">
-                <p class="card-text">
-                  {{ $property->description }}
-                </p>
-                <div class="pull-right">
-                  <strong>{{ $property->price }}€ per month</strong>
-                </div>
+            <div class="card-body">
+              <p class="card-text">
+                {{ $property->description }}
+              </p>
+              <div class="pull-right">
+                <strong>{{ $property->price }}€ per month</strong>
               </div>
-
-
-
             </div>
 
 
 
           </div>
-          <div class="col-12 col-md-5">
-
-            <div class="card" style="height:500px">
-              <div class="card-body">
-                <h4 class="card-title">Information</h4>
-                <h6 class="card-title">{{$property->presentation}} {{$property->zone}}</h6>
 
 
-                <div class="d-flex flex-wrap">
-                  <div class="p-2">
+
+        </div>
+        <div class="col-12 col-md-5">
+
+          <div class="card" style="height:500px">
+            <div class="card-body">
+              <h4 class="card-title">Information</h4>
+              <h6 class="card-title">{{$property->presentation}} {{$property->zone}}</h6>
+
+
+              <div class="d-flex flex-wrap">
+                <div class="p-1">
+
+                  <span>
+
+
+                    <i class="fa fa-bed fa-lg"></i>
+
                     @if ($property->type === "appartment")
-                    <i class="fa fa-bed"></i>
                     Apartment
                     @elseif ($property->type === "single_room")
-                    <i class="fa fa-bed"></i>
                     Single Room
                     @elseif ($property->type === "double_room")
-                    <i class="fa fa-bed"></i>
                     Double Room
                     @else
 
                     @endif
-                  </div>
-
-                  <div class="p-2">
-                    @if($property->capacity>0)
-                    <i class="fa fa-users"></i>
-                    {{$property->capacity}} Flatmates
-                    @endif
-                  </div>
-
-                  <div class="p-2">
-                    @if($property->has_living_room===1)
-                    <i class="fa fa-tv"></i>
-                    Living room
-                    @endif
-                  </div>
-
-                  <div class="p-2">
-                    @if($property->washing_machine===1)
-
-                    <i class="fa fa-shopping-basket"></i>
-                    Washing machine
-
-                    @endif
-                  </div>
-
-                  <div class="p-2">
-                    @if($property->has_cleaning===1)
-
-                    <i class="fa fa-trash"></i>
-                    Cleaning included
-
-
-                    @endif
-                  </div>
-
-                  <div class="p-2">
-                    @if($property->water===1)
-                    <i class="fa fa-fw fa-check accepted"></i>
-                    @else
-                    <i class="fa fa-fw fa-times rejected"></i>
-                    @endif
-                    Water included
-                  </div>
-
-
-                  <div class="p-2">
-                    @if($property->gas===1)
-                    <i class="fa fa-fw fa-check accepted"></i>
-                    @else
-                    <i class="fa fa-fw fa-times rejected"></i>
-                    @endif
-                    Gas included
-                  </div>
-
-                  <div class="p-2">
-                    @if($property->electricity===1)
-                    <i class="fa fa-fw fa-check accepted"></i>
-                    @else
-                    <i class="fa fa-fw fa-times rejected"></i>
-                    @endif
-                    Electricity included
-                  </div>
-
-                  <div class="p-2">
-                    @if($property->internet===1)
-                    <i class="fa fa-fw fa-check accepted"></i>
-                    @else
-                    <i class="fa fa-fw fa-times rejected"></i>
-                    @endif
-                    Internet included
-                  </div>
-
-
+                  </span>
 
 
                 </div>
 
+                <div class="p-1">
+                  @if($property->capacity>0)
+                  <span>
 
-                <div class="text-center">
-                  @if(Auth::user()->type != 1 && $property->availability == "available")
-                  <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#exampleModal">
-                    Book a visit
-                  </button>
-                  @else
-                  <!-- If not a student or the house if not avauilable don't allow to book visits -->
-                  <button type="button" class="btn btn-primary btn-round">
-                    Book a visit
-                  </button>
+                    <i class="fa fa-users fa-lg"></i>
+                    {{$property->capacity}} Flatmates
+                  </span>
+                  @endif
+
+                </div>
+
+                <div class="p-1">
+                  @if($property->has_living_room===1)
+                  <span>
+
+                    <i class="fa fa-tv fa-lg"></i>
+                    Living room
+                  </span>
+
                   @endif
                 </div>
 
+                <div class="p-1">
+                  @if($property->washing_machine===1)
+                  <span>
+                    <i class="fa fa-shopping-basket fa-lg"></i>
+                    Washing machine
+                  </span>
+
+                  @endif
+                </div>
+
+                <div class="p-1">
+                  @if($property->has_cleaning===1)
+                  <span>
+                    <i class="fa fa-trash fa-lg"></i>
+                    Cleaning included
+                  </span>
+
+                  @endif
+                </div>
+
+                <div class="p-1">
+                  <span>
+                    @if($property->water===1)
+                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
+                    @endif
+                    Water included
+                  </span>
+
+                </div>
+
+
+                <div class="p-1">
+                  <span>
+                    @if($property->gas===1)
+                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
+                    @endif
+                    Gas included
+                  </span>
+
+                </div>
+
+                <div class="p-1">
+                  <span>
+                    @if($property->electricity===1)
+                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
+                    @endif
+                    Electricity included
+                  </span>
+
+                </div>
+
+                <div class="p-1">
+                  <span>
+                    @if($property->internet===1)
+                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
+                    @else
+                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
+                    @endif
+                    Internet included
+                  </span>
+
+                </div>
+
+
+
               </div>
-
-
-
+            </div>
+            <div class="card-footer">
+              <div class="text-center">
+                @if(Auth::user()->type != 1 && $property->availability == "available")
+                <button type="button" class="btn btn-primary btn-round btn-rose" data-toggle="modal" data-target="#exampleModal">
+                  Book a visit
+                </button>
+                @else
+                <!-- If not a student or the house if not avauilable don't allow to book visits -->
+                @endif
+              </div>
             </div>
 
 
@@ -364,59 +407,62 @@ In the folder of skin CSS file there are also:
         </div>
 
 
-
       </div>
 
-      <div class="container">
 
-        <div class="row">
-          <div class="col-sm-12">
-            <div style=" height: 500px;">
-              {!! Mapper::render() !!}
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <!-- TODO; Insert footer here or delete this div -->
-              </div>
-            </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div style=" height: 500px;">
+            {!! Mapper::render() !!}
           </div>
 
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <!-- TODO; Insert footer here or delete this div -->
+            </div>
+          </div>
         </div>
 
       </div>
 
     </div>
-    <footer class="footer">
-      <div class="container">
-        <nav class="pull-left">
-          <ul>
-            <li>
-              <a href="#">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                FAQ
-              </a>
-            </li>
-            <li>
-              <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
-                FACEBOOK
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright pull-right">
-          &copy; Shomie,
-          <script>
-          document.write(new Date().getFullYear())
-          </script>
-        </div>
-      </div>
-    </footer>
 
   </div>
+  <footer class="footer">
+    <div class="container">
+      <nav class="pull-left">
+        <ul>
+          <li>
+            <a href="#">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+              FACEBOOK
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright pull-right">
+        &copy; Shomie,
+        <script>
+        document.write(new Date().getFullYear())
+        </script>
+      </div>
+    </div>
+  </footer>
 
-  @endsection
+</div>
+
+@endsection

@@ -1,28 +1,32 @@
-$(function() {
-
-  var date_today = new Date();
-  var day = date_today.getDate();
-  var month = date_today.getMonth()+1; /* January is 0 */
-  var year = date_today.getFullYear();
-
-  if(day < 10){
-    day = '0' + day;
-  }
-  if(month < 10){
-    month = '0' + month;
-  }
-  var date_today = day+'/'+month+'/'+year;
-  document.getElementById("request-date").value = date_today;
+$( document ).ready(function() {
 
 
-  $('#timepicker5').datetimepicker();
+  var dateNow = moment().format('YYYY-MM-DD');
+  var timeNow = moment().format('YYYY-MM-DD hh:mm');
 
-
-
-
-  $( "#request-date" ).datepicker({
-    dateFormat: 'dd-mm-yy'
+  $('#calendarDate').datetimepicker({
+    format: 'DD/MM/YYYY',
+    defaultDate: moment(),
+    minDate: moment(),
+    sideBySide: true,
+    keepOpen: true,
+    icons: {
+      previous: 'fa fa-chevron-left',
+      next: 'fa fa-chevron-right',
+    }
   });
+
+  $('#calendarTime').datetimepicker({
+    format: 'hh:mm',
+    defaultDate: moment(),
+      sideBySide: true,
+    keepOpen: true,
+    icons: {
+      up: "fa fa-chevron-up",
+      down: "fa fa-chevron-down"
+    }
+  });
+
 
 
   $('#main_trigger').on('click', function(event){
@@ -32,7 +36,7 @@ $(function() {
     console.log("OLA");
 
 
-$('#main').trigger( "click" );
+    $('#main').trigger( "click" );
 
   });
 
@@ -81,10 +85,6 @@ $('#main').trigger( "click" );
     });
 
   });
-
-
-
-
 
 
 });
