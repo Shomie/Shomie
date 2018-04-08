@@ -102,13 +102,13 @@ In the folder of skin CSS file there are also:
           <!-- input with datetimepicker -->
 
           <div class="form-group">
-              <label class="label-control">Date</label>
-              <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;"/>
+            <label class="label-control">Date</label>
+            <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;"/>
           </div>
 
           <div class="form-group">
-              <label class="label-control">Time</label>
-              <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;"/>
+            <label class="label-control">Time</label>
+            <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;"/>
           </div>
 
         </div>
@@ -271,14 +271,11 @@ In the folder of skin CSS file there are also:
               <h6 class="card-title">{{$property->presentation}} {{$property->zone}}</h6>
 
 
-              <div class="d-flex flex-wrap">
-                <div class="p-1">
+              <div class="row">
+                <div class="span12">
 
-                  <span>
-
-
-                    <i class="fa fa-bed fa-lg"></i>
-
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge">  <i class="fa fa-bed fa-lg" style="color:black;"></i></span>
                     @if ($property->type === "appartment")
                     Apartment
                     @elseif ($property->type === "single_room")
@@ -288,181 +285,187 @@ In the folder of skin CSS file there are also:
                     @else
 
                     @endif
-                  </span>
+                  </button>
 
 
-                </div>
 
-                <div class="p-1">
+
+
                   @if($property->capacity>0)
-                  <span>
-
-                    <i class="fa fa-users fa-lg"></i>
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge"> <i class="fa fa-users fa-lg" style="color:black;"></i></span>
                     {{$property->capacity}} Flatmates
-                  </span>
+                  </button>
                   @endif
 
-                </div>
 
-                <div class="p-1">
+
                   @if($property->has_living_room===1)
-                  <span>
-
-                    <i class="fa fa-tv fa-lg"></i>
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge"> <i class="fa fa-tv fa-lg" style="color:black;"></i></span>
                     Living room
-                  </span>
+                  </button>
 
                   @endif
-                </div>
 
-                <div class="p-1">
+
+
                   @if($property->washing_machine===1)
-                  <span>
-                    <i class="fa fa-shopping-basket fa-lg"></i>
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge"> <i class="fa fa-shopping-basket fa-lg" style="color:black;"></i></span>
                     Washing machine
-                  </span>
+                  </button>
 
                   @endif
-                </div>
 
-                <div class="p-1">
+
+
                   @if($property->has_cleaning===1)
-                  <span>
-                    <i class="fa fa-trash fa-lg"></i>
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge"> <i class="fa fa-trash fa-lg" style="color:black;"></i></span>
                     Cleaning included
-                  </span>
+                  </button>
 
                   @endif
-                </div>
 
-                <div class="p-1">
-                  <span>
-                    @if($property->water===1)
-                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
-                    @else
-                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
-                    @endif
+
+
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge">
+                      @if($property->water===1)
+                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                      @else
+                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                      @endif
+                    </span>
                     Water included
-                  </span>
-
-                </div>
+                  </button>
 
 
-                <div class="p-1">
-                  <span>
-                    @if($property->gas===1)
-                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
-                    @else
-                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
-                    @endif
+
+
+
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge">
+                      @if($property->gas===1)
+                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                      @else
+                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                      @endif
+                    </span>
+
                     Gas included
-                  </span>
+                  </button>
 
-                </div>
 
-                <div class="p-1">
-                  <span>
-                    @if($property->electricity===1)
-                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
-                    @else
-                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
-                    @endif
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge">
+                      @if($property->electricity===1)
+                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                      @else
+                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                      @endif
+                    </span>
                     Electricity included
-                  </span>
+                  </button>
+
+
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                    <span class="badge">
+                      @if($property->internet===1)
+                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                      @else
+                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                      @endif
+                    </span>
+
+                      Internet included
+                    </button>
+
+
+                  </div>
+                </div>
+                  <!-- Room Features -->
+
+
+
 
                 </div>
-
-                <div class="p-1">
-                  <span>
-                    @if($property->internet===1)
-                    <i class="fa fa-fw fa-check accepted fa-lg"></i>
+                <div class="card-footer">
+                  <div class="text-center">
+                    @if(Auth::user()->type != 1 && $property->availability == "available")
+                    <button type="button" class="btn btn-primary btn-round btn-rose" data-toggle="modal" data-target="#exampleModal">
+                      Book a visit
+                    </button>
                     @else
-                    <i class="fa fa-fw fa-times rejected fa-lg"></i>
+                    <!-- If not a student or the house if not avauilable don't allow to book visits -->
                     @endif
-                    Internet included
-                  </span>
-
+                  </div>
                 </div>
 
 
+              </div>
 
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="text-center">
-                @if(Auth::user()->type != 1 && $property->availability == "available")
-                <button type="button" class="btn btn-primary btn-round btn-rose" data-toggle="modal" data-target="#exampleModal">
-                  Book a visit
-                </button>
-                @else
-                <!-- If not a student or the house if not avauilable don't allow to book visits -->
-                @endif
-              </div>
+
             </div>
 
 
           </div>
+
 
 
         </div>
 
+        <div class="container">
 
-      </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div style=" height: 500px;">
+                {!! Mapper::render() !!}
+              </div>
 
-
-
-    </div>
-
-    <div class="container">
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div style=" height: 500px;">
-            {!! Mapper::render() !!}
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <!-- TODO; Insert footer here or delete this div -->
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <!-- TODO; Insert footer here or delete this div -->
+                </div>
+              </div>
             </div>
+
           </div>
+
         </div>
 
       </div>
+      <footer class="footer">
+        <div class="container">
+          <nav class="pull-left">
+            <ul>
+              <li>
+                <a href="#">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+                  FACEBOOK
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright pull-right">
+            &copy; Shomie,
+            <script>
+            document.write(new Date().getFullYear())
+            </script>
+          </div>
+        </div>
+      </footer>
 
     </div>
 
-  </div>
-  <footer class="footer">
-    <div class="container">
-      <nav class="pull-left">
-        <ul>
-          <li>
-            <a href="#">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              FAQ
-            </a>
-          </li>
-          <li>
-            <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
-              FACEBOOK
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright pull-right">
-        &copy; Shomie,
-        <script>
-        document.write(new Date().getFullYear())
-        </script>
-      </div>
-    </div>
-  </footer>
-
-</div>
-
-@endsection
+    @endsection

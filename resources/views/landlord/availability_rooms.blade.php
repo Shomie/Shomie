@@ -2,16 +2,7 @@
 
 @section('assets')
 
-<link rel="stylesheet" href="{{ URL::asset('/css/profile/metisMenu/metisMenu.css')}}" />
-<link rel="stylesheet" href="{{ URL::asset('/css/profile/main.css')}}" />
-<link rel="stylesheet" href="{{ URL::asset('/css/profile/profile.css')}}" />
-
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-
-<script src= "{{ URL::asset('/js/profile/metisMenu/metisMenu.js') }}" type="text/javascript"></script>
-<script src= "{{ URL::asset('/js/profile/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src= "{{ URL::asset('/js/profile/common.js') }}" type="text/javascript"></script>
-<script src= "{{ URL::asset('/js/profile/profile.js') }}" type="text/javascript"></script>
+<link rel="stylesheet" href="{{ URL::asset('/css/profile.css')}}" />
 
 @endsection
 
@@ -127,6 +118,12 @@
 											}
 											?>
 										</div>
+
+
+										
+
+
+
 										<div class="panel-footer text-center">
 											<p> <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a></p>
 											<p>{{ $property->address }}, {{ $property->number }}</p>

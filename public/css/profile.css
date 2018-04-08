@@ -1,0 +1,40 @@
+/* BEGIN Notifications */
+
+.accepted {
+  color: #468847;
+}
+
+.pending
+{
+  color: #f89406;
+}
+
+.pending-requests
+{
+  background-color: #e3a615;
+}
+
+.rejected {
+  color: #b94a48;
+}
+
+/* END Notifications */
+
+
+.btn-on.active{background-color: #5BB75B;color: white;}
+.btn-on.active:hover{background-color: #5BB75B;color: white;}
+
+
+.btn-off.active{background-color: #DA4F49;color: white;}
+.btn-off.active:hover{background-color: #DA4F49;color: white;}
+
+
+input[type="radio"] {
+    display:none;
+}
+input[type="radio"] + label {
+    position: relative;
+    padding-left: 54px;
+    cursor:pointer;
+    font-size: 26px;
+}
