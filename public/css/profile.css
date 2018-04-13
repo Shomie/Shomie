@@ -1,3 +1,11 @@
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
 /* BEGIN Notifications */
 
 .accepted {
@@ -29,12 +37,13 @@
 .btn-off.active:hover{background-color: #DA4F49;color: white;}
 
 
-input[type="radio"] {
+input[type="radio"]
+{
     display:none;
 }
-input[type="radio"] + label {
+
+label + input[type="radio"]
+{
     position: relative;
-    padding-left: 54px;
     cursor:pointer;
-    font-size: 26px;
 }

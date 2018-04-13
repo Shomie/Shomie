@@ -29,23 +29,17 @@
 									@if (Auth::guest())
 									@else
 
-										@if(Auth::user()->type == 0)
 										<li class="nav-item">
 											<a class="nav-link" href="{{ route('home') }}">Search Room</a>
 										</li>
-
-										@else
+										
 										<li class="nav-item">
-											<a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
+											<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
+												<span class="sr-only">(current)</span>
+											</a>
 										</li>
 
-										@endif
 									@endif
-									<li class="nav-item">
-										<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
-											<span class="sr-only">(current)</span>
-										</a>
-									</li>
 
 								</ul>
 

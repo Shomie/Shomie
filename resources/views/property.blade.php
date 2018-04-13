@@ -85,6 +85,88 @@ In the folder of skin CSS file there are also:
     </div>
   </nav>
 
+
+
+
+    <!-- Modal bellow -->
+
+    <div class="modal fade" id="expensesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Expenses Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+
+              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
+                <span class="badge">
+                  @if($property->water===1)
+                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                  @else
+                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                  @endif
+                </span>
+                Water included
+              </button>
+
+
+
+
+
+              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
+                <span class="badge">
+                  @if($property->gas===1)
+                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                  @else
+                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                  @endif
+                </span>
+
+                Gas included
+              </button>
+
+
+              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
+                <span class="badge">
+                  @if($property->electricity===1)
+                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                  @else
+                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                  @endif
+                </span>
+                Electricity included
+              </button>
+
+
+              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
+                <span class="badge">
+                  @if($property->internet===1)
+                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                  @else
+                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                  @endif
+                </span>
+
+                  Internet included
+                </button>
+
+          </div>
+          <div class="modal-footer">
+
+
+
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    <!-- Modal above -->
+
+
   <!-- Modal bellow -->
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -251,6 +333,15 @@ In the folder of skin CSS file there are also:
               <p class="card-text">
                 {{ $property->description }}
               </p>
+              <div class="text-center">
+                @if(Auth::user()->type != 1 && $property->availability == "available")
+                <button type="button" class="btn btn-rose" data-toggle="modal" data-target="#exampleModal"><div class="ripple-container"></div>
+                  Book a visit
+                </button>
+                @else
+                <!-- If not a student or the house if not avauilable don't allow to book visits -->
+                @endif
+              </div>
               <div class="pull-right">
                 <strong>{{ $property->price }}€ per month</strong>
               </div>
@@ -274,7 +365,7 @@ In the folder of skin CSS file there are also:
               <div class="row">
                 <div class="span12">
 
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
                     <span class="badge">  <i class="fa fa-bed fa-lg" style="color:black;"></i></span>
                     @if ($property->type === "appartment")
                     Apartment
@@ -292,7 +383,7 @@ In the folder of skin CSS file there are also:
 
 
                   @if($property->capacity>0)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
                     <span class="badge"> <i class="fa fa-users fa-lg" style="color:black;"></i></span>
                     {{$property->capacity}} Flatmates
                   </button>
@@ -301,7 +392,7 @@ In the folder of skin CSS file there are also:
 
 
                   @if($property->has_living_room===1)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
                     <span class="badge"> <i class="fa fa-tv fa-lg" style="color:black;"></i></span>
                     Living room
                   </button>
@@ -311,7 +402,7 @@ In the folder of skin CSS file there are also:
 
 
                   @if($property->washing_machine===1)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
                     <span class="badge"> <i class="fa fa-shopping-basket fa-lg" style="color:black;"></i></span>
                     Washing machine
                   </button>
@@ -321,66 +412,17 @@ In the folder of skin CSS file there are also:
 
 
                   @if($property->has_cleaning===1)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
+                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
                     <span class="badge"> <i class="fa fa-trash fa-lg" style="color:black;"></i></span>
                     Cleaning included
                   </button>
 
                   @endif
 
+<button class="btn btn-danger" data-toggle="modal" data-target="#expensesModal">Expenses Details<div class="ripple-container"></div>
 
+</button>
 
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
-                    <span class="badge">
-                      @if($property->water===1)
-                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                      @else
-                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                      @endif
-                    </span>
-                    Water included
-                  </button>
-
-
-
-
-
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
-                    <span class="badge">
-                      @if($property->gas===1)
-                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                      @else
-                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                      @endif
-                    </span>
-
-                    Gas included
-                  </button>
-
-
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
-                    <span class="badge">
-                      @if($property->electricity===1)
-                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                      @else
-                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                      @endif
-                    </span>
-                    Electricity included
-                  </button>
-
-
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;">
-                    <span class="badge">
-                      @if($property->internet===1)
-                      <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                      @else
-                      <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                      @endif
-                    </span>
-
-                      Internet included
-                    </button>
 
 
                   </div>
@@ -392,15 +434,7 @@ In the folder of skin CSS file there are also:
 
                 </div>
                 <div class="card-footer">
-                  <div class="text-center">
-                    @if(Auth::user()->type != 1 && $property->availability == "available")
-                    <button type="button" class="btn btn-primary btn-round btn-rose" data-toggle="modal" data-target="#exampleModal">
-                      Book a visit
-                    </button>
-                    @else
-                    <!-- If not a student or the house if not avauilable don't allow to book visits -->
-                    @endif
-                  </div>
+
                 </div>
 
 

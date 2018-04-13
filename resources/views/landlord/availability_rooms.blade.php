@@ -8,160 +8,203 @@
 
 @section('content')
 
+
 <body>
-	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-btn">
-					<button type="button" class="btn-toggle-offcanvas"><i class="fa fa-angle-left rotate" aria-hidden="true"></i></button>
-				</div>
 
-				<span class="navbar-brand">
-					{{ config('app.name', 'shomie') }}
-				</span>
-				<div class="navbar-right">
+	<nav class="navbar fixed-top navbar-expand-lg bg-faded">
+		<div class="container">
+			<div class="navbar-translate">
+				<a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
 
-					<div id="navbar-menu">
-						<ul class="nav navbar-nav">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-									{{ Auth::user()->name }} <span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="{{ route('logout') }}"
-										onclick="event.preventDefault();
-										document.getElementById('logout-form').submit();">
-										Logout
-									</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-										{{ csrf_field() }}
-									</form>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					<span class="navbar-toggler-icon"></span>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav">
+
+
+
+					@if (Auth::guest())
+					@else
+
+					@if(Auth::user()->type == 1)
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('landlord') }}">Home</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('landlord_notifications') }}">Notificações</a>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							Quartos
+						</a>
+						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a class="dropdown-item" href="{{ route('landlord_availability_rooms') }}">
+								Mudar Disponibilidade
+							</a>
+						</div>
+					</li>
+
+					@else
+
+
+					@endif
+					@endif
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('landlord_profile') }}">Profile
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+
+				</ul>
+
+				<ul class="navbar-nav ml-md-auto d-md-flex">
+
+					@if (Auth::guest())
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('login') }}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('register') }}">Register</a>
+					</li>
+					@else
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							{{ Auth::user()->name }}
+						</a>
+						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+								Logout
+							</a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								{{ csrf_field() }}
+							</form>
+
+						</div>
+					</li>
+
+					@endif
+
+				</ul>
 			</div>
 		</div>
 	</nav>
-	<div id="left-sidebar" class="sidebar">
-		<button type="button" class="btn btn-xs btn-link btn-toggle-fullwidth">
-			<span class="sr-only">Toggle Fullwidth</span>
-			<i class="fa fa-angle-left"></i>
-		</button>
-		<div class="sidebar-scroll">
-			<div class="user-account">
-				<img src="/img/default.png" class="img-responsive img-circle user-photo" alt="User Profile Picture">
-				<div class="dropdown">
-					<p href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Olá, <strong>{{ Auth::user()->name }}</strong></p>
-				</div>
+
+	<div class="container">
+		<h1 class="sr-only">Disponibilidade de Quartos</h1>
+		<div class="dashboard-section">
+			<div class="section-heading clearfix">
+				<h2 class="section-title"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Quartos </h2>
 			</div>
-			<nav id="left-sidebar-nav" class="sidebar-nav">
-				<ul id="main-menu" class="metismenu">
-					<li class=""><a href="{{ route('landlord') }}"><i class="fa fa-home" aria-hidden="true"></i><span>Menu Principal</span></a></li>
-
-					<li class="active">
-						<a href="#" class="has-arrow" aria-expanded="false"><i class="fa fa-bed" aria-hidden="true"></i> <span>Quartos</span></a>
-						<ul aria-expanded="true">
-							<li class=""><a href="#">Adicionar</a></li>
-							<li class=""><a href="#">Remover</a></li>
-							<li class=""><a href="#">Editar Quarto</a></li>
-							<li class="active"><a href="{{ route('landlord_availability_rooms') }}">Mudar Disponibilidade</a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="" class="has-arrow" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> <span>Notificações</span></a>
-						<ul aria-expanded="true">
-							<li class=""><a href="{{ route('landlord_notifications') }}">Ver Notificações</a></li>
-							<li class=""><a href="#">Vista de Calendário</a></li>
-						</ul>
-					</li>
-					<li class="">
-						<a href="{{ route('landlord_profile') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span>Perfil</span></a>
-					</li>
-				</ul>
-			</nav>
-
-		</div>
-	</div>
-
-	<div id="main-content">
-		<div class="container-fluid">
-			<h1 class="sr-only">Disponibilidade de Quartos</h1>
-			<div class="dashboard-section">
-				<div class="section-heading clearfix">
-					<h2 class="section-title"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Quartos </h2>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel-content">
-							<h3 class="heading"><i class="fa fa-cog" aria-hidden="true"></i>Modificar disponibilidade </h3>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-content">
+						<h3 class="heading"><i class="fa fa-cog" aria-hidden="true"></i>Modificar disponibilidade </h3>
 							<form method="post" action="{{ route('landlord_availability_rooms') }}">
-								{{ csrf_field() }}
-								<?php $var = 0; ?>
-								@foreach($properties as $key => $property)
 
-								<div class="col-md-4 col-sm-8">
-									<div class="panel panel-default">
-										<div class="panel-body">
-											<?php
-											$image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-											$images = glob($image_search, GLOB_BRACE);
-											if(!empty($images))
-											{
-												echo "<img src='/$images[0]' alt='Room Image' class='img-responsive' style='width:100vh; height:250px;'>";
-											}
-											else
-											{
-												echo "<img src='/img/not_available.jpg' alt='Room Image' class='img-responsive' style='width:100vh; height:250px;'>";
-											}
-											?>
-										</div>
+							{{ csrf_field() }}
+							<?php $var = 0; ?>
+							<div class="container">
+								<div class="row">
+									@foreach($properties as $key => $property)
 
+									<div class="col-sm-3">
+										<div class="card">
 
-										
+											<a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">
 
+												<?php
 
+												$image_search = "img/RoomsPics/". $property->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+												$images = glob($image_search, GLOB_BRACE);
 
-										<div class="panel-footer text-center">
-											<p> <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a></p>
-											<p>{{ $property->address }}, {{ $property->number }}</p>
-											<div class="btn-group" data-toggle="buttons">
-												@if($property->availability == "available")
-												<label class="btn btn-on active">
-													<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">Disponivel</label>
-													<label class="btn btn-off">
-														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">Indisponivel</label>
-														@else
-														<label class="btn btn-on">
-															<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">Disponivel</label>
-															<label class="btn btn-off active">
-																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked  autocomplete="off">Indisponivel</label>
-																@endif
-															</div>
-														</div>
+												if(count($images) == 0)
+												{
+													/* If the main image is not found search for one existing image */
+													$image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+													$images = glob($image_search, GLOB_BRACE);
+												}
+
+												if(!empty($images))
+												{
+
+													echo "<img src='/$images[0]' alt='Room Image' class='img-responsive card-img-top'>";
+												}
+												else
+												{
+													echo "<img src='/img/not_available.jpg' alt='Room Image' class='img-responsive card-img-top'>";
+												}
+												?>
+											</a>
+											<div class="card-body">
+
+												<p>{{ $property->address }}, {{ $property->number }}</p>
+
+												<a>
+													<div class="pull-left type_room">
+														<span>
+															ID: {{ $property->id }}
+														</span>
 													</div>
-												</div>
-												<?php $var +=  1; ?>
-												@endforeach
+												</a>
 
-												<button type="submit" class="btn btn-primary">Guardar</button>
-											</form>
+												<a class="card-link pull-right">  {{$property->price}} <i class="fa fa-euro"></i></a>
 
+											</div>
+											<div class="card-footer">
+
+														<div class="form-group" data-toggle="buttons">
+															@if($property->availability == "available")
+															<label class="btn btn-on active col-sm">
+																<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
+																Disponivel
+															</label>
+															<label class="btn btn-off col-sm">
+																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
+																Indisponivel
+															</label>
+															@else
+															<label class="btn btn-on col-sm">
+																<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
+																Disponivel
+															</label>
+															<label class="btn btn-off active col-sm">
+																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
+																Indisponivel
+															</label>
+															@endif
+														</div>
+
+											</div>
 
 										</div>
+
 									</div>
 
+									<?php $var +=  1; ?>
+									@endforeach
 
 								</div>
 							</div>
+							<div class="text-center">
+							<button type="submit" class="btn btn-primary">Guardar</button>
 						</div>
+						</form>
+
+
 					</div>
-					<div class="clearfix"></div>
-					<footer>
-						<p class="copyright">&copy; 2018 Shomie</p>
-					</footer>
 				</div>
 
-				@endsection
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+@endsection

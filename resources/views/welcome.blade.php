@@ -10,7 +10,7 @@
 <body>
 
 
-  <nav class="navbar fixed-top navbar-expand-lg bg-faded">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg ">
         <div class="container">
             <div class="navbar-translate">
               <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
