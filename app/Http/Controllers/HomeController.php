@@ -49,13 +49,14 @@ class HomeController extends Controller
     $options =    Request::input('options');
     $min =    Request::input('min');
     $max =    Request::input('max');
-
+    
     if($options == "all_rooms")
     {
       $properties = Property::where("availability","available")->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(10);
     }
     else
     {
+
       /* type: single_room, double_room and appartment*/
       $properties = Property::where("availability","available")->where("type", $options)->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(10);
     }

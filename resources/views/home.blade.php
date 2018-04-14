@@ -68,238 +68,224 @@
     </div>
   </nav>
 
-  <div class="container">
-    <div class="section text-center">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
 
-          <form  action="{{route('search')}}" method="get" class="text-center">
+  <div class="main">
 
+    <div class="section">
+      <div class="container">
+        <div class="section text-center">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
 
-
-
-
-            <div class="container">
-              <div class="row center-block">
-                <div class="col-sm-12">
-
-                  <h3> SEARCH BY FILTER </h3>
-                </div>
-              </div>
-
-              <div class="row center-block">
-
-                <div class="col-sm-12">
-
-                  <div class="title text-center">
-                    <div class="row">
-                      <div class="btn-group" data-toggle="buttons">
-
-                        @if ($filteroptions === "all_rooms")
-                        <label class="btn active">
-                          <input type="radio" name="options" value="all_rooms" autocomplete="off" checked>
-                          @else
-                          <label class="btn">
-                            <input type="radio" name="options" value="all_rooms" autocomplete="off">
-                            @endif
-                            <span>
-                              <i class="fa fa-check" aria-hidden="true"></i>
-                              All Rooms
-                            </span>
-                          </label>
+              <form  action="{{route('search')}}" method="get" class="text-center">
 
 
-                          @if ($filteroptions === "single_room")
-                          <label class="btn active">
-                            <input type="radio" name="options" value="single_room" autocomplete="off" checked>
-                            @else
-                            <label class="btn">
-                              <input type="radio" name="options" value="single_room" autocomplete="off">
-                              @endif
-                              <span>
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                                Single Room
-                              </span>
-                            </label>
 
-                            @if ($filteroptions === "double_room")
-                            <label class="btn active">
-                              <input type="radio" name="options" value="double_room" autocomplete="off" checked>
+
+
+                <div class="container">
+                  <div class="row center-block">
+                    <div class="col-sm-12">
+
+                      <h3> SEARCH BY FILTER </h3>
+                    </div>
+                  </div>
+
+                  <div class="row center-block">
+
+                    <div class="col-sm-2">
+
+                      <div class="title text-center">
+                        <div class="row">
+
+                          <div class="form-group">
+                            <label for="sel1">Type of Room:</label>
+                            <select class="form-control" id="sel1" name="options">
+                              @if ($filteroptions === "all_rooms")
+                              <option value="all_rooms" selected="selected">All Rooms</option>
                               @else
-                              <label class="btn">
-                                <input type="radio" name="options" value="double_room" autocomplete="off">
-                                @endif
-                                <span>
-                                  <i class="fa fa-check" aria-hidden="true"></i>
-                                  Double Room
-                                </span>
-                              </label>
+                              <option value="all_rooms">All Rooms</option>
+                              @endif
+
+                              @if ($filteroptions === "single_room")
+                              <option value="single_room" selected="selected">Single Room</option>
+                              @else
+                              <option value="single_room">Single Room</option>
+                              @endif
+
+                              @if ($filteroptions === "double_room")
+                              <option value="double_room" selected="selected">Double Room</option>
+                              @else
+                              <option value="double_room">Double Room</option>
+                              @endif
 
                               @if ($filteroptions === "appartment")
-                              <label class="btn active">
-                                <input type="radio" name="options" value="appartment" autocomplete="off" checked>
-                                @else
-                                <label class="btn">
-                                  <input type="radio" name="options" value="appartment" autocomplete="off">
-                                  @endif
-                                  <span>
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                    Appartment
-                                  </span>
-                                </label>
+                              <option value="appartment" selected="selected">Appartment</option>
+                              @else
+                              <option value="appartment" >Appartment</option>
+                              @endif
 
-
-                              </div>
-
-
-                            </div>
-
-
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-
-                          <div class="form-group">
-                            <label class="label-control">Min</label>
-                            <input type="text" id="min" class="form-control" name="min" value="{{ $min }}" />
+                            </select>
                           </div>
 
-                          <div id="sliderDouble" class="slider slider-info"></div>
-
-                          <div class="form-group">
-                            <label class="label-control">Max</label>
-                            <input type="text" id="max" class="form-control" name="max" value="{{ $max }}" />
-                          </div>
 
                         </div>
 
+
+                      </div>
+                    </div>
+                    <div class="col-sm-8">
+
+                      <div class="container">
                         <div class="row">
-                          <div class="col-md-12">
-                            <button class="btn btn-default btn-success btn-search-submit" type="submit">Search</button>
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                          <div class="col">
+                            <div class="form-group">
+                              <label class="label-control">Min</label>
+                              <input type="text" id="min" class="form-control" name="min" value="{{ $min }}" />
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div id="sliderDouble" class="slider slider-info">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label class="label-control">Max</label>
+                              <input type="text" id="max" class="form-control" name="max" value="{{ $max }}" />
+                            </div>
                           </div>
                         </div>
-
-
                       </div>
+
+
+
+
+
+
 
                     </div>
 
-
-                  </form>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-
-          <div class="main">
-
-            <div class="section">
-              <div class="container">
-                <div class="row">
-
-                </div>
-              </div>
-
-              <div class="container">
-                <div class="row">
-
-                  @foreach($properties as $key => $value)
-
-                  <div class="col-lg-6">
-                    <div class="card">
-
-                      <a href="{{ route('property', ['id'=> $value->id]) }}" target="_blank">
-
-                        <?php
-
-                        $image_search = "img/RoomsPics/". $value->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
-                        $images = glob($image_search, GLOB_BRACE);
-
-                        if(count($images) == 0)
-                        {
-                          /* If the main image is not found search for one existing image */
-                          $image_search = "img/RoomsPics/". $value->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-                          $images = glob($image_search, GLOB_BRACE);
-                        }
-
-                        if(!empty($images))
-                        {
-
-                          echo "<img src='/$images[0]' alt='Room Image' class='img-responsive card-img-top'>";
-                        }
-                        else
-                        {
-                          echo "<img src='/img/not_available.jpg' alt='Room Image' class='img-responsive card-img-top'>";
-                        }
-                        ?>
-                      </a>
-                      <div class="card-body">
-
-
-                        <h5 class="card-title">{{$value->presentation}} {{$value->zone}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $value->description }}</h6>
-                        <a>
-                          <div class="pull-left type_room">
-                            <span><i class="fa fa-bed"></i>
-                              @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
-                            </span>
-                          </div>
-                        </a>
-                        <a class="card-link pull-right">  {{$value->price}} <i class="fa fa-euro"></i></a>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-rose" data-toggle="modal" ><div class="ripple-container"></div>
+                          Search
+                        </button>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                       </div>
                     </div>
+
 
                   </div>
-                  @endforeach
-
-
 
                 </div>
 
-                <!-- To append other get variables -->
-                {{ $properties->appends(request()->except('page'))->links() }}
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+
+          @foreach($properties as $key => $value)
+
+          <div class="col-lg-6">
+            <div class="card">
+
+              <a href="{{ route('property', ['id'=> $value->id]) }}" target="_blank">
+
+                <?php
+
+                $image_search = "img/RoomsPics/". $value->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+                $images = glob($image_search, GLOB_BRACE);
+
+                if(count($images) == 0)
+                {
+                  /* If the main image is not found search for one existing image */
+                  $image_search = "img/RoomsPics/". $value->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
+                  $images = glob($image_search, GLOB_BRACE);
+                }
+
+                if(!empty($images))
+                {
+
+                  echo "<img src='/$images[0]' alt='Room Image' class='img-responsive card-img-top'>";
+                }
+                else
+                {
+                  echo "<img src='/img/not_available.jpg' alt='Room Image' class='img-responsive card-img-top'>";
+                }
+                ?>
+              </a>
+              <div class="card-body">
+
+
+                <h5 class="card-title">{{$value->presentation}} {{$value->zone}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $value->description }}</h6>
+                <a>
+                  <div class="pull-left type_room">
+                    <span><i class="fa fa-bed"></i>
+                      @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
+                    </span>
+                  </div>
+                </a>
+                <a class="card-link pull-right">  {{$value->price}} <i class="fa fa-euro"></i></a>
               </div>
             </div>
 
-            <footer class="footer">
-              <div class="container">
-                <nav class="pull-left">
-                  <ul>
-                    <li>
-                      <a href="#">
-                        About Us
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        FAQ
-                      </a>
-                    </li>
-                    <li>
-                      <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
-                        FACEBOOK
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div class="copyright pull-right">
-                  &copy; Shomie,
-                  <script>
-                  document.write(new Date().getFullYear())
-                  </script>
-                </div>
-              </div>
-            </footer>
-
-
           </div>
+          @endforeach
 
 
-          @endsection
+
+        </div>
+
+        <!-- To append other get variables -->
+        {{ $properties->appends(request()->except('page'))->links() }}
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <nav class="pull-left">
+          <ul>
+            <li>
+              <a href="#">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+                FACEBOOK
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          &copy; Shomie,
+          <script>
+          document.write(new Date().getFullYear())
+          </script>
+        </div>
+      </div>
+    </footer>
+
+
+  </div>
+
+
+  @endsection
