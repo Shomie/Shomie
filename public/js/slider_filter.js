@@ -1,22 +1,28 @@
 $(function() {
-  $( "#slider-range" ).slider({
-    range: true,
-    min: 0,
-    max: 500,
-    step: 10,
-    values: [ $("#min").val(), $("#max").val() ],
-    slide: function( event, ui ) {
-      if(ui.values[ 0 ] + 80 > ui.values[ 1 ])
-      {
-        /* If minimum value is greater than maximum by a treshold don't allow */
-        return false;
-      }
-      else {
-        /* Any valid update change the values in the display */
-        $("#min").val(ui.values[ 0 ]);
-        $("#max").val(ui.values[ 1 ]);
-        return true;
-      }
-    }
-  });
+
+var mySlider = document.getElementById('sliderDouble');
+
+noUiSlider.create(mySlider, {
+	start: [ parseInt($("#min").val()), parseInt($("#max").val())],
+	connect: true,
+  margin: 100,
+  step: 50,
+	range: {
+		min:  0,
+		max:  1000
+	}
+});
+
+mySlider.noUiSlider.on('update', function(values, handle) {
+  var whichHandle = handle === 0 ? 'LEFT' : 'RIGHT';
+  if(whichHandle == 'LEFT')
+  {
+    $("#min").val(values[0]);
+  }
+  else {
+    $("#max").val(values[1]);
+
+  }
+});
+
 });

@@ -26,17 +26,20 @@
 
 
 
+
+								</ul>
+
+								<ul class="navbar-nav ml-md-auto d-md-flex">
+
 									@if (Auth::guest())
 									@else
 
 										@if(Auth::user()->type == 1)
 										<li class="nav-item">
-											<a class="nav-link" href="{{ route('landlord') }}">Home</a>
+											<a class="nav-link" href="{{ route('landlord') }}">Dashboard</a>
 										</li>
 
-										<li class="nav-item">
-											<a class="nav-link" href="{{ route('landlord_notifications') }}">Notificações</a>
-										</li>
+
 
 										<li class="nav-item dropdown">
 										 <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -59,10 +62,6 @@
 											<span class="sr-only">(current)</span>
 										</a>
 									</li>
-
-								</ul>
-
-								<ul class="navbar-nav ml-md-auto d-md-flex">
 
 				          @if (Auth::guest())
 				          <li class="nav-item">
@@ -159,6 +158,35 @@
 
 				</div>
 		</div>
+		<footer class="footer">
+	    <div class="container">
+	      <nav class="pull-left">
+	        <ul>
+	          <li>
+	            <a href="#">
+	              About Us
+	            </a>
+	          </li>
+	          <li>
+	            <a href="#">
+	              FAQ
+	            </a>
+	          </li>
+	          <li>
+	            <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+	              FACEBOOK
+	            </a>
+	          </li>
+	        </ul>
+	      </nav>
+	      <div class="copyright pull-right">
+	        &copy; Shomie,
+	        <script>
+	        document.write(new Date().getFullYear())
+	        </script>
+	      </div>
+	    </div>
+	  </footer>
 	</div>
 
 @endsection

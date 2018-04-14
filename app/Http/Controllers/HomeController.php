@@ -34,12 +34,12 @@ class HomeController extends Controller
       return redirect()->route('landlord_notifications');
     }
     else{
-      $min = 75;
-      $max = 300;
+      $min = 100;
+      $max = 250;
       $options = "all_rooms";
 
       $properties = Property::where("availability","available")->paginate(10);
-      return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => 75 , 'max' => 300]);
+      return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => $min , 'max' => $max]);
     }
 
   }

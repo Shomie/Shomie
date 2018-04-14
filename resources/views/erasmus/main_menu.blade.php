@@ -32,7 +32,7 @@
 										<li class="nav-item">
 											<a class="nav-link" href="{{ route('home') }}">Search Room</a>
 										</li>
-										
+
 										<li class="nav-item">
 											<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
 												<span class="sr-only">(current)</span>
@@ -140,19 +140,19 @@
 								<h3 class="heading"><i class="fa fa-info-circle" aria-hidden="true"></i> Pedidos de visita</h3>
 								<ul class="list-unstyled list-referrals">
 									<li>
-										<p><span class="value">{{$accepted_notification}}</span><span class="text-muted">Visitas aceites</span></p>
+										<p><span class="value">{{$accepted_notification}} </span><span class="text-muted">Visitas aceites</span></p>
 										<div class="progress">
 											<div class="progress-bar bg-success" role="progressbar" style="width: {{$accepted_notification/$total_notification}}%;background-color:#468847;" aria-valuenow="{{$accepted_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 									</li>
 									<li>
-										<p><span class="value">{{$rejected_notification}}</span><span class="text-muted">Visitas rejeitadas</span></p>
+										<p><span class="value">{{$rejected_notification}} </span><span class="text-muted">Visitas rejeitadas</span></p>
 										<div class="progress">
-											<div class="progress-bar bg-warning" role="progressbar" style="width: {{$rejected_notification/$total_notification}}%;background-color:#b94a48;" aria-valuenow="{{$rejected_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
+											<div class="progress-bar bg-danger" role="progressbar" style="width: {{$rejected_notification/$total_notification}}%;background-color:#b94a48;" aria-valuenow="{{$rejected_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 									</li>
 									<li>
-										<p><span class="value">{{$pending_notification}}</span><span class="text-muted">Visitas por aceitar</span></p>
+										<p><span class="value">{{$pending_notification}} </span><span class="text-muted">Visitas por aceitar</span></p>
 										<div class="progress">
 											<div class="progress-bar bg-warning" role="progressbar" style="width: {{$pending_notification/$total_notification}}%;background-color:#f89406;" aria-valuenow="{{$pending_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
@@ -163,6 +163,36 @@
 
 						</div>
 					</div>
+					<footer class="footer">
+						<div class="container">
+							<nav class="pull-left">
+								<ul>
+									<li>
+										<a href="#">
+											About Us
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											FAQ
+										</a>
+									</li>
+									<li>
+										<a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+											FACEBOOK
+										</a>
+									</li>
+								</ul>
+							</nav>
+							<div class="copyright pull-right">
+								&copy; Shomie,
+								<script>
+								document.write(new Date().getFullYear())
+								</script>
+							</div>
+						</div>
+					</footer>
+
 				</div>
 
 

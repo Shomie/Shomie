@@ -27,28 +27,24 @@
 
 
 
+
+				</ul>
+
+				<ul class="navbar-nav ml-md-auto d-md-flex">
+
+
 					@if (Auth::guest())
 					@else
 
 					@if(Auth::user()->type == 1)
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('landlord') }}">Home</a>
+						<a class="nav-link" href="{{ route('landlord') }}">Dashboard</a>
 					</li>
 
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('landlord_notifications') }}">Notificações</a>
 					</li>
 
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-							Quartos
-						</a>
-						<div class="dropdown-menu" aria-labelledby="Preview">
-							<a class="dropdown-item" href="{{ route('landlord_availability_rooms') }}">
-								Mudar Disponibilidade
-							</a>
-						</div>
-					</li>
 
 					@else
 
@@ -60,10 +56,6 @@
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
-
-				</ul>
-
-				<ul class="navbar-nav ml-md-auto d-md-flex">
 
 					@if (Auth::guest())
 					<li class="nav-item">
@@ -105,7 +97,7 @@
 				<div class="col-md-12">
 					<div class="panel-content">
 						<h3 class="heading"><i class="fa fa-cog" aria-hidden="true"></i>Modificar disponibilidade </h3>
-							<form method="post" action="{{ route('landlord_availability_rooms') }}">
+						<form method="post" action="{{ route('landlord_availability_rooms') }}">
 
 							{{ csrf_field() }}
 							<?php $var = 0; ?>
@@ -158,27 +150,27 @@
 											</div>
 											<div class="card-footer">
 
-														<div class="form-group" data-toggle="buttons">
-															@if($property->availability == "available")
-															<label class="btn btn-on active col-sm">
-																<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
-																Disponivel
-															</label>
-															<label class="btn btn-off col-sm">
-																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
-																Indisponivel
-															</label>
-															@else
-															<label class="btn btn-on col-sm">
-																<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
-																Disponivel
-															</label>
-															<label class="btn btn-off active col-sm">
-																<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
-																Indisponivel
-															</label>
-															@endif
-														</div>
+												<div class="form-group" data-toggle="buttons">
+													@if($property->availability == "available")
+													<label class="btn btn-on active col-sm">
+														<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
+														Disponivel
+													</label>
+													<label class="btn btn-off col-sm">
+														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
+														Indisponivel
+													</label>
+													@else
+													<label class="btn btn-on col-sm">
+														<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
+														Disponivel
+													</label>
+													<label class="btn btn-off active col-sm">
+														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
+														Indisponivel
+													</label>
+													@endif
+												</div>
 
 											</div>
 
@@ -192,8 +184,8 @@
 								</div>
 							</div>
 							<div class="text-center">
-							<button type="submit" class="btn btn-primary">Guardar</button>
-						</div>
+								<button type="submit" class="btn btn-primary">Guardar</button>
+							</div>
 						</form>
 
 
@@ -204,6 +196,35 @@
 			</div>
 		</div>
 	</div>
+	<footer class="footer">
+		<div class="container">
+			<nav class="pull-left">
+				<ul>
+					<li>
+						<a href="#">
+							About Us
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							FAQ
+						</a>
+					</li>
+					<li>
+						<a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+							FACEBOOK
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="copyright pull-right">
+				&copy; Shomie,
+				<script>
+				document.write(new Date().getFullYear())
+				</script>
+			</div>
+		</div>
+	</footer>
 </div>
 
 

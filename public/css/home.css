@@ -4,205 +4,27 @@
     object-fit: cover;
 }
 
-
-/* BEGIN Property stuff */
-.presentation, .type_room
-{
-  margin-left:10px;
-  font-size:14px;
+.img-responsive{
+  width: 100%;
+  height:350px;
+  margin: auto;
 }
-
-.price
-{
-  margin-right:10px;
-  color:#3aaa50;
-  font-size:20px;
-}
-
-/* END Property stuff */
-
-/* BEGIN Options Radio Buttons */
-.btn i.fa {
-  opacity: 0;
-}
-
-.btn.active i.fa {
-  opacity: 1;
-}
-
-.btn.active{
-  background-color: #3aaa50;
-  color: white;
-  width:100%;
-  font-size: 12px;
-}
-
-.btn.active:hover{
-  background-color: #3aaa50;
-  color: white;
-  width:100%;
-}
-
-.btn{
-  background-color: #E5E5E5;
-  color: #999;
-  width:100%;
-  font-size: 12px;
-}
-
-.btn:hover{
-  background-color: #E5E5E5;
-  color: #999;
-  width:100%;
-}
-
-@media (min-width:641px)  {
-  .btn.active{
-    background-color: #3aaa50;
-    color: white;
-    width:25%;
-    font-size: 12px;
-    }/* BEGIN Options Radio Buttons */
-
-    .btn.active:hover{
-      background-color: #3aaa50;
-      color: white;
-      width:25%;
-      font-size: 12px;
-    }
-
-    .btn{
-      background-color: #E5E5E5;
-      color: #999;
-      width:25%;
-      font-size: 12px;
-    }
-
-    .btn:hover{
-      background-color: #E5E5E5;
-      color: #999;
-      width:25%;
-
-    }
-  }
-
-  /* END Options Radio Buttons */
-
-  .wrapper
-  {
-    background-color: white;
-  }
-
-  /* BEGIN Notifications */
-
-  .accepted {
-    color: #468847;
-  }
-
-  .pending
-  {
-    color: #f89406;
-  }
-
-  .pending-requests
-  {
-    background-color: #e3a615;
-  }
-
-  .rejected {
-    color: #b94a48;
-  }
-
-  /* END Notifications */
-
-
-  .img-responsive{
-    width: 100%;
-    height:428px;
-    margin: auto;
-  }
-
-  .panel-heading{
-    padding: 0px;
-  }
-
-  .panel-body{
-    padding: 0px;
-  }
-
-  .panel-footer{
-  }
-
-  .panel{
-  }
-
-
-  .slide, p{
-    color:#999999;
-    text-align: center;
-    font-size: 30px;
-    padding: 0;
-  }
-
-  .pack /* Not being used anymore. For legacy leave it here. It's useful. */
-  {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px
-  }
 
   @media (max-width: 700px){
-    .panel-heading{
-      padding: 0px;
-    }
-
-    .panel-body{
-      padding: 0px;
-    }
-
-    .img-responsive{
-      width: 100%;
-      height:250px;
-    }
-
-    .panel{
-      border-radius: 0px;
-      margin-bottom: 0px;
-    }
-
-    .panel-footer{
-      padding:4px 15px;
-
-    }
-    .pagination {
-      display: initial;
-    }
-
-    .col-md-6, .col-sm-10 {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-
-    .active{
-      border-radius: 0px;
-      font-size: 9px;
-    }
-
-    .container-full {
-      margin: 0 auto;
-      width:auto ;
-      padding: 0;
-      margin: 0;
-      margin-right: 1px;
-    }
-
-    .slide, p{
-      color:#999999;
-      text-align: center;
-      font-size: 20px;
-    }
-
+  .img-responsive{
+    width: 100%;
+    height:250px;
+    margin: auto;
   }
+}
+
+input[type="radio"]
+{
+    display:none;
+}
+
+label + input[type="radio"]
+{
+    position: relative;
+    cursor:pointer;
+}

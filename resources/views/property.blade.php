@@ -172,6 +172,7 @@ In the folder of skin CSS file there are also:
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Request visit</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -182,7 +183,6 @@ In the folder of skin CSS file there are also:
         <div class="modal-body">
 
           <!-- input with datetimepicker -->
-
           <div class="form-group">
             <label class="label-control">Date</label>
             <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;"/>
@@ -192,20 +192,26 @@ In the folder of skin CSS file there are also:
             <label class="label-control">Time</label>
             <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;"/>
           </div>
-
         </div>
         <div class="modal-footer">
 
-          <form method="post">
+          <button class="btn btn-round btn-rose" onclick="
+          event.preventDefault();
+          document.getElementById('visit_date_id').value = document.getElementById('calendarDate').value;
+          document.getElementById('visit_time_id').value = document.getElementById('calendarTime').value;
+          document.getElementById('request_visit_form').submit();">
+            Submit
+          </button>
+
+          <form method="post" id="request_visit_form" action="{{route('request_visit', ['id'=> $property->id]) }}" >
+            {{ csrf_field() }}
             <div class="form-group"> <!-- Submit button -->
-              <button type="button" class="btn btn-primary btn-round btn-rose">
-                Submit
-              </button>
+              <input type="hidden" id="visit_date_id" name="visit_date" value="">
+              <input type="hidden" id="visit_time_id" name="visit_time" value="">
             </div>
           </form>
 
         </div>
-      </form>
     </div>
   </div>
 </div>
