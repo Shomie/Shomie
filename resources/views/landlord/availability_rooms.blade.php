@@ -97,11 +97,11 @@
 
 							{{ csrf_field() }}
 							<?php $var = 0; ?>
-							<div class="container">
+							<div class="container-fluid">
 								<div class="row">
 									@foreach($properties as $key => $property)
 
-									<div class="col-sm-3">
+									<div class="col-sm-4">
 										<div class="card">
 
 											<a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">
@@ -131,44 +131,42 @@
 											</a>
 											<div class="card-body">
 
+												<a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank" class="btn btn-info btn-sm pull-left">
+													ID: {{ $property->id }}
+												</a>
+												<span class="pull-right"><strong><span class="price_title">{{ $property->price }}€</span> per month</strong></span>
+
+
+											</div>
+											<div class="card-footer block-center text-center">
 												<p>{{ $property->address }}, {{ $property->number }}</p>
 
-												<a>
-													<div class="pull-left type_room">
-														<span>
-															ID: {{ $property->id }}
-														</span>
+												<div class="container">
+													<div class="form-group" data-toggle="buttons">
+														@if($property->availability == "available")
+														<label class="btn btn-on btn-sm btn-raised btn-round active" style="width:150px;">
+															<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
+															Disponivel
+														</label>
+														<label class="btn btn-off btn-sm btn-raised btn-round" style="width:150px;">
+															<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
+															Indisponivel
+														</label>
+														@else
+														<label class="btn btn-on btn-sm btn-raised btn-round" style="width:150px;">
+															<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
+															Disponivel
+														</label>
+														<label class="btn btn-off btn-sm btn-raised btn-round active" style="width:150px;">
+															<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
+															Indisponivel
+														</label>
+														@endif
 													</div>
-												</a>
 
-												<a class="card-link pull-right">  {{$property->price}} <i class="fa fa-euro"></i></a>
-
-											</div>
-											<div class="card-footer">
-
-												<div class="form-group" data-toggle="buttons">
-													@if($property->availability == "available")
-													<label class="btn btn-on active col-sm">
-														<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
-														Disponivel
-													</label>
-													<label class="btn btn-off col-sm">
-														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
-														Indisponivel
-													</label>
-													@else
-													<label class="btn btn-on col-sm">
-														<input type="radio" value="{{ $property->id }}_available" name="landlord_houses[<?php echo $var; ?>]" autocomplete="off">
-														Disponivel
-													</label>
-													<label class="btn btn-off active col-sm">
-														<input type="radio" value="{{ $property->id }}_not_available" name="landlord_houses[<?php echo $var; ?>]" checked autocomplete="off">
-														Indisponivel
-													</label>
-													@endif
 												</div>
-
 											</div>
+
 
 										</div>
 
@@ -222,6 +220,14 @@
 		</div>
 	</footer>
 </div>
-
+<style>
+.price_title {
+	background-color: #fff;
+	color: #FF084A;
+	font-size: 15px;
+	display: inline;
+	opacity:0.9;
+}
+</style>
 
 @endsection
