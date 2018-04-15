@@ -7,10 +7,6 @@
 <link href="{{ URL::asset('/css/slider_filter.css')}}" rel="stylesheet"/>
 <script src= "{{ URL::asset('/js/slider_filter.js') }}" type="text/javascript"></script>
 
-
-
-
-
 @endsection
 
 @section('content')
@@ -222,80 +218,81 @@
                   <h5 class="card-title">{{$value->presentation}} {{$value->zone}}  </h5>
 
 
-                <h6 class="card-text mb-2 text-muted">{{ $value->description }}</h6>
+                  <h6 class="card-text mb-2 text-muted">{{ $value->description }}</h6>
 
-                <h5 class="card-title">
-                  <span class="pull-right">
-                    <strong>
-                      <span class="price_title">
-                        {{ $value->price }}€
-                      </span>
-                      per month
-                    </strong>
-                  </span>
-                </h5>
+                  <h5 class="card-title">
+                    <span class="pull-right">
+                      <strong>
+                        <span class="price_title">
+                          {{ $value->price }}€
+                        </span>
+                        per month
+                      </strong>
+                    </span>
+                  </h5>
                 </div>
               </div>
 
             </div>
             @endforeach
 
-
-
+            <div class="col-12">
+              <!-- To append other get variables -->
+              {{ $properties->appends(request()->except('page'))->links() }}
+            </div>
           </div>
 
-          <!-- To append other get variables -->
-          {{ $properties->appends(request()->except('page'))->links() }}
-        </div>
-
 
       </div>
+
+
     </div>
-
-
-
-    <footer class="footer">
-      <div class="container">
-        <nav class="pull-left">
-          <ul>
-            <li>
-              <a href="#">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                FAQ
-              </a>
-            </li>
-            <li>
-              <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
-                FACEBOOK
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright pull-right">
-          &copy; Shomie,
-          <script>
-          document.write(new Date().getFullYear())
-          </script>
-        </div>
-      </div>
-    </footer>
-
   </div>
 
 
 
-  <style>
-  .price_title {
-    background-color: #fff;
-    color: #FF084A;
-    font-size: 15px;
-    display: inline;
-    opacity:0.9;
-  }
+  <footer class="footer">
+    <div class="container">
+      <nav class="pull-left">
+        <ul>
+          <li>
+            <a href="#">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+              FACEBOOK
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright pull-right">
+        &copy; Shomie,
+        <script>
+        document.write(new Date().getFullYear())
+        </script>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+
+
+<style>
+.price_title {
+  background-color: #fff;
+  color: #FF084A;
+  font-size: 15px;
+  display: inline;
+  opacity:0.9;
+}
 </style>
 
 

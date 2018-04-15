@@ -90,7 +90,7 @@
                     <h4>Finding a room was never that easy. Just pick the best room for you and book a visit with the landlord. The room details and all the necessary information is accessible here. Further details will be discussed witht he landlord.</h4>
                     <br>
                     <a href="{{ url('/home') }}" class="btn btn-danger btn-raised btn-lg">
-                        <i class="fa fa-search"></i> Let's Search
+                        <i class="fa fa-search"></i> Let's Start
                     </a>
                 </div>
             </div>
