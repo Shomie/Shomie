@@ -63,7 +63,7 @@
             <div class="dropdown-menu" aria-labelledby="Preview">
               @if(Auth::user()->type == 0)
               <a  class="dropdown-item" href="{{ route('erasmus_profile') }}">
-               Profile
+                Profile
               </a>
               @else
               <a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
@@ -188,7 +188,7 @@
 
             @foreach($properties as $key => $value)
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 d-flex align-items-stretch">
               <div class="card">
 
                 <a href="{{ route('property', ['id'=> $value->id]) }}" target="_blank">
@@ -219,16 +219,20 @@
                 <div class="card-body">
 
 
-                  <h5 class="card-title">{{$value->presentation}} {{$value->zone}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{ $value->description }}</h6>
-                  <a>
-                    <div class="pull-left type_room">
-                      <span><i class="fa fa-bed"></i>
-                        @if ($value->type === "appartment") {{"Appartment"}} @elseif ($value->type === "single_room") {{"Single Room"}}  @elseif ($value->type === "double_room") {{"Double Room"}} @endif
-                      </span>
-                    </div>
-                  </a>
-                  <a class="card-link pull-right">  {{$value->price}} <i class="fa fa-euro"></i></a>
+                  <h5 class="card-title">{{$value->presentation}} {{$value->zone}}
+                    <span class="pull-right">
+                      <strong>
+                        <span class="price_title">
+                          {{ $value->price }}€
+                        </span>
+                        per month
+                      </strong>
+                    </span>
+                  </h5>
+
+                <h6 class="card-text mb-2 text-muted">{{ $value->description }}</h6>
+
+
                 </div>
               </div>
 
@@ -283,7 +287,15 @@
 
 
 
+  <style>
+  .price_title {
+    background-color: #fff;
+    color: #FF084A;
+    font-size: 15px;
+    display: inline;
+    opacity:0.9;
+  }
+</style>
 
 
-
-  @endsection
+@endsection
