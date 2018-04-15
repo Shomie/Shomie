@@ -1,4 +1,10 @@
-
+.price_title {
+  background-color: #fff;
+  color: #FF084A;
+  font-size: 15px;
+  display: inline;
+  opacity:0.9;
+}
 
 .accepted {
   color: #468847;

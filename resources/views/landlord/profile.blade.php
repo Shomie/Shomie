@@ -25,10 +25,6 @@
 								<ul class="navbar-nav">
 
 
-
-
-
-
 								</ul>
 
 								<ul class="navbar-nav ml-md-auto d-md-flex">
@@ -39,12 +35,9 @@
 
 										@if(Auth::user()->type == 1)
 										<li class="nav-item">
-											<a class="nav-link" href="{{ route('landlord') }}">Dashboard</a>
-										</li>
+					            <a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
+					          </li>
 
-										<li class="nav-item">
-											<a class="nav-link" href="{{ route('landlord_notifications') }}">Notificações</a>
-										</li>
 
 										<li class="nav-item dropdown">
 										 <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -77,7 +70,10 @@
 				              {{ Auth::user()->name }}
 				            </a>
 				            <div class="dropdown-menu" aria-labelledby="Preview">
-				              <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+											<a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
+												Profile
+											</a>
+											<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 				                Logout
 				              </a>
 				              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

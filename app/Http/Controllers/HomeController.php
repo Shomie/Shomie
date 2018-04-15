@@ -31,7 +31,7 @@ class HomeController extends Controller
     $user = Auth::user();
 
     if($user->type==1 ){
-      return redirect()->route('landlord_notifications');
+      return redirect()->route('landlord_main_menu');
     }
     else{
       $min = 100;
@@ -49,7 +49,7 @@ class HomeController extends Controller
     $options =    Request::input('options');
     $min =    Request::input('min');
     $max =    Request::input('max');
-    
+
     if($options == "all_rooms")
     {
       $properties = Property::where("availability","available")->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(10);

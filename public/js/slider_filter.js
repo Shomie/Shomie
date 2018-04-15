@@ -1,6 +1,7 @@
 $(function() {
 
 var mySlider = document.getElementById('sliderDouble');
+$("#price_label").text("Price: " + $("#min").val() + "€ - " + $("#max").val() + "€");
 
 noUiSlider.create(mySlider, {
 	start: [ parseInt($("#min").val()), parseInt($("#max").val())],
@@ -21,8 +22,10 @@ mySlider.noUiSlider.on('update', function(values, handle) {
   }
   else {
     $("#max").val(values[1]);
-
   }
+
+	$("#price_label").text("Price: " + $("#min").val() + "€ - " + $("#max").val() + "€");
+
 });
 
 });

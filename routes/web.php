@@ -38,7 +38,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search')->name('search');
 
 
-Route::get('/landlord', 'LordController@index')->name('landlord');
 
 
 Route::get('/landlord_profile', 'LordController@profile')->name('landlord_profile');
@@ -47,8 +46,8 @@ Route::post('/landlord_profile', 'LordController@update')->name('landlord_update
 Route::get('/landlord_availability_rooms', 'LordController@availability_rooms')->name('landlord_availability_rooms');
 Route::post('/landlord_availability_rooms', 'LordController@available')->name('landlord_available');
 
-Route::get('/landlord_notifications', 'LordController@notification')->name('landlord_notifications');
-Route::post('/landlord_notification_answer', 'LordController@notification_reply')->name('landlord_notification_answer');
+Route::get('/landlord_main_menu', 'LordController@index')->name('landlord_main_menu');
+Route::post('/landlord_main_menu', 'LordController@landlord_main_menu_reply')->name('landlord_main_menu_reply');
 
 Route::get('/erasmus_main_menu', 'ErasmusController@index')->name('erasmus_main_menu');
 

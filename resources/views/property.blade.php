@@ -44,6 +44,7 @@ In the folder of skin CSS file there are also:
 
         <ul class="navbar-nav ml-md-auto d-md-flex">
 
+
           @if (Auth::guest())
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -52,22 +53,48 @@ In the folder of skin CSS file there are also:
             <a class="nav-link" href="{{ route('register') }}">Register</a>
           </li>
           @else
-          @if(Auth::user()->type == 0)
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
-          </li>
+            @if(Auth::user()->type == 0)
 
-          @else
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('home') }}">Search Room</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
+            </li>
 
-          @endif
+            @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                Quartos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Preview">
+                <a class="dropdown-item" href="{{ route('landlord_availability_rooms') }}">
+                  Mudar Disponibilidade
+                </a>
+              </div>
+            </li>
+
+
+            @endif
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="Preview">
+
+              @if(Auth::user()->type == 0)
+              <a  class="dropdown-item" href="{{ route('erasmus_profile') }}">
+               Profile
+              </a>
+              @else
+              <a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
+                Profile
+              </a>
+              @endif
               <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
               </a>
@@ -88,132 +115,145 @@ In the folder of skin CSS file there are also:
 
 
 
-    <!-- Modal bellow -->
-
-    <div class="modal fade" id="expensesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Expenses Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-
-              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                <span class="badge">
-                  @if($property->water===1)
-                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                  @else
-                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                  @endif
-                </span>
-                Water included
-              </button>
-
-
-
-
-
-              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                <span class="badge">
-                  @if($property->gas===1)
-                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                  @else
-                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                  @endif
-                </span>
-
-                Gas included
-              </button>
-
-
-              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                <span class="badge">
-                  @if($property->electricity===1)
-                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                  @else
-                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                  @endif
-                </span>
-                Electricity included
-              </button>
-
-
-              <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                <span class="badge">
-                  @if($property->internet===1)
-                  <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
-                  @else
-                  <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
-                  @endif
-                </span>
-
-                  Internet included
-                </button>
-
-          </div>
-          <div class="modal-footer">
-
-
-
-          </div>
-        </form>
-      </div>
-    </div>
-    </div>
-    <!-- Modal above -->
-
-
   <!-- Modal bellow -->
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="expensesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Request visit</h5>
+          <h4 class="modal-title text-danger" id="exampleModalLabel">Expenses Details</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
         <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="well">
+                      <h5>
+                        <span class="label pull-right">
+                          @if($property->water===1)
+                          <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                          @else
+                          <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                          @endif
 
-          <!-- input with datetimepicker -->
-          <div class="form-group">
-            <label class="label-control">Date</label>
-            <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;"/>
+                        </span>
+                        Water included
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="well">
+                      <h5>
+                        <span class="label pull-right">
+                          @if($property->water===1)
+                          <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                          @else
+                          <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                          @endif
+                        </span>
+                        Water included
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="well">
+                      <h5>
+                        <span class="label pull-right">
+                          @if($property->gas===1)
+                          <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                          @else
+                          <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                          @endif
+                        </span>
+                        Gas included
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="well">
+                      <h5>
+                        <span class="label pull-right">
+                          @if($property->internet===1)
+                          <i class="fa fa-fw fa-check accepted fa-lg" style="color:black;"></i>
+                          @else
+                          <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
+                          @endif
+                        </span>
+                        Internet included
+                      </h5>
+                    </div>
+                  </div>
+                </div><!--/row-->
+              </div><!--/col-12-->
+            </div><!--/row-->
           </div>
 
-          <div class="form-group">
-            <label class="label-control">Time</label>
-            <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;"/>
-          </div>
         </div>
         <div class="modal-footer">
 
-          <button class="btn btn-round btn-rose" onclick="
-          event.preventDefault();
-          document.getElementById('visit_date_id').value = document.getElementById('calendarDate').value;
-          document.getElementById('visit_time_id').value = document.getElementById('calendarTime').value;
-          document.getElementById('request_visit_form').submit();">
-            Submit
-          </button>
 
-          <form method="post" id="request_visit_form" action="{{route('request_visit', ['id'=> $property->id]) }}" >
-            {{ csrf_field() }}
-            <div class="form-group"> <!-- Submit button -->
-              <input type="hidden" id="visit_date_id" name="visit_date" value="">
-              <input type="hidden" id="visit_time_id" name="visit_time" value="">
-            </div>
-          </form>
 
         </div>
+      </form>
     </div>
   </div>
+</div>
+<!-- Modal above -->
+
+
+<!-- Modal bellow -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Request visit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- input with datetimepicker -->
+        <div class="form-group">
+          <label class="label-control">Date</label>
+          <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;"/>
+        </div>
+
+        <div class="form-group">
+          <label class="label-control">Time</label>
+          <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+        <button class="btn btn-round btn-rose" onclick="
+        event.preventDefault();
+        document.getElementById('visit_date_id').value = document.getElementById('calendarDate').value;
+        document.getElementById('visit_time_id').value = document.getElementById('calendarTime').value;
+        document.getElementById('request_visit_form').submit();">
+        Submit
+      </button>
+
+      <form method="post" id="request_visit_form" action="{{route('request_visit', ['id'=> $property->id]) }}" >
+        {{ csrf_field() }}
+        <div class="form-group"> <!-- Submit button -->
+          <input type="hidden" id="visit_date_id" name="visit_date" value="">
+          <input type="hidden" id="visit_time_id" name="visit_time" value="">
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
 </div>
 <!-- Modal above -->
 
@@ -339,7 +379,7 @@ In the folder of skin CSS file there are also:
               <p class="card-text">
                 {{ $property->description }}
               </p>
-              <div class="text-center">
+              <div class="pull-left">
                 @if(Auth::user()->type != 1 && $property->availability == "available")
                 <button type="button" class="btn btn-rose" data-toggle="modal" data-target="#exampleModal"><div class="ripple-container"></div>
                   Book a visit
@@ -348,9 +388,9 @@ In the folder of skin CSS file there are also:
                 <!-- If not a student or the house if not avauilable don't allow to book visits -->
                 @endif
               </div>
-              <div class="pull-right">
-                <strong>{{ $property->price }}€ per month</strong>
-              </div>
+            </div>
+            <div class="card-footer">
+
             </div>
 
 
@@ -365,147 +405,139 @@ In the folder of skin CSS file there are also:
           <div class="card" style="height:500px">
             <div class="card-body">
               <h4 class="card-title">Information</h4>
-              <h6 class="card-title">{{$property->presentation}} {{$property->zone}}</h6>
+              <h6 class="card-title">{{$property->presentation}} {{$property->zone}} <span class="pull-right"><strong><span class="price_title">{{ $property->price }}€</span> per month</strong></span></h6>
 
+              <hr>
 
-              <div class="row">
-                <div class="span12">
+              <div class="container">
+                <div class="row">
 
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                    <span class="badge">  <i class="fa fa-bed fa-lg" style="color:black;"></i></span>
-                    @if ($property->type === "appartment")
-                    Apartment
-                    @elseif ($property->type === "single_room")
-                    Single Room
-                    @elseif ($property->type === "double_room")
-                    Double Room
-                    @else
-
-                    @endif
-                  </button>
-
-
-
-
+                  <div class="col-12 col-md-6" style="padding-bottom:20px;">
+                    <i class="fa fa-bed fa-lg" style="padding-right:20px;"></i>
+                    <span>
+                      @if ($property->type === "appartment")
+                      Apartment
+                      @elseif ($property->type === "single_room")
+                      Single Room
+                      @elseif ($property->type === "double_room")
+                      Double Room
+                      @else
+                      @endif
+                    </span>
+                  </div>
 
                   @if($property->capacity>0)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                    <span class="badge"> <i class="fa fa-users fa-lg" style="color:black;"></i></span>
-                    {{$property->capacity}} Flatmates
-                  </button>
+                  <div class="col-12 col-md-6" style="padding-bottom:20px;">
+                    <i class="fa fa-users fa-lg" style="padding-right:20px;"></i>
+                    <span>
+                      {{$property->capacity}} Flatmates
+                    </span>
+                  </div>
                   @endif
-
-
 
                   @if($property->has_living_room===1)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                    <span class="badge"> <i class="fa fa-tv fa-lg" style="color:black;"></i></span>
-                    Living room
-                  </button>
-
+                  <div class="col-12 col-md-6" style="padding-bottom:20px;">
+                    <i class="fa fa-tv fa-lg" style="padding-right:20px;"></i>
+                    <span>
+                      Living room
+                    </span>
+                  </div>
                   @endif
-
-
 
                   @if($property->washing_machine===1)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                    <span class="badge"> <i class="fa fa-shopping-basket fa-lg" style="color:black;"></i></span>
-                    Washing machine
-                  </button>
-
+                  <div class="col-12 col-md-6" style="padding-bottom:20px;">
+                    <i class="fa fa-shopping-basket fa-lg" style="padding-right:20px;"></i>
+                    <span>
+                      Washing machine
+                    </span>
+                  </div>
                   @endif
-
-
 
                   @if($property->has_cleaning===1)
-                  <button type="button" class="btn btn-secondary"  style="background-color:transparent;width:200px;text-align: left;">
-                    <span class="badge"> <i class="fa fa-trash fa-lg" style="color:black;"></i></span>
-                    Cleaning included
-                  </button>
-
+                  <div class="col-12 col-md-6" style="padding-bottom:20px;">
+                    <i class="fa fa-trash fa-lg" style="padding-right:20px;"></i>
+                    <span name="text">
+                      Cleaning included
+                    </span>
+                  </div>
                   @endif
 
-<button class="btn btn-danger" data-toggle="modal" data-target="#expensesModal">Expenses Details<div class="ripple-container"></div>
+                  <div class="col-md-12 text-center" style="padding-top:25px;">
+                    <button class="btn btn-rose" data-toggle="modal" data-target="#expensesModal" style="width: 200px !important;">Expenses Details<div class="ripple-container"></div>
 
-</button>
-
-
-
+                    </button>
                   </div>
-                </div>
-                  <!-- Room Features -->
-
-
-
 
                 </div>
-                <div class="card-footer">
-
-                </div>
-
-
               </div>
 
 
             </div>
 
 
-          </div>
 
+          </div>
 
 
         </div>
 
-        <div class="container">
-
-          <div class="row">
-            <div class="col-sm-12">
-              <div style=" height: 500px;">
-                {!! Mapper::render() !!}
-              </div>
-
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <!-- TODO; Insert footer here or delete this div -->
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
 
       </div>
-      <footer class="footer">
-        <div class="container">
-          <nav class="pull-left">
-            <ul>
-              <li>
-                <a href="#">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
-                  FACEBOOK
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright pull-right">
-            &copy; Shomie,
-            <script>
-            document.write(new Date().getFullYear())
-            </script>
-          </div>
-        </div>
-      </footer>
+
+
 
     </div>
 
-    @endsection
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div style=" height: 500px;">
+            {!! Mapper::render() !!}
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <!-- TODO; Insert footer here or delete this div -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <nav class="pull-left">
+        <ul>
+          <li>
+            <a href="#">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
+              FACEBOOK
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright pull-right">
+        &copy; Shomie,
+        <script>
+        document.write(new Date().getFullYear())
+        </script>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+@endsection

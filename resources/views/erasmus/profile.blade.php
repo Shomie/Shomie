@@ -26,28 +26,21 @@
 
 
 
+				</ul>
+
+				<ul class="navbar-nav ml-md-auto d-md-flex">
+
+
 					@if (Auth::guest())
 					@else
 
-					@if(Auth::user()->type == 0)
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('home') }}">Search Room</a>
-					</li>
-
-					@else
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
-					</li>
-
-					@endif
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('home') }}">Search Room</a>
+						</li>
 					@endif
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
 					</li>
-
-				</ul>
-
-				<ul class="navbar-nav ml-md-auto d-md-flex">
 
 					@if (Auth::guest())
 					<li class="nav-item">
@@ -62,6 +55,9 @@
 							{{ Auth::user()->name }}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a  class="dropdown-item" href="{{ route('erasmus_profile') }}">
+							 Profile
+							</a>
 							<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 								Logout
 							</a>

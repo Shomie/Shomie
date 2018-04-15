@@ -32,15 +32,7 @@
 
 				<ul class="navbar-nav ml-md-auto d-md-flex">
 
-					@if (Auth::guest())
-					@else
-
 					@if(Auth::user()->type == 1)
-
-
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('landlord_notifications') }}">Notificações</a>
-					</li>
 
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -54,15 +46,10 @@
 					</li>
 
 					@else
+					@endif
 
 
-					@endif
-					@endif
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('landlord_profile') }}">Profile
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
+
 					@if (Auth::guest())
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -76,6 +63,9 @@
 							{{ Auth::user()->name }}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
+								Profile
+							</a>
 							<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 								Logout
 							</a>
@@ -100,7 +90,7 @@
 				<h2 class="section-title"><i class="fa fa-home" aria-hidden="true"></i> Menu Principal </h2>
 			</div>
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="panel-content">
 						<h3 class="heading"><i class="fa fa-bookmark" aria-hidden="true"></i>Visão Global</h3>
 						<div class="table-responsive">
@@ -108,18 +98,55 @@
 								<thead>
 									<tr>
 										<th>Quarto</th>
-										<th>Rua</th>
-										<th>Preço</th>
-										<th>Status</th>
+										<th>Data da visita</th>
+										<th>Hora da visita</th>
+										<th>Pedidos</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($properties as $key => $property)
+									@foreach($communications as $key => $communication)
 									<tr>
-										<td>  <a href="{{ route('property', ['id'=> $property->id]) }}" target="_blank">{{ $property->id }}</a></td>
-										<td>{{$property->address}}</td>
-										<td>{{$property->price}} €</td>
-										<td>{{$property->availability}}</td>
+										<form method="post" action="{{ route('landlord_main_menu_reply') }}">
+											{{ csrf_field() }}
+
+											<td>
+
+												<a href="{{ route('property', ['id'=> $communication->property_id]) }}" target="_blank" class="btn btn-sm btn-secondary btn-raised btn-round">
+														<i class="fa fa-bed" style="font-size: 15px;padding-right:8px;"></i> {{ $communication->property_id }}
+												</a>
+											</td>
+											<td>{{$communication->visit_date}}</td>
+											<td>{{$communication->visit_time}}</td>
+											<td>
+												@if($communication->state == "0")
+												<button type="submit" class="btn btn-success btn-sm btn-round" name="notification_reply" value="accepted">
+													<i class="fa fa-fw fa-check" style="font-size: 15px;padding-right:8px;" aria-hidden="true"></i>Aceitar
+												</button>
+
+												<button type="submit" class="btn btn-danger btn-sm btn-round" name="notification_reply" value="rejected">
+													<i class="fa fa-fw fa-times" style="font-size: 15px;padding-right:8px;" aria-hidden="true"></i>Rejeitar
+												</button>
+
+												@else
+												<div class="well">
+													<h5>
+														<span class="label">
+															@if($communication->state == "1")
+															<i class="fa fa-fw fa-check accepted fa-lg"></i>
+															Aceite
+															@elseif($communication->state == "2")
+															<i class="fa fa-fw fa-times rejected fa-lg"></i>
+															Rejeitado
+															@endif
+														</span>
+													</h5>
+												</div>
+												@endif
+
+
+											</td>
+											<input type="hidden" name="id" value="{{ $communication->id }}">
+										</form>
 									</tr>
 									@endforeach
 								</tbody>
@@ -127,7 +154,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="panel-content">
 						<h3 class="heading"><i class="fa fa-info-circle" aria-hidden="true"></i> Pedidos de visita</h3>
 						<ul class="list-unstyled list-referrals">

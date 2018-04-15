@@ -123,11 +123,15 @@ class LordController extends Controller
     {
       $total_notification = 1;
     }
+
+
+
     return view('landlord.main_menu', ['properties' => $properties->get(),
     'pending_notification' => $pending_notification,
     'accepted_notification' => $accepted_notification,
     'rejected_notification' => $rejected_notification,
-    'total_notification' => $total_notification/100
+    'total_notification' => $total_notification/100,
+    'communications' => $notifications
   ]);
 }
 
@@ -155,19 +159,7 @@ public function availability_rooms()
   return view('landlord.availability_rooms', ['properties' => $properties->get()]);
 }
 
-public function notification()
-{
-  $user = Auth::user();
-
-  if($user->type == 0 ){
-    return redirect()->route('home');
-  }
-
-  $communication = $this->GetAllNotification();
-  return view('landlord.notifications', ['communications' => $communication]);
-}
-
-public function notification_reply()
+public function landlord_main_menu_reply()
 {
   $id = Request::get('id');
   $reply = Request::get('notification_reply');
@@ -215,7 +207,7 @@ public function notification_reply()
   }
 
 
-  return redirect()->route('landlord_notifications');
+  return redirect()->route('landlord_main_menu');
 }
 
 }

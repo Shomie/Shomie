@@ -10,7 +10,7 @@
 <body>
 
 
-  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg ">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg">
         <div class="container">
             <div class="navbar-translate">
               <a class="navbar-brand"href="{{route('welcome') }}">Shomie </a>
@@ -22,6 +22,9 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
+
+
+
                   @if (Auth::guest())
                   <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">  <i class="material-icons">content_paste</i> Login</a>
@@ -30,22 +33,40 @@
                     <a class="nav-link" href="{{ route('register') }}"><i class="material-icons">cloud_download</i>Register</a>
                   </li>
                   @else
+
+
+
                     @if(Auth::user()->type == 0)
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('home') }}">Search Room</a>
+                    </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
                     </li>
 
                     @else
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
+                      <a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
                     </li>
-
                     @endif
+
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                       </a>
                       <div class="dropdown-menu" aria-labelledby="Preview">
+
+                        @if(Auth::user()->type == 0)
+                        <a  class="dropdown-item" href="{{ route('erasmus_profile') }}">
+          							 Profile
+          							</a>
+                        @else
+                        <a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
+                          Profile
+                        </a>
+                        @endif
+
+
                         <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                           Logout
                         </a>

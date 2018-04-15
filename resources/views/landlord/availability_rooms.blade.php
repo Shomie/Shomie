@@ -38,11 +38,7 @@
 
 					@if(Auth::user()->type == 1)
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('landlord') }}">Dashboard</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('landlord_notifications') }}">Notificações</a>
+						<a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
 					</li>
 
 
@@ -51,11 +47,6 @@
 
 					@endif
 					@endif
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('landlord_profile') }}">Profile
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
 
 					@if (Auth::guest())
 					<li class="nav-item">
@@ -70,6 +61,11 @@
 							{{ Auth::user()->name }}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
+
+							<a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
+								Profile
+							</a>
+
 							<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 								Logout
 							</a>
@@ -184,7 +180,7 @@
 								</div>
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" class="btn btn-rose">Guardar</button>
 							</div>
 						</form>
 

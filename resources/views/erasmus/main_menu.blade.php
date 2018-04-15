@@ -25,6 +25,9 @@
 								<ul class="navbar-nav">
 
 
+								</ul>
+
+								<ul class="navbar-nav ml-md-auto d-md-flex">
 
 									@if (Auth::guest())
 									@else
@@ -32,18 +35,7 @@
 										<li class="nav-item">
 											<a class="nav-link" href="{{ route('home') }}">Search Room</a>
 										</li>
-
-										<li class="nav-item">
-											<a class="nav-link" href="{{ route('erasmus_profile') }}">Profile
-												<span class="sr-only">(current)</span>
-											</a>
-										</li>
-
 									@endif
-
-								</ul>
-
-								<ul class="navbar-nav ml-md-auto d-md-flex">
 
 				          @if (Auth::guest())
 				          <li class="nav-item">
@@ -58,9 +50,18 @@
 				              {{ Auth::user()->name }}
 				            </a>
 				            <div class="dropdown-menu" aria-labelledby="Preview">
-				              <a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+
+											<a  class="dropdown-item" href="{{ route('erasmus_profile') }}">
+											 Profile
+										 </a>
+											<a  class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 				                Logout
 				              </a>
+
+
+
+
+
 				              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 				                {{ csrf_field() }}
 				              </form>
@@ -87,7 +88,7 @@
 						<div class="panel-content">
 							<h3 class="heading"><i class="fa fa-bookmark" aria-hidden="true"></i>Overall Data</h3>
 							<div class="table-responsive">
-								<table class="table table-striped no-margin">
+								<table class="table table-striped no-margin text-">
 									<thead>
 										<tr>
 											<th>Room</th>
@@ -100,24 +101,37 @@
 									<tbody>
 										@foreach($notifications as $key => $notification)
 										<tr>
-											<td>  <a href="{{ route('property', ['id'=> $notification->property_id]) }}" target="_blank">{{ $notification->property_id }}</a></td>
+											<td>
+												<a href="{{ route('property', ['id'=> $notification->property_id]) }}" target="_blank" class="btn btn-sm btn-secondary btn-raised btn-round">
+														<i class="fa fa-bed" style="font-size: 15px;padding-right:8px;"></i> {{ $notification->property_id }}
+												</a>
+											</td>
 											<td>{{$notification->visit_date}}</td>
 											<td>{{$notification->visit_time}}</td>
 											<td>
 
-												@if($notification->state == "0")
-												<span class="pending">
-													Pending
-												</span>
-												@elseif($notification->state == "1")
-												<span class="accepted">
-													Accepted
-													</span
-													@elseif($notification->state == "2")
-													<span class="rejected">
-														Rejected
-													</span>
-													@endif
+
+												<div class="well">
+													<h5>
+														<span class="label">
+															@if($notification->state == "0")
+															<i class="fa fa-fw fa-spinner fa-lg"></i>
+															Waiting
+															@elseif($notification->state == "1")
+															<i class="fa fa-fw fa-check fa-lg"></i>
+															Aceite
+															@elseif($notification->state == "2")
+															<i class="fa fa-fw fa-times fa-lg"></i>
+															Rejeitado
+															@endif
+														</span>
+													</h5>
+												</div>
+
+
+
+
+
 												</td>
 												<td>
 													@if($notification->state == "1")
@@ -137,22 +151,22 @@
 						</div>
 						<div class="col-md-4">
 							<div class="panel-content">
-								<h3 class="heading"><i class="fa fa-info-circle" aria-hidden="true"></i> Pedidos de visita</h3>
+								<h3 class="heading"><i class="fa fa-info-circle" aria-hidden="true"></i> Visit Requests</h3>
 								<ul class="list-unstyled list-referrals">
 									<li>
-										<p><span class="value">{{$accepted_notification}} </span><span class="text-muted">Visitas aceites</span></p>
+										<p><span class="value">{{$accepted_notification}} </span><span class="text-muted">Accepted Visits</span></p>
 										<div class="progress">
 											<div class="progress-bar bg-success" role="progressbar" style="width: {{$accepted_notification/$total_notification}}%;background-color:#468847;" aria-valuenow="{{$accepted_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 									</li>
 									<li>
-										<p><span class="value">{{$rejected_notification}} </span><span class="text-muted">Visitas rejeitadas</span></p>
+										<p><span class="value">{{$rejected_notification}} </span><span class="text-muted">Rejected Visits</span></p>
 										<div class="progress">
 											<div class="progress-bar bg-danger" role="progressbar" style="width: {{$rejected_notification/$total_notification}}%;background-color:#b94a48;" aria-valuenow="{{$rejected_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
 									</li>
 									<li>
-										<p><span class="value">{{$pending_notification}} </span><span class="text-muted">Visitas por aceitar</span></p>
+										<p><span class="value">{{$pending_notification}} </span><span class="text-muted">Waiting for Approval</span></p>
 										<div class="progress">
 											<div class="progress-bar bg-warning" role="progressbar" style="width: {{$pending_notification/$total_notification}}%;background-color:#f89406;" aria-valuenow="{{$pending_notification/$total_notification}}" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>

@@ -33,7 +33,7 @@
 
           @else
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('landlord_notifications') }}">Dashboard</a>
+            <a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
           </li>
 
           @endif
