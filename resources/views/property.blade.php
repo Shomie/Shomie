@@ -53,33 +53,33 @@ In the folder of skin CSS file there are also:
             <a class="nav-link" href="{{ route('register') }}">Register</a>
           </li>
           @else
-            @if(Auth::user()->type == 0)
+          @if(Auth::user()->type == 0)
 
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('home') }}">Search Room</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('home') }}">Search Room</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
+          </li>
 
-            @else
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
-            </li>
+          @else
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
+          </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Quartos
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              Quartos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="Preview">
+              <a class="dropdown-item" href="{{ route('landlord_availability_rooms') }}">
+                Mudar Disponibilidade
               </a>
-              <div class="dropdown-menu" aria-labelledby="Preview">
-                <a class="dropdown-item" href="{{ route('landlord_availability_rooms') }}">
-                  Mudar Disponibilidade
-                </a>
-              </div>
-            </li>
+            </div>
+          </li>
 
 
-            @endif
+          @endif
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               {{ Auth::user()->name }}
@@ -88,7 +88,7 @@ In the folder of skin CSS file there are also:
 
               @if(Auth::user()->type == 0)
               <a  class="dropdown-item" href="{{ route('erasmus_profile') }}">
-               Profile
+                Profile
               </a>
               @else
               <a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
@@ -379,7 +379,7 @@ In the folder of skin CSS file there are also:
               <p class="card-text">
                 {{ $property->description }}
               </p>
-              <div class="pull-left">
+              <div class="col-md-12 text-center">
                 @if(Auth::user()->type != 1 && $property->availability == "available")
                 <button type="button" class="btn btn-rose" data-toggle="modal" data-target="#exampleModal"><div class="ripple-container"></div>
                   Book a visit
@@ -404,10 +404,22 @@ In the folder of skin CSS file there are also:
 
           <div class="card" style="height:500px">
             <div class="card-body">
-              <h4 class="card-title">Information</h4>
-              <h6 class="card-title">{{$property->presentation}} {{$property->zone}} <span class="pull-right"><strong><span class="price_title">{{ $property->price }}€</span> per month</strong></span></h6>
+              <h3 class="card-title">Information</h3>
+              <h6 class="card-title">{{$property->presentation}} {{$property->zone}}</h6>
+
+              <h6 class="card-title pull-right"><strong class="pull-right"><span class="price_title">{{ $property->price }}€</span> per month</strong></h6>
+
+              <button class="btn btn-rose btn-sm pull-left text-white" data-toggle="modal" data-target="#expensesModal">
+                <strong class="pull-left">
+                  <i class="fa fa-info" style="padding-right:15px;"></i>Expenses
+                </strong>
+              </button>
+
+              <div class="clearfix"></div>
 
               <hr>
+
+
 
               <div class="container">
                 <div class="row">
@@ -461,13 +473,6 @@ In the folder of skin CSS file there are also:
                     </span>
                   </div>
                   @endif
-
-                  <div class="col-md-12 text-center" style="padding-top:25px;">
-                    <button class="btn btn-rose" data-toggle="modal" data-target="#expensesModal" style="width: 200px !important;">Expenses Details<div class="ripple-container"></div>
-
-                    </button>
-                  </div>
-
                 </div>
               </div>
 

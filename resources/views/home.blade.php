@@ -219,20 +219,21 @@
                 <div class="card-body">
 
 
-                  <h5 class="card-title">{{$value->presentation}} {{$value->zone}}
-                    <span class="pull-right">
-                      <strong>
-                        <span class="price_title">
-                          {{ $value->price }}€
-                        </span>
-                        per month
-                      </strong>
-                    </span>
-                  </h5>
+                  <h5 class="card-title">{{$value->presentation}} {{$value->zone}}  </h5>
+
 
                 <h6 class="card-text mb-2 text-muted">{{ $value->description }}</h6>
 
-
+                <h5 class="card-title">
+                  <span class="pull-right">
+                    <strong>
+                      <span class="price_title">
+                        {{ $value->price }}€
+                      </span>
+                      per month
+                    </strong>
+                  </span>
+                </h5>
                 </div>
               </div>
 
