@@ -225,12 +225,12 @@ In the folder of skin CSS file there are also:
         <!-- input with datetimepicker -->
         <div class="form-group">
           <label class="label-control">Date</label>
-          <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;"/>
+          <input type="text" id="calendarDate" class="form-control datetimepicker" style="cursor:pointer;" readonly/>
         </div>
 
         <div class="form-group">
           <label class="label-control">Time</label>
-          <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;"/>
+          <input type="text" id="calendarTime" class="form-control datetimepicker" style="cursor:pointer;" readonly/>
         </div>
       </div>
       <div class="modal-footer">

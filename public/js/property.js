@@ -10,21 +10,39 @@ $( document ).ready(function() {
     minDate: moment(),
     sideBySide: true,
     keepOpen: true,
+    focusOnShow: false,
+    ignoreReadonly: true,
     icons: {
       previous: 'fa fa-chevron-left',
       next: 'fa fa-chevron-right',
     }
+  }).on('dp.show', function (e) {
+    $(e.target).on('mousedown', function (e) {
+      $(e.target).data("DateTimePicker").hide();
+      e.preventDefault();
+    });
+  }).on('dp.hide', function (e) {
+    $(e.target).off('mousedown');
   });
 
   $('#calendarTime').datetimepicker({
     format: 'hh:mm',
     defaultDate: moment(),
-      sideBySide: true,
+    sideBySide: true,
     keepOpen: true,
+    focusOnShow: false,
+    ignoreReadonly: true,
     icons: {
       up: "fa fa-chevron-up",
       down: "fa fa-chevron-down"
     }
+  }).on('dp.show', function (e) {
+    $(e.target).on('mousedown', function (e) {
+      $(e.target).data("DateTimePicker").hide();
+      e.preventDefault();
+    });
+  }).on('dp.hide', function (e) {
+    $(e.target).off('mousedown');
   });
 
 
