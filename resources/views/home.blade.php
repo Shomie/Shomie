@@ -191,15 +191,8 @@
 
                   <?php
 
-                  $image_search = "img/RoomsPics/". $value->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+                  $image_search = "img/RoomsPics/". $value->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
                   $images = glob($image_search, GLOB_BRACE);
-
-                  if(count($images) == 0)
-                  {
-                    /* If the main image is not found search for one existing image */
-                    $image_search = "img/RoomsPics/". $value->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-                    $images = glob($image_search, GLOB_BRACE);
-                  }
 
                   if(!empty($images))
                   {

@@ -354,15 +354,8 @@ In the folder of skin CSS file there are also:
 
             <?php
 
-            $image_search = "img/RoomsPics/". $property->id . "/main.{jpg,jpeg,gif,png,PNG,JPG}";
+            $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
             $images = glob($image_search, GLOB_BRACE);
-
-            if(count($images) == 0)
-            {
-              /* If the main image is not found search for one existing image */
-              $image_search = "img/RoomsPics/". $property->id . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
-              $images = glob($image_search, GLOB_BRACE);
-            }
 
             if(!empty($images))
             {
