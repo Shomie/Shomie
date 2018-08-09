@@ -33,6 +33,9 @@ class HomeController extends Controller
     if($user->type==1 ){
       return redirect()->route('landlord_main_menu');
     }
+    else if($user->type == 2){
+      return redirect()->route('admin_availability_rooms');
+    }
     else{
       $min = 100;
       $max = 250;

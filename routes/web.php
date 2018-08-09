@@ -60,6 +60,9 @@ Route::get('/property/{id}', 'PropertyController@index')->name('property');
 Route::post('/property/{id}', 'PropertyController@RequestVisitToProperty')->name('request_visit');
 
 
+Route::get('/admin_availability_rooms', 'LordController@admin_availability_rooms')->name('admin_availability_rooms');
+
+
 Route::group(['prefix' => 'admin'], function () {
 	Voyager::routes();
 });

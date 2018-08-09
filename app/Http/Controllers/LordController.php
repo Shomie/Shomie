@@ -110,6 +110,9 @@ class LordController extends Controller
     if($user->type == 0 ){
       return redirect()->route('home');
     }
+    else if($user->type == 2){
+        return redirect()->route('admin_availability_rooms');
+      }
 
     $properties = $this->getLandlordProperties();
 
@@ -143,6 +146,9 @@ public function profile()
   if($user->type == 0 ){
     return redirect()->route('home');
   }
+  else if($user->type == 2){
+      return redirect()->route('admin_availability_rooms');
+    }
 
   return view('landlord.profile');
 }
@@ -150,13 +156,23 @@ public function profile()
 public function availability_rooms()
 {
   $user = Auth::user();
+    if($user->type == 0 || $user->type == 2 ){
+      return redirect()->route('home');
+    }
 
-  if($user->type == 0 ){
+    $properties = $this->getLandlordProperties();
+    return view('landlord.availability_rooms', ['properties' => $properties->get()]);
+}
+
+public function admin_availability_rooms()
+{
+  $user = Auth::user();
+
+  if($user->type == 0 || $user->type == 1){
     return redirect()->route('home');
   }
 
-  $properties = $this->getLandlordProperties();
-  return view('landlord.availability_rooms', ['properties' => $properties->get()]);
+  return view('admin.availability_rooms');
 }
 
 public function landlord_main_menu_reply()

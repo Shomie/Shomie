@@ -43,7 +43,10 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('erasmus_main_menu') }}">Notifications</a>
                     </li>
-
+                    @elseif(Auth::user()->type == 2)
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('admin_availability_rooms') }}">Rooms Availability</a>
+                    </li>
                     @else
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('landlord_main_menu') }}">Notificações</a>
@@ -60,6 +63,8 @@
                         <a  class="dropdown-item" href="{{ route('erasmus_profile') }}">
           							 Profile
           							</a>
+                        @elseif(Auth::user()->type == 2)
+
                         @else
                         <a  class="dropdown-item"  href="{{ route('landlord_profile') }}">
                           Profile
