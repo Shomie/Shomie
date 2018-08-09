@@ -97,7 +97,7 @@ class ErasmusController extends Controller
       return redirect()->route('home');
     }
     else if($user->type == 2){
-        return redirect()->route('admin_availability_rooms');
+        return redirect()->route('admin_availability_rooms_search');
       }
 
     $user->name = Request::get('erasmus_name');

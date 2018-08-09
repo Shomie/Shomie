@@ -64,7 +64,8 @@
 
 						<div class="col-md-12">
 
-							@if(empty($property))
+
+							@if(empty($properties))
 							<div class="alert alert-danger">
 								<div class="container">
 									<div class="alert-icon">
@@ -78,9 +79,10 @@
 							</div>
 							@endif
 
-						<form class="form-inline ml-auto">
+						<form class="form-inline ml-auto" method="post" action="{{ route('admin_availability_rooms_search') }}">
+							{{ csrf_field() }}
 							 <div class="form-group no-border">
-								 <input type="text" class="form-control" placeholder="Search">
+								 <input type="text" class="form-control" placeholder="Search"  name="admin_landlord_id">
 							 </div>
 							 <button type="submit" class="btn btn-white btn-just-icon btn-round">
 									 <i class="material-icons">search</i>
@@ -89,9 +91,9 @@
 					</div>
 
 
-					@if( ! empty($property))
+					@if( ! empty($properties))
 
-						<form method="post" action="{{ route('landlord_availability_rooms') }}">
+						<form method="post" action="{{ route('admin_availability_rooms_save') }}">
 
 							{{ csrf_field() }}
 							<?php $var = 0; ?>
