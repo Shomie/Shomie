@@ -32,6 +32,7 @@ class PropertyController extends Controller
 
     $image_search = $dir_path . "/*.{jpg,jpeg,gif,png,PNG,JPG}";
     $images = glob($image_search, GLOB_BRACE);
+    natsort($images);
 
     return $images;
   }
