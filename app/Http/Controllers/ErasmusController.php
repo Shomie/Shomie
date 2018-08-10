@@ -50,6 +50,9 @@ class ErasmusController extends Controller
     if($user->type == 1 ){
       return redirect()->route('home');
     }
+    else if($user->type == 2){
+      return redirect()->route('admin_availability_rooms');
+    }
 
     $notifications = $this->GetAllNotification();
     $pending_notification = $notifications->where('state', '=', '0')->count();
@@ -78,6 +81,9 @@ class ErasmusController extends Controller
     if($user->type == 1 ){
       return redirect()->route('home');
     }
+    else if($user->type == 2){
+        return redirect()->route('admin_availability_rooms');
+      }
 
     return view('erasmus.profile');
   }
@@ -90,6 +96,9 @@ class ErasmusController extends Controller
     if($user->type == 1 ){
       return redirect()->route('home');
     }
+    else if($user->type == 2){
+        return redirect()->route('admin_availability_rooms_search');
+      }
 
     $user->name = Request::get('erasmus_name');
     $user->phone_number = Request::get('erasmus_phone');

@@ -373,7 +373,7 @@ In the folder of skin CSS file there are also:
                 {{ $property->description }}
               </p>
               <div class="col-md-12 text-center">
-                @if(Auth::user()->type != 1 && $property->availability == "available")
+                @if(Auth::user()->type != 1 && Auth::user()->type != 2 && $property->availability == "available")
                 <button type="button" class="btn btn-rose" data-toggle="modal" data-target="#exampleModal"><div class="ripple-container"></div>
                   Book a visit
                 </button>
