@@ -29,11 +29,9 @@ class LordController extends Controller
     /* TODO: If in the index the user is not an landlord send it away */
   }
 
-  public function getLandlordProperties()
+  public function getLandlordProperties($landlord_id)
   {
-    $user = Auth::user();
-    $landlord = $user->landlord_id;
-    $properties = Property::where("landlord_id", $landlord);
+    $properties = Property::where("landlord_id", $landlord_id);
     return $properties;
   }
 
@@ -67,10 +65,36 @@ class LordController extends Controller
     return $porperties_availabitlity;
   }
 
+  public function admin_availability_rooms_search()
+  {
+
+    $landlord_id = Request::get('admin_landlord_id');
+
+    $properties = $this->getLandlordProperties($landlord_id);
+    return view('admin.availability_rooms', ['properties' => $properties->get()]);
+
+  }
+
+  public function admin_availability_rooms_save()
+  {
+    $porperties_availabitlity = $this->GetPorpertiesNewAvailability(); /* Array with all the indexes and respective property ides */
+    $property_id_index = 0;
+    $availability_index = 1;
+
+    for($i = 0; $i < count($porperties_availabitlity[$property_id_index]);$i++)
+    {
+      $property = Property::where("id",$porperties_availabitlity[$property_id_index][$i]);
+      if($property!=null)
+      {
+        $property->update(['availability'=>$porperties_availabitlity[$availability_index][$i]]);
+      }
+    }
+
+    return redirect()->route('admin_availability_rooms');
+  }
+
   public function available()
   {
-    $properties = $this->getLandlordProperties()->get();
-
     $porperties_availabitlity = $this->GetPorpertiesNewAvailability(); /* Array with all the indexes and respective property ides */
     $property_id_index = 0;
     $availability_index = 1;
@@ -110,8 +134,11 @@ class LordController extends Controller
     if($user->type == 0 ){
       return redirect()->route('home');
     }
+    else if($user->type == 2){
+        return redirect()->route('admin_availability_rooms');
+      }
 
-    $properties = $this->getLandlordProperties();
+    $properties = $this->getLandlordProperties($user->landlord_id);
 
     $notifications = $this->GetAllNotification();
     $pending_notification = $notifications->where('state', '=', '0')->count();
@@ -143,6 +170,9 @@ public function profile()
   if($user->type == 0 ){
     return redirect()->route('home');
   }
+  else if($user->type == 2){
+      return redirect()->route('admin_availability_rooms');
+    }
 
   return view('landlord.profile');
 }
@@ -150,13 +180,23 @@ public function profile()
 public function availability_rooms()
 {
   $user = Auth::user();
+    if($user->type == 0 || $user->type == 2 ){
+      return redirect()->route('home');
+    }
 
-  if($user->type == 0 ){
+    $properties = $this->getLandlordProperties($user->landlord_id);
+    return view('landlord.availability_rooms', ['properties' => $properties->get()]);
+}
+
+public function admin_availability_rooms()
+{
+  $user = Auth::user();
+
+  if($user->type == 0 || $user->type == 1){
     return redirect()->route('home');
   }
 
-  $properties = $this->getLandlordProperties();
-  return view('landlord.availability_rooms', ['properties' => $properties->get()]);
+  return view('admin.availability_rooms');
 }
 
 public function landlord_main_menu_reply()
