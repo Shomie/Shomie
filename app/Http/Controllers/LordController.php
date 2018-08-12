@@ -238,6 +238,7 @@ public function landlord_main_menu_reply()
         {
           try {
             Mail::to($email)->send(new NotificationMail($notification, $property, $user));
+            Mail::to("shomie.organization@gmail.com")->send(new NotificationMail($notification, $property, $user));
           } catch (Exception $e) {
             /* Do nothing */
           }
