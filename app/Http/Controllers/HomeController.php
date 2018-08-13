@@ -41,7 +41,7 @@ class HomeController extends Controller
       $max = 250;
       $options = "all_rooms";
 
-      $properties = Property::where("availability","available")->paginate(30);
+      $properties = Property::where("availability","available")->paginate(100);
       return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => $min , 'max' => $max]);
     }
 
@@ -55,13 +55,13 @@ class HomeController extends Controller
 
     if($options == "all_rooms")
     {
-      $properties = Property::where("availability","available")->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(30);
+      $properties = Property::where("availability","available")->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(100);
     }
     else
     {
 
       /* type: single_room, double_room and appartment*/
-      $properties = Property::where("availability","available")->where("type", $options)->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(30);
+      $properties = Property::where("availability","available")->where("type", $options)->where("price", ">=" , $min)->where("price", "<=" , $max)->paginate(100);
     }
 
     return view('home', ['properties' => $properties, 'filteroptions' => $options, 'min' => $min , 'max' => $max]);
