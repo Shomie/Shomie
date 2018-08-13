@@ -259,7 +259,7 @@
             </a>
           </li>
           <li>
-            <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/erasmus.shomie/" target="_blank" data-original-title="Like us on Facebook">
+            <a rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/SH0mie/" target="_blank" data-original-title="Like us on Facebook">
               FACEBOOK
             </a>
           </li>

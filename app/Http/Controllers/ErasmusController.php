@@ -36,7 +36,7 @@ class ErasmusController extends Controller
     $erasmus_id = $user->id;
     $notification = Communication::join('properties','communication.property_id','=', 'properties.id')
     ->where('communication.user_id','=', $erasmus_id)
-    ->select('communication.id', 'communication.visit_time', 'communication.visit_date', 'communication.property_id', 'communication.state', 'properties.address', 'properties.floor', 'properties.number')->get();
+    ->select('communication.id', 'communication.visit_time', 'communication.visit_date', 'communication.property_id', 'communication.state', 'properties.address', 'properties.floor', 'properties.number','properties.price')->get();
 
     return $notification;
 
