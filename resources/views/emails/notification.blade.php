@@ -9,8 +9,7 @@
 	 <p>Your visit is booked for <strong>{{$visit_date}}</strong> at <strong>{{$visit_time}}</strong></p>
 	 <br>
      <p><strong>Address</strong>: {{ $property_address}} {{ $property_floor}} {{ $property_number}}</p> 
-	 <br>
-	 <p><strong>Price</strong>: {{ $property_price}};</p>
+	 <!--<p><strong>Price</strong>: </p>-->
 	 <br>
 	 <p><strong>Property id</strong>: {{ $property_id}}.</p>
 	 <br>
