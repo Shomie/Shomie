@@ -7,7 +7,7 @@ noUiSlider.create(mySlider, {
 	start: [ parseInt($("#min").val()), parseInt($("#max").val())],
 	connect: true,
   margin: 100,
-  step: 50,
+  step: 10,
 	range: {
 		min:  0,
 		max:  1000
