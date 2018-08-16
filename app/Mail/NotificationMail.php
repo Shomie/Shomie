@@ -42,7 +42,8 @@ class NotificationMail extends Mailable
       $property_floor = $this->property->value('floor');
       $property_number = $this->property->value('number');
       $user_name = $this->user->value('name');
-	  
+      $property_price = $this->property->value('price');
+
 
         return $this->view('emails.notification')
         ->with([
@@ -53,8 +54,9 @@ class NotificationMail extends Mailable
                 'property_address' => $property_address,
                 'property_floor' => $property_floor,
                 'property_number' => $property_number,
-                'user_name'        => $user_name
-				
+                'user_name'        => $user_name,
+                'property_price' => $property_price
+
               ]);
     }
 }
