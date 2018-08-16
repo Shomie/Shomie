@@ -54,7 +54,7 @@ class NotificationMail extends Mailable
                 'property_floor' => $property_floor,
                 'property_number' => $property_number,
                 'user_name'        => $user_name
-				'property_price' =>$property_price
+				'property_price' => $property_price
               ]);
     }
 }

@@ -7,7 +7,6 @@
     {{$user_name}} created a visit request for {{$visit_date}} at {{$visit_time}}
      in {{ $property_address}} {{ $property_floor}} {{ $property_number}}, property id: {{ $property_id}} and landlord id: {{ $landlord_id }}.
 	 
-	 <p>User Email: {{ $user_email }}
 </body>
 
 </html>
