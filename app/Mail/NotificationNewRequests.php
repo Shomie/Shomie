@@ -40,7 +40,7 @@ class NotificationNewRequests extends Mailable
       $id = $this->notification["id"];
       $property_id = $this->property["id"];
       $landlord_id = $this->property["landlord_id"];
-
+	  $user_mail = $this->user["email"];
       $property_address = $this->property["address"];
       $property_floor = $this->property["floor"];
       $property_number = $this->property["number"];
@@ -57,6 +57,7 @@ class NotificationNewRequests extends Mailable
                 'property_number' => $property_number,
                 'landlord_id' => $landlord_id,
                 'user_name'        => $user_name
+				'user_mail' => $user_mail
               ]);
     }
 }
