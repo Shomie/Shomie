@@ -157,7 +157,7 @@ In the folder of skin CSS file there are also:
                           <i class="fa fa-fw fa-times rejected fa-lg" style="color:black;"></i>
                           @endif
                         </span>
-                        Water included
+                        Electricity included
                       </h5>
                     </div>
                   </div>
